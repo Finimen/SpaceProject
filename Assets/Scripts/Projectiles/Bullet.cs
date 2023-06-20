@@ -8,12 +8,22 @@ namespace Assets.Scripts.Projectiles
     {
         [Space(25)]
         [SerializeField] private float _damage;
+        [SerializeField] private float _lifeTime = 5;
 
         private Transform _transform;
+
+        private Collider2D[] _ignoreColliders;
 
         public void Initialize()
         {
             _transform = transform;
+
+            Destroy(gameObject, _lifeTime);
+        }
+
+        public void SetIgnoreColliders(Collider2D[] ignoreColliders)
+        {
+            _ignoreColliders = ignoreColliders;
         }
 
         private void Update()
@@ -28,6 +38,17 @@ namespace Assets.Scripts.Projectiles
 
         private void OnTriggerEnter2D(Collider2D other)
         {
+            if(_ignoreColliders != null)
+            {
+                foreach (var ignore in _ignoreColliders)
+                {
+                    if (ignore == other)
+                    {
+                        return;
+                    }
+                }
+            }
+            
             if(other.GetComponent<IDamageable>() != null)
             {
                 other.GetComponent<IDamageable>().GetDamage(_damage);

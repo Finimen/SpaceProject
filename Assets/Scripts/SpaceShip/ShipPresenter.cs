@@ -1,4 +1,5 @@
 using Assets.Scripts.Damageable;
+using System;
 using UnityEngine;
 
 namespace Assets.Scripts.SpaceShip
@@ -9,6 +10,8 @@ namespace Assets.Scripts.SpaceShip
     {
         [SerializeField] private ShipModel _model;
         [SerializeField] private ShipView _view;
+
+        public override event Action OnDestroyed;
 
         public override float Health => _model.Health;
         public override float MaxHealth => _model.MaxHealth;
@@ -30,6 +33,8 @@ namespace Assets.Scripts.SpaceShip
         private void Dispose()
         {
             _model.OnDestroyed -= Dispose;
+
+            OnDestroyed?.Invoke();
 
             _view.DestroyView();
         }

@@ -16,6 +16,8 @@ namespace Assets.Scripts.SpaceShip
 
         [SerializeField] private float _stoppingDistance = 1;
 
+        [SerializeField] private float _offset;
+
         private Transform _transform;
 
         private float _currentSpeed;
@@ -58,12 +60,12 @@ namespace Assets.Scripts.SpaceShip
         {
             Vector3 direction = _target - _transform.position;
 
-            _angelBetweenDirection = Vector2.Angle(direction, _transform.right);
+            _angelBetweenDirection = Vector2.Angle(direction, _transform.right) - Mathf.Abs(_offset);
 
             float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
 
             _transform.rotation = Quaternion.Lerp(_transform.rotation,
-                Quaternion.Euler(0f, 0f, angle), _rotation * Time.deltaTime);
+                Quaternion.Euler(0f, 0f, angle + _offset), _rotation * Time.deltaTime);
         }
 
         private void UpdateSpeed()
@@ -80,7 +82,7 @@ namespace Assets.Scripts.SpaceShip
 
         private void Move()
         {
-            _transform.position += _transform.right * _currentSpeed * Time.deltaTime;
+            _transform.position += _transform.up * _currentSpeed * Time.deltaTime;
         }
     }
 }

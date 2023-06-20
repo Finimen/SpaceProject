@@ -15,7 +15,9 @@ namespace Assets.Scripts.WeaponSystem
 
         protected override void ShootInternal()
         {
-            Instantiate(_bulletTemplate, _spawnPoint.position, _spawnPoint.rotation).Initialize();
+            var bullet = Instantiate(_bulletTemplate, _spawnPoint.position, _spawnPoint.rotation);
+            bullet.Initialize();
+            bullet.SetIgnoreColliders(_ignoreColliders.ToArray());
 
             if(_reloading != null)
             {

@@ -10,7 +10,7 @@ namespace Assets.Scripts.Damageable
 
         public abstract float MaxHealth { get; }
 
-        public event Action OnDestroyed;
+        public abstract event Action OnDestroyed;
 
         public abstract void GetDamage(float amount);
     }
