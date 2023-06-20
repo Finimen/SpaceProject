@@ -1,7 +1,11 @@
-﻿namespace Assets.Scripts.Damageable
+﻿using System;
+
+namespace Assets.Scripts.Damageable
 {
     internal interface IDamageable
     {
+        public event Action OnDestroyed;
+
         public float Health { get; }
         public float MaxHealth { get; }
 

@@ -12,9 +12,12 @@ namespace Assets.Scripts.Debug
         {
             foreach(var gameObject in FindObjectsOfType<GameObject>())
             {
-                if(gameObject.GetComponent<IInitializable>() != null)
+                if(gameObject.GetComponents<IInitializable>() != null)
                 {
-                    gameObject.GetComponent<IInitializable>().Initialize();
+                    foreach(var initializable in gameObject.GetComponents<IInitializable>())
+                    {
+                        initializable.Initialize();
+                    }
                 }
             }
         }
