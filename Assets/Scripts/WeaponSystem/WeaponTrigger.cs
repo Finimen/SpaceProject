@@ -40,8 +40,10 @@ namespace Assets.Scripts.WeaponSystem
 
             float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
 
-            transform.rotation = Quaternion.Lerp(transform.rotation,
-                Quaternion.Euler(0f, 0f, angle - 90), _rotateSpeed * Time.deltaTime);
+            float rotateAngle = Mathf.MoveTowardsAngle(transform.eulerAngles.z, angle - 90,
+                _rotateSpeed * Time.deltaTime);
+
+            transform.eulerAngles = new Vector3(0f, 0f, rotateAngle);
         }
 
         private void FindEnemy()

@@ -1,4 +1,6 @@
 ﻿using Assets.Scripts.Damageable;
+using Assets.Scripts.PoolSystem;
+using System.Collections;
 using UnityEngine;
 
 namespace Assets.Scripts.Projectiles
@@ -14,11 +16,15 @@ namespace Assets.Scripts.Projectiles
 
         private Collider2D[] _ignoreColliders;
 
+        private ObjectPool _pool;
+
         public void Initialize()
         {
             _transform = transform;
 
-            Destroy(gameObject, _lifeTime);
+            _pool = FindObjectOfType<ObjectPool>();
+
+            StartCoroutine(AddToPool());
         }
 
         public void SetIgnoreColliders(Collider2D[] ignoreColliders)
@@ -26,14 +32,21 @@ namespace Assets.Scripts.Projectiles
             _ignoreColliders = ignoreColliders;
         }
 
-        private void Update()
-        {
-            Move();
-        }
-
         protected override void Move()
         {
             _transform.Translate(_movingVector * _speed);
+        }
+
+        private IEnumerator AddToPool()
+        {
+            yield return new WaitForSeconds(_lifeTime);
+
+            _pool.Add(gameObject);
+        }
+
+        private void Update()
+        {
+            Move();
         }
 
         private void OnTriggerEnter2D(Collider2D other)
@@ -52,7 +65,7 @@ namespace Assets.Scripts.Projectiles
             if(other.GetComponent<IDamageable>() != null)
             {
                 other.GetComponent<IDamageable>().GetDamage(_damage);
-                Destroy(gameObject);
+                _pool.Add(gameObject);
             }
         }
     }

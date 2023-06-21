@@ -1,6 +1,10 @@
 using Assets.Scripts.Damageable;
+using Assets.Scripts.Environment;
+using Assets.Scripts.PoolSystem;
 using System;
 using UnityEngine;
+
+using Random = UnityEngine.Random;
 
 namespace Assets.Scripts.SpaceShip
 {
@@ -10,6 +14,11 @@ namespace Assets.Scripts.SpaceShip
     {
         [SerializeField] private ShipModel _model;
         [SerializeField] private ShipView _view;
+        [SerializeField] private DamageableLevel[] _levels;
+
+        private ObjectPool _pool;
+
+        private int _currentLevel;
 
         public override event Action OnDestroyed;
 
@@ -20,6 +29,21 @@ namespace Assets.Scripts.SpaceShip
         {
             _model.GetDamage(amount);
             _view.UpdateHealth(_model.Health);
+
+            for (int i = 0; i < _levels.Length; i++)
+            {
+                if (Health < _levels[i].MinHealth && _currentLevel < i)
+                {
+                    _currentLevel = i;
+
+                    var effect = _pool.Get(_levels[i].EffectsTemplate.gameObject).GetComponent<ObjectChaser>();
+                    effect.transform.position = transform.position + new Vector3(
+                       Random.Range(-_levels[i].RandomSpawnOffset, _levels[i].RandomSpawnOffset),
+                       Random.Range(-_levels[i].RandomSpawnOffset, _levels[i].RandomSpawnOffset));
+                    effect.transform.rotation = transform.rotation;
+                    effect.Initialize(transform, true);
+                }
+            }
         }
 
         public void Initialize()
@@ -28,6 +52,10 @@ namespace Assets.Scripts.SpaceShip
             _view.Initialize(gameObject);
 
             _model.OnDestroyed += Dispose;
+
+            _currentLevel = -1;
+
+            _pool = FindObjectOfType<ObjectPool>();
         }
 
         private void Dispose()

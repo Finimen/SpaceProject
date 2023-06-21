@@ -24,6 +24,14 @@ namespace Assets.Scripts.SpaceShip
 
         private bool _wayPassed = true;
 
+        public float Speed
+        {
+            get
+            {
+                return _currentSpeed;
+            }
+        }
+
         void IInitializable.Initialize()
         {
             _transform = transform;
@@ -50,7 +58,7 @@ namespace Assets.Scripts.SpaceShip
                 return;
             }
 
-            if (_angelBetweenDirection < _minAngleToMove)
+            if (Mathf.Abs(_angelBetweenDirection) < _minAngleToMove)
             {
                 UpdateSpeed();
             }
@@ -64,8 +72,9 @@ namespace Assets.Scripts.SpaceShip
 
             float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
 
-            _transform.rotation = Quaternion.Lerp(_transform.rotation,
-                Quaternion.Euler(0f, 0f, angle + _offset), _rotation * Time.deltaTime);
+            float rotateAngle = Mathf.MoveTowardsAngle(transform.eulerAngles.z, angle + _offset, _rotation * Time.deltaTime);
+
+            _transform.eulerAngles = new Vector3(0f, 0f, rotateAngle);
         }
 
         private void UpdateSpeed()
