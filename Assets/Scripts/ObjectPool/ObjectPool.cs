@@ -1,5 +1,4 @@
-﻿using JetBrains.Annotations;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -14,7 +13,6 @@ namespace Assets.Scripts.PoolSystem
             public int StartCount;
         }
 
-        [Serializable]
         public struct ConcreteObjectPool
         {
             public GameObject Prefab;
@@ -23,7 +21,8 @@ namespace Assets.Scripts.PoolSystem
         }
 
         [SerializeField] private PoolingObject[] _poolingObjects;
-        [SerializeField] private ConcreteObjectPool[] _concreteObjectPools;
+        
+        private ConcreteObjectPool[] _concreteObjectPools;
 
         void IInitializable.Initialize()
         {

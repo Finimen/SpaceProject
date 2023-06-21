@@ -8,6 +8,7 @@ namespace Assets.Scripts.WeaponSystem
     internal class Weapon : BaseWeapon, IInitializable
     {
         [SerializeField] private Bullet _bulletTemplate;
+        [SerializeField] private GameObject _shootParticles;
         
         [SerializeField] private Transform _spawnPoint;
 
@@ -32,6 +33,13 @@ namespace Assets.Scripts.WeaponSystem
 
             bullet.Initialize();
             bullet.SetIgnoreColliders(_ignoreColliders.ToArray());
+
+            if(_shootParticles != null)
+            {
+                var particles = _pool.Get(_shootParticles);
+                particles.transform.position = transform.position;
+                particles.transform.rotation = transform.rotation;
+            }
 
             if(_reloading != null)
             {

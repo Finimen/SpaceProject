@@ -12,9 +12,10 @@ namespace Assets.Scripts.SpaceShip
     [RequireComponent(typeof(Collider2D))]
     public class ShipPresenter : DamageableObject, IInitializable
     {
-        [SerializeField] private ShipModel _model;
-        [SerializeField] private ShipView _view;
-        [SerializeField] private DamageableLevel[] _levels;
+        [SerializeField] private ShipModel _model = new ShipModel();
+        [SerializeField] private ShipView _view = new ShipView();
+
+        [SerializeField] private DamageableLevel[] _levels = new DamageableLevel[0];
 
         private ObjectPool _pool;
 

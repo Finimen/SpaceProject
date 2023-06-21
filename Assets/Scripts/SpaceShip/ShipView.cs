@@ -19,7 +19,10 @@ namespace Assets.Scripts.SpaceShip
 
         public void DestroyView()
         {
-            Object.Destroy(_viewObject);
+            if(Application.isPlaying)
+            {
+                Object.Destroy(_viewObject);
+            }
         }
 
         public void UpdateHealth(float health)
