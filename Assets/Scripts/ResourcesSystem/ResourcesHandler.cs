@@ -1,12 +1,14 @@
 using System;
 using UnityEngine;
 
-namespace Assets.Scripts.Player
+using OreType = Assets.Scripts.ResourcesSystem.OreType;
+
+namespace Assets.Scripts.ResourcesSystem
 {
     /// <summary>
     /// Ores
     /// </summary>
-    public class PlayerResources : MonoBehaviour
+    public class ResourcesHandler : MonoBehaviour
     {
         [SerializeField] private int _defaultOre;
         [SerializeField] private int _redOre;

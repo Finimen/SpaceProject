@@ -10,6 +10,8 @@ namespace Assets.Scripts.Debug
     {
         private void Awake()
         {
+            World.Initialize();
+
             foreach(var gameObject in FindObjectsOfType<GameObject>())
             {
                 if(gameObject.GetComponents<IInitializable>() != null)

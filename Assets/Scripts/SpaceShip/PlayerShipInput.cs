@@ -6,18 +6,16 @@ namespace Assets.Scripts.SpaceShip
     {
         [SerializeField] private Camera _camera;
 
-        private ShipPresenter _shipPresenter;
         private ShipMovement _shipMovement;
 
         void IInitializable.Initialize()
         {
-            _shipPresenter = GetComponent<ShipPresenter>();
             _shipMovement = GetComponent<ShipMovement>();
         }
 
         private void Update()
         {
-            if(Input.GetMouseButtonDown(0))
+            if(Input.GetMouseButtonDown(1))
             {
                 _shipMovement.SetTargetPoint(_camera.ScreenToWorldPoint(Input.mousePosition));
             }

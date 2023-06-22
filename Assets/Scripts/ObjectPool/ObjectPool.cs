@@ -49,8 +49,6 @@ namespace Assets.Scripts.PoolSystem
 
         public GameObject Get(GameObject template)
         {
-            UnityEngine.Debug.Log("GET_USED");
-
             foreach(var pool in _concreteObjectPools)
             {
                 if(pool.Prefab == template)
@@ -75,8 +73,6 @@ namespace Assets.Scripts.PoolSystem
 
         public void Add(GameObject gameObject)
         {
-            UnityEngine.Debug.Log("ADD_USED");
-
             gameObject.SetActive(false);
 
             foreach(var pool in _concreteObjectPools)

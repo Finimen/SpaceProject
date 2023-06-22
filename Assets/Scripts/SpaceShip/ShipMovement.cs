@@ -64,6 +64,11 @@ namespace Assets.Scripts.SpaceShip
             }
         }
 
+        private void OnDisable()
+        {
+            _currentSpeed = 0;
+        }
+
         private void Rotate()
         {
             Vector3 direction = _target - _transform.position;

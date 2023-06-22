@@ -1,7 +1,8 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using UnityEngine;
 
-namespace Assets.Scripts.Player
+namespace Assets.Scripts.ResourcesSystem
 {
     public class Ore : MonoBehaviour, IInitializable
     {
@@ -11,13 +12,17 @@ namespace Assets.Scripts.Player
 
         [SerializeField] private OreType _type;
 
-        private PlayerResources _resources;
+        public event Action OnOreCollected;
 
         private Coroutine _collecting;
 
+        public OreType Type => _type;
+
+        public int Amount => _amount;
+
         void IInitializable.Initialize()
         {
-            _resources = FindObjectOfType<PlayerResources>();
+            World.AddOre(this);
         }
 
         public void StartCollecting(float collectingPower = 1)
@@ -27,7 +32,10 @@ namespace Assets.Scripts.Player
 
         public void StopCollecting()
         {
-            StopCoroutine(_collecting);
+            if(_collecting != null )
+            {
+                StopCoroutine(_collecting);
+            }
         }
 
         private IEnumerator Collecting(float collectingPower)
@@ -39,7 +47,9 @@ namespace Assets.Scripts.Player
 
         private void Collect()
         {
-            _resources.IncreaseOre(_amount, _type);
+            OnOreCollected?.Invoke();
+
+            World.RemoveOre(this);
 
             Destroy(gameObject);
         }

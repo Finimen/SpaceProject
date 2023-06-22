@@ -1,20 +1,22 @@
 ﻿using UnityEngine;
 using TMPro;
 
-namespace Assets.Scripts.Player
+using OreType = Assets.Scripts.ResourcesSystem.OreType;
+
+namespace Assets.Scripts.ResourcesSystem
 {
-    [RequireComponent(typeof(PlayerResources))]
-    public class PlayerResourcesUI : MonoBehaviour, IInitializable
+    [RequireComponent(typeof(ResourcesHandler))]
+    public class ResourcesHandlerUI : MonoBehaviour, IInitializable
     {
         [SerializeField] private TMP_Text _defaultOre;
         [SerializeField] private TMP_Text _redOre;
         [SerializeField] private TMP_Text _greenOre;
 
-        private PlayerResources _resources;
+        private ResourcesHandler _resources;
 
         void IInitializable.Initialize()
         {
-            _resources = GetComponent<PlayerResources>();
+            _resources = GetComponent<ResourcesHandler>();
 
             _resources.OnOreChanged += UpdateOre;
 
