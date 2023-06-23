@@ -5,7 +5,6 @@ namespace Assets.Scripts.ResourcesSystem
 {
     public class ResourcesCollector : MonoBehaviour, IInitializable
     {
-
         [SerializeField] private float _radius = 5;
         [SerializeField] private float _power = 1;
 

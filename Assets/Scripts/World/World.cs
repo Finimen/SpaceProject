@@ -8,29 +8,49 @@ namespace Assets.Scripts
     /// </summary>
     public static class World
     {
-        private static List<Ore> allOres;
+        private static List<Ore> _allOres;
+
+        private static float _playerGCoins;
 
         public static List<Ore> Ores
         {
             get
             {
-                return allOres;
+                return _allOres;
+            }
+        }
+
+        public static float PlayerGCoins
+        {
+            get
+            {
+                return _playerGCoins;
             }
         }
 
         public static void Initialize(int startCount = 0)
         {
-            allOres = new List<Ore>(startCount);
+            _allOres = new List<Ore>(startCount);
         }
 
         public static void AddOre(Ore ore)
         {
-            allOres.Add(ore);
+            _allOres.Add(ore);
         }
 
         public static void RemoveOre(Ore ore)
         {
-            allOres.Remove(ore);
+            _allOres.Remove(ore);
+        }
+
+        public static void IncreasePlayerCoins(float amount)
+        {
+            _playerGCoins += amount;
+        }
+
+        public static void DecreaseCoins(float amount)
+        {
+            _playerGCoins -= amount;
         }
     }
 }

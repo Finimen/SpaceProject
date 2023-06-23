@@ -1,11 +1,10 @@
 ﻿using UnityEngine;
 using TMPro;
-
-using OreType = Assets.Scripts.ResourcesSystem.OreType;
+using Assets.Scripts.SpaceShip;
 
 namespace Assets.Scripts.ResourcesSystem
 {
-    [RequireComponent(typeof(ResourcesHandler))]
+    [RequireComponent(typeof(ResourcesHandler), typeof(Ship))]
     public class ResourcesHandlerUI : MonoBehaviour, IInitializable
     {
         [SerializeField] private TMP_Text _defaultOre;
@@ -16,11 +15,16 @@ namespace Assets.Scripts.ResourcesSystem
 
         void IInitializable.Initialize()
         {
+            GetComponent<Ship>().OnSelectedForMoving += () => SetActiveUI(true);
+            GetComponent<Ship>().OnDeselected += () => SetActiveUI(false);
+
             _resources = GetComponent<ResourcesHandler>();
 
             _resources.OnOreChanged += UpdateOre;
 
             UpdateAllResources();
+
+            SetActiveUI(false);
         }
 
         private void OnDisable()
@@ -49,6 +53,13 @@ namespace Assets.Scripts.ResourcesSystem
                     _greenOre.text = $"Green: {amount}";
                     break;
             }
+        }
+
+        private void SetActiveUI(bool active)
+        {
+            _defaultOre.gameObject.SetActive(active);
+            _redOre.gameObject.SetActive(active);
+            _greenOre.gameObject.SetActive(active);
         }
     }
 }

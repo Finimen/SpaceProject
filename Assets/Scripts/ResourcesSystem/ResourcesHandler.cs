@@ -40,5 +40,10 @@ namespace Assets.Scripts.ResourcesSystem
                     break;
             }
         }
+
+        public void DecreaseOre(int amount, OreType oreType)
+        {
+            IncreaseOre(-amount, oreType);
+        }
     }
 }

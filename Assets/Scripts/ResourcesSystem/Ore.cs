@@ -27,7 +27,14 @@ namespace Assets.Scripts.ResourcesSystem
 
         public void StartCollecting(float collectingPower = 1)
         {
-            _collecting = StartCoroutine(Collecting(collectingPower));
+            if(collectingPower > 0)
+            {
+                _collecting = StartCoroutine(Collecting(collectingPower));
+            }
+            else
+            {
+                Collect();
+            }
         }
 
         public void StopCollecting()
@@ -51,7 +58,10 @@ namespace Assets.Scripts.ResourcesSystem
 
             World.RemoveOre(this);
 
-            Destroy(gameObject);
+            if(Application.isPlaying)
+            {
+                Destroy(gameObject);
+            }
         }
     }
 }

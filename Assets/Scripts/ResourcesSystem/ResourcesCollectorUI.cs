@@ -12,7 +12,7 @@ namespace Assets.Scripts.ResourcesSystem
         {
             _collector = GetComponent<ResourcesCollector>();
 
-            _line = Instantiate(_line, transform.position, transform.rotation);
+            _line = Instantiate(_line, Vector3.zero, transform.rotation);
             _line.positionCount = 0;
         }
 
@@ -28,8 +28,6 @@ namespace Assets.Scripts.ResourcesSystem
             {
                 _line.positionCount = 2;
             }
-
-            _line.transform.position = Vector3.zero;
 
             var start = transform.position;
             var end = _collector.Current.transform.position;

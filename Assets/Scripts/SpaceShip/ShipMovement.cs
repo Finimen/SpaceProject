@@ -2,7 +2,7 @@
 
 namespace Assets.Scripts.SpaceShip
 {
-    internal class ShipMovement : MonoBehaviour, IInitializable
+    public class ShipMovement : MonoBehaviour, IInitializable
     {
         [SerializeField] private Vector3 _target;
 
@@ -32,9 +32,18 @@ namespace Assets.Scripts.SpaceShip
             }
         }
 
+        public Vector3 Target
+        {
+            get
+            {
+                return _target;
+            }
+        }
+
         void IInitializable.Initialize()
         {
             _transform = transform;
+            _target = _transform.position;
         }
 
         public void SetTargetPoint(Vector3 point)
@@ -67,6 +76,7 @@ namespace Assets.Scripts.SpaceShip
         private void OnDisable()
         {
             _currentSpeed = 0;
+            _target = _transform.position;
         }
 
         private void Rotate()
