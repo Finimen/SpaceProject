@@ -1,4 +1,5 @@
 using Assets.Scripts.ResourcesSystem;
+using Assets.Scripts.WeaponInstallationSystem;
 using System;
 using UnityEngine;
 using UnityEngine.EventSystems;
@@ -11,7 +12,8 @@ namespace Assets.Scripts.SpaceShip
         public enum ShipState
         {
             Gameplay,
-            Trading
+            Trading,
+            WeaponInstallation
         }
 
         public event Action OnSelectedForMoving;
@@ -19,6 +21,10 @@ namespace Assets.Scripts.SpaceShip
         public event Action OnDeselected;
 
         [SerializeField] private ShipState _state;
+
+        [SerializeField, Space(25)] private Collider2D[] _ignoreCollidersForWeapons;
+
+        private WeaponInstallationPoint[] _weaponInstallationPoints;
 
         private ShipMovement _movement;
         private ResourcesCollector _collector;
@@ -58,6 +64,13 @@ namespace Assets.Scripts.SpaceShip
             if (GetComponent<ResourcesHandler>() != null)
             {
                 _handler = GetComponent<ResourcesHandler>();
+            }
+
+            _weaponInstallationPoints = GetComponentsInChildren<WeaponInstallationPoint>();
+
+            foreach (var weaponPoint in _weaponInstallationPoints)
+            {
+                weaponPoint.Initialize(_ignoreCollidersForWeapons);
             }
 
             SetState(_state);
@@ -111,6 +124,15 @@ namespace Assets.Scripts.SpaceShip
 
                     OnDeselected?.Invoke();
                     OnSelectedForTreading?.Invoke();
+                    break;
+
+                case ShipState.WeaponInstallation:
+                    _movement.enabled = false;
+
+                    foreach(var weaponPoint in _weaponInstallationPoints)
+                    {
+                        weaponPoint.Enable(true);
+                    }
                     break;
             }
         }

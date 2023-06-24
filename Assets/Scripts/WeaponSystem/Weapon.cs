@@ -32,7 +32,7 @@ namespace Assets.Scripts.WeaponSystem
                 * Quaternion.Euler(0, 0, Random.Range(-_scatter, _scatter));
 
             bullet.Initialize();
-            bullet.SetIgnoreColliders(_ignoreColliders.ToArray());
+            bullet.SetIgnoreColliders(_ignoreColliders);
 
             if(_shootParticles != null)
             {

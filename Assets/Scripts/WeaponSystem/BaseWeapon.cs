@@ -1,4 +1,3 @@
-using System.Collections.Generic;
 using UnityEngine;
 
 namespace Assets.Scripts.WeaponSystem
@@ -7,7 +6,12 @@ namespace Assets.Scripts.WeaponSystem
     {
         public virtual bool CanShoot { get; protected set; } = true;
         
-        public List<Collider2D> _ignoreColliders;
+        public Collider2D[] _ignoreColliders;
+
+        public void Initialize(Collider2D[] ignoreColliders)
+        {
+            _ignoreColliders = ignoreColliders;
+        }
 
         public void Shoot()
         {

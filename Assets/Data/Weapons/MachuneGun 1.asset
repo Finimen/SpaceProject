@@ -1,0 +1,17 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1a80f7f46c032454ca6f670872b93e5b, type: 3}
+  m_Name: MachuneGun 1
+  m_EditorClassIdentifier: 
+  _icon: {fileID: 21300000, guid: 75f0be5db82431349835875ddd090578, type: 3}
+  _price: 1
+  _prefab: {fileID: 6387580342745442967, guid: f0d329bb179e2464a8c9413db49c0b99, type: 3}
