@@ -2,6 +2,7 @@ using UnityEngine;
 
 namespace Assets.Scripts.CameraSystem
 {
+    [RequireComponent (typeof(Camera))]
     public class PlayerCamera : MonoBehaviour, IInitializable
     {
         [SerializeField] private bool _isMobile;
@@ -10,25 +11,33 @@ namespace Assets.Scripts.CameraSystem
         [SerializeField] private float _multiplier = .5f;
         [SerializeField] private float _scrollMultiplier = 5;
         [SerializeField] private float _lerpTime = .5f;
+        [SerializeField] private float _minimapMultiplier = 2;
 
         [SerializeField, Space(25)] private float _minScroll = -15;
         [SerializeField] private float _maxScroll = 15;
 
+        [SerializeField] private Camera _minimap;
+
+        private Camera _main;
+
         private Vector3 _startPosition;
-        private Vector3 _scroll;
 
         private Vector3 _destination;
+
+        private float _scroll;
 
         [field: SerializeField] public bool EnableInput { get; set; } = true;
 
         void IInitializable.Initialize()
         {
             SetDestination(transform.position);
+
+            _main = GetComponent<Camera>();
         }
 
         public void SetDestination(Vector3 destination)
         {
-            _destination = destination;
+            _destination = new Vector3(destination.x, destination.y, transform.position.z);
         }
 
         private void Update()
@@ -70,8 +79,8 @@ namespace Assets.Scripts.CameraSystem
                 _startPosition = Input.mousePosition;
             }
 
-            _scroll -= (Vector3)Input.mouseScrollDelta * _scrollMultiplier;
-            _scroll = new Vector3(_scroll.x, Mathf.Clamp(_scroll.y, _minScroll, _maxScroll), _scroll.z);
+            _scroll -= Input.mouseScrollDelta.y * _scrollMultiplier;
+            _scroll = Mathf.Clamp(_scroll, _minScroll, _maxScroll);
         }
 
         private void UseMobile()
@@ -107,15 +116,15 @@ namespace Assets.Scripts.CameraSystem
 
                 var distanceBetwenTouchesPosition = Vector2.Distance(touchA.position, touchB.position);
                 var distanceBetwenTouchesDirections = Vector2.Distance(touchADircetion, touchBDircetion);
-
-                _scroll += Vector3.up * (distanceBetwenTouchesDirections - distanceBetwenTouchesPosition) * .01f;
-                _scroll = new Vector3(_scroll.x, Mathf.Clamp(_scroll.y, _minScroll, _maxScroll), _scroll.z);
             }
         }
 
         private void MoveCamera()
         {
             transform.position = Vector3.Lerp(transform.position, _destination, _lerpTime * Time.deltaTime);
+
+            _main.orthographicSize = _scroll;
+            _minimap.orthographicSize = _scroll * _minimapMultiplier;
         }
     }
 }

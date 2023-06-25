@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 5485491987804436713}
   - component: {fileID: -5262387180265595643}
   m_Layer: 0
-  m_Name: Bullet
+  m_Name: MachuneGun1Bullet
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -127,7 +127,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _speed: 0.1
   _movingVector: {x: -1, y: 0}
-  _damage: 1
+  _damage: 0.5
   _lifeTime: 5
 --- !u!114 &-5262387180265595643
 MonoBehaviour:

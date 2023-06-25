@@ -22,6 +22,7 @@ namespace Assets.Scripts.SpaceShip
         private int _currentLevel;
 
         public override event Action OnDestroyed;
+        public override event Action<float> OnDamaged;
 
         public override float Health => _model.Health;
         public override float MaxHealth => _model.MaxHealth;
@@ -31,6 +32,27 @@ namespace Assets.Scripts.SpaceShip
             _model.GetDamage(amount);
             _view.UpdateHealth(_model.Health);
 
+            OnDamaged?.Invoke(Health);
+
+            UpdateDamageLevels();
+        }
+
+        public void Initialize()
+        {
+            _pool = FindObjectOfType<ObjectPool>();
+
+            _model.Initialize();
+            _view.Initialize(gameObject);
+
+            _model.OnDestroyed += Dispose;
+
+            _currentLevel = -1;
+
+            World.Entities.Add(this);
+        }
+
+        private void UpdateDamageLevels()
+        {
             for (int i = 0; i < _levels.Length; i++)
             {
                 if (Health < _levels[i].MinHealth && _currentLevel < i)
@@ -47,18 +69,6 @@ namespace Assets.Scripts.SpaceShip
             }
         }
 
-        public void Initialize()
-        {
-            _model.Initialize();
-            _view.Initialize(gameObject);
-
-            _model.OnDestroyed += Dispose;
-
-            _currentLevel = -1;
-
-            _pool = FindObjectOfType<ObjectPool>();
-        }
-
         private void Dispose()
         {
             _model.OnDestroyed -= Dispose;
@@ -66,6 +76,8 @@ namespace Assets.Scripts.SpaceShip
             OnDestroyed?.Invoke();
 
             _view.DestroyView();
+
+            World.Entities.Remove(this);
         }
     }
 }

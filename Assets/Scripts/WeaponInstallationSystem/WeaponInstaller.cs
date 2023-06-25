@@ -1,5 +1,6 @@
 using Assets.Scripts.PortSystem;
 using Assets.Scripts.SpaceShip;
+using TMPro;
 using UnityEngine;
 
 namespace Assets.Scripts.WeaponInstallationSystem
@@ -9,20 +10,43 @@ namespace Assets.Scripts.WeaponInstallationSystem
     {
         [SerializeField] private GameObject _canvas;
 
+        [SerializeField] private TMP_Text _gCoins;
+
+        private bool _active;
+
         void IInitializable.Initialize()
         {
             GetComponent<Port>().OnShipEnter += (ship) =>
             {
-                _canvas.SetActive(true);
+                _active = true;
+
+                _canvas.SetActive(_active);
 
                 ship.SetState(Ship.ShipState.WeaponInstallation);
             };
             GetComponent<Port>().OnShipLeave += (ship) =>
             {
-                _canvas.SetActive(false);
+                _active = false;
+
+                _canvas.SetActive(_active);
 
                 ship.SetState(Ship.ShipState.Gameplay);
             };
+
+            _canvas.SetActive(false);
+        }
+
+        private void FixedUpdate()
+        {
+            if (_active)
+            {
+                UpdateUI();
+            }
+        }
+
+        private void UpdateUI()
+        {
+            _gCoins.text = $"GCoins: {World.PlayerGCoins}";
         }
     }
 }

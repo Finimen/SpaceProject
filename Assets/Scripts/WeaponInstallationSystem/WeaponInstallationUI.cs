@@ -12,7 +12,7 @@ namespace Assets.Scripts.WeaponInstallationSystem
 
         public void ShowUI(WeaponInstallationPoint weaponPoint)
         {
-            ClearUI();
+            HideUI();
 
             _lastUI = new WeaponUI[weaponPoint.AvailableWeapons.Length];
 
@@ -27,7 +27,7 @@ namespace Assets.Scripts.WeaponInstallationSystem
             }
         }
 
-        public void ClearUI()
+        public void HideUI()
         {
             if (_lastUI != null)
             {
@@ -35,6 +35,8 @@ namespace Assets.Scripts.WeaponInstallationSystem
                 {
                     Destroy(lastPart.gameObject);
                 }
+
+                _lastUI = null;
             }
         }
     }

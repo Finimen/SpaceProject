@@ -22,7 +22,7 @@ namespace Assets.Scripts.ResourcesSystem
 
         void IInitializable.Initialize()
         {
-            World.AddOre(this);
+            World.Ores.Add(this);
         }
 
         public void StartCollecting(float collectingPower = 1)
@@ -56,7 +56,7 @@ namespace Assets.Scripts.ResourcesSystem
         {
             OnOreCollected?.Invoke();
 
-            World.RemoveOre(this);
+            World.Ores.Add(this);
 
             if(Application.isPlaying)
             {

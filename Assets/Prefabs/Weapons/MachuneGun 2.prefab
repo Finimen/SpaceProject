@@ -117,7 +117,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 734075cbcbb009e449fc404f3e86bed4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _radius: 7
+  _radius: 5.5
   _rotateSpeed: 37.5
   _currentWeapon: {fileID: 175708328348939088}
   _enemies: []

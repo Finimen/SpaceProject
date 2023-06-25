@@ -11,7 +11,10 @@ namespace Assets.Scripts.WeaponInstallationSystem
         [SerializeField, Space(25)] private WeaponData[] _availableWeapons;
 
         private Collider2D[] _ignoreCollidersForWeapons;
+        
         private WeaponInstallationUI _ui;
+
+        private SpriteRenderer _renderer;
 
         private bool _enabled;
 
@@ -29,14 +32,20 @@ namespace Assets.Scripts.WeaponInstallationSystem
         {
             _ui = FindObjectOfType<WeaponInstallationUI>(true);
 
+            _renderer = GetComponent<SpriteRenderer>();
+
             _ignoreCollidersForWeapons = ignoreCollidersForWeapons;
 
             _current?.Initialize(_ignoreCollidersForWeapons);
+
+            Enable(false);
         }
 
         public void Enable(bool enabled)
         {
             _enabled = enabled;
+
+            _renderer.enabled = enabled;
         }
 
         public void SpawnNewWeapon(BaseWeapon template)
@@ -48,6 +57,14 @@ namespace Assets.Scripts.WeaponInstallationSystem
 
             _current = Instantiate(template, transform.position, transform.rotation, transform);
             _current.Initialize(_ignoreCollidersForWeapons);
+        }
+
+        private void Update()
+        {
+            if(_enabled && Input.GetMouseButtonDown(0))
+            {
+                _ui.HideUI();
+            }
         }
     }
 }

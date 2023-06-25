@@ -6,12 +6,12 @@ namespace Assets.Scripts.WeaponSystem
 {
     internal class WeaponTrigger : MonoBehaviour
     {
+        [SerializeField] private int _id;
+
         [SerializeField] private float _radius;
         [SerializeField] private float _rotateSpeed;
 
         [SerializeField] private BaseWeapon _currentWeapon;
-
-        [SerializeField] private List<DamageableObject> _enemies;
 
         private DamageableObject _currentEnemy;
 
@@ -48,11 +48,11 @@ namespace Assets.Scripts.WeaponSystem
 
         private void FindEnemy()
         {
-            foreach (var enemy in _enemies)
+            foreach (var entity in World.Entities)
             {
-                if (enemy != null && Vector2.Distance(enemy.transform.position, transform.position) < _radius)
+                if (entity.Id != _id && entity != null && Vector2.Distance(entity.transform.position, transform.position) < _radius)
                 {
-                    _currentEnemy = enemy;
+                    _currentEnemy = entity;
                 }
             }
         }

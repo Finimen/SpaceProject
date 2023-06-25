@@ -1,3 +1,4 @@
+using Assets.Scripts.CameraSystem;
 using Assets.Scripts.ResourcesSystem;
 using Assets.Scripts.WeaponInstallationSystem;
 using System;
@@ -31,6 +32,8 @@ namespace Assets.Scripts.SpaceShip
         private ResourcesHandler _handler;
         private PlayerShipInput _playerShipInput;
 
+        private PlayerCamera _camera;
+
         private bool _mouseEntered;
         private bool _isSelected;
 
@@ -43,6 +46,8 @@ namespace Assets.Scripts.SpaceShip
 
         void IInitializable.Initialize()
         {
+            _camera = FindObjectOfType<PlayerCamera>();
+
             _movement = GetComponent<ShipMovement>();
 
             ((IInitializable)_movement).Initialize();
@@ -151,10 +156,18 @@ namespace Assets.Scripts.SpaceShip
                     {
                         case ShipState.Trading:
                             OnSelectedForTreading?.Invoke();
+
+                            _camera.SetDestination(transform.position);
+                            _camera.EnableInput = false;
                             break;
                         
                         case ShipState.Gameplay:
                             OnSelectedForMoving?.Invoke();
+                            break;
+
+                        case ShipState.WeaponInstallation:
+                            _camera.SetDestination(transform.position);
+                            _camera.EnableInput = false;
                             break;
                     }
                 }
@@ -162,6 +175,8 @@ namespace Assets.Scripts.SpaceShip
                 {
                     _playerShipInput.DisableInput();
                     OnDeselected?.Invoke();
+
+                    _camera.EnableInput = true;
                 }
             }
         }
