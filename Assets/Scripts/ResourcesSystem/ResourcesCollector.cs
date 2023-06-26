@@ -18,18 +18,22 @@ namespace Assets.Scripts.ResourcesSystem
 
         private bool _startCollecting;
 
-        public Ore Current
-        {
-            get
-            {
-                return _currentOre;
-            }
-        }
+        public Ore Current => _currentOre;
 
-        void IInitializable.Initialize()
+        public float Radius => _radius;
+
+        public void Initialize()
         {
             _transform = transform;
             _handler = GetComponent<ResourcesHandler>();
+        }
+
+        public void DisableCurrent()
+        {
+            _currentOre.StopCollecting();
+            _currentOre.OnOreCollected -= ApplyResources;
+
+            _currentOre = null;
         }
 
         private void FixedUpdate()

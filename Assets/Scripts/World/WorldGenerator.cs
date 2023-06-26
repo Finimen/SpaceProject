@@ -20,7 +20,7 @@ namespace Assets.Scripts.GeneratorSystem
 
         [SerializeField] private float _zPosition = -10;
 
-        void IInitializable.Initialize()
+        public void Initialize()
         {
             foreach (var template in templates)
             {

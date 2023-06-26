@@ -18,6 +18,7 @@ namespace Assets.Scripts.WeaponInstallationSystem
 
         private bool _enabled;
 
+        public BaseWeapon Current => _current;
         public WeaponData[] AvailableWeapons => _availableWeapons;
 
         void IPointerClickHandler.OnPointerClick(PointerEventData eventData)

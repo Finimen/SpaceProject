@@ -20,7 +20,7 @@ namespace Assets.Scripts.ResourcesSystem
 
         public int Amount => _amount;
 
-        void IInitializable.Initialize()
+        public void Initialize()
         {
             World.Ores.Add(this);
         }

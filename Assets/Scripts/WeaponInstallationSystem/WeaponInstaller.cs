@@ -14,7 +14,7 @@ namespace Assets.Scripts.WeaponInstallationSystem
 
         private bool _active;
 
-        void IInitializable.Initialize()
+        public void Initialize()
         {
             GetComponent<Port>().OnShipEnter += (ship) =>
             {

@@ -1,8 +1,6 @@
 using System;
 using UnityEngine;
 
-using OreType = Assets.Scripts.ResourcesSystem.OreType;
-
 namespace Assets.Scripts.ResourcesSystem
 {
     /// <summary>

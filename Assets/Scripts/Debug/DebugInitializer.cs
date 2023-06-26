@@ -8,8 +8,15 @@ namespace Assets.Scripts.Debug
     /// </summary>
     public class DebugInitializer : MonoBehaviour
     {
+        [SerializeField] private bool _enabled;
+
         private void Awake()
         {
+            if (!_enabled)
+            {
+                return;
+            }
+
             World.Initialize();
 
             foreach(var gameObject in FindObjectsOfType<GameObject>())

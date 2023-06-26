@@ -28,7 +28,7 @@ namespace Assets.Scripts.CameraSystem
 
         [field: SerializeField] public bool EnableInput { get; set; } = true;
 
-        void IInitializable.Initialize()
+        public void Initialize()
         {
             SetDestination(transform.position);
 

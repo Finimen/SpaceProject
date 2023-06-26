@@ -6,19 +6,22 @@ namespace Assets.Scripts.SpaceShip
     {
         [SerializeField] private Vector3 _target;
 
-        [SerializeField] private float _maxSpeed;
-        [SerializeField] private float _acceleration;
+        [Space(25)]
+        [SerializeField] private float _maxSpeed = 2;
+        [SerializeField] private float _acceleration = .05f;
 
-        [SerializeField] private float _rotation;
+        [SerializeField] private float _rotationSpeed = 5;
 
-        [SerializeField] private float _angelBetweenDirection;
+        [Space(25)]
         [SerializeField] private float _minAngleToMove = 15;
 
         [SerializeField] private float _stoppingDistance = 1;
 
-        [SerializeField] private float _offset;
+        [SerializeField] private float _offset = -90;
 
         private Transform _transform;
+        
+        private float _angelBetweenDirection;
 
         private float _currentSpeed;
 
@@ -36,7 +39,7 @@ namespace Assets.Scripts.SpaceShip
         {
             get
             {
-                return _target;
+                return _wayPassed ? transform.position : _target;
             }
         }
 
@@ -87,7 +90,7 @@ namespace Assets.Scripts.SpaceShip
 
             float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
 
-            float rotateAngle = Mathf.MoveTowardsAngle(transform.eulerAngles.z, angle + _offset, _rotation * Time.deltaTime);
+            float rotateAngle = Mathf.MoveTowardsAngle(transform.eulerAngles.z, angle + _offset, _rotationSpeed * Time.deltaTime);
 
             _transform.eulerAngles = new Vector3(0f, 0f, rotateAngle);
         }

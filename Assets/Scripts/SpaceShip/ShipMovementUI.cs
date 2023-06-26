@@ -9,7 +9,7 @@ namespace Assets.Scripts.SpaceShip
 
         private ShipMovement _movement;
 
-        void IInitializable.Initialize()
+        public void Initialize()
         {
             _movement = GetComponent<ShipMovement>();
 
@@ -22,7 +22,7 @@ namespace Assets.Scripts.SpaceShip
             _pathLine.positionCount = 2;
         }
 
-        private void FixedUpdate()
+        private void Update()
         {
             _pathLine.SetPosition(0, transform.position);
             _pathLine.SetPosition(1, _movement.Target);

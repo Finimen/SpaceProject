@@ -44,7 +44,7 @@ namespace Assets.Scripts.SpaceShip
         public ResourcesHandler Handler => _handler;
         public PlayerShipInput PlayerShipInput => _playerShipInput;
 
-        void IInitializable.Initialize()
+        public void Initialize()
         {
             _camera = FindObjectOfType<PlayerCamera>();
 
@@ -119,6 +119,7 @@ namespace Assets.Scripts.SpaceShip
 
                     if (_collector != null)
                     {
+                        _collector.DisableCurrent();
                         _collector.enabled = false;
                     }
 
@@ -130,7 +131,7 @@ namespace Assets.Scripts.SpaceShip
                     OnDeselected?.Invoke();
                     OnSelectedForTreading?.Invoke();
                     break;
-
+                    
                 case ShipState.WeaponInstallation:
                     _movement.enabled = false;
 
@@ -150,7 +151,7 @@ namespace Assets.Scripts.SpaceShip
 
                 if (_isSelected)
                 {
-                    _playerShipInput.EnableInput();
+                    _playerShipInput?.EnableInput();
 
                     switch (_state)
                     {
@@ -173,7 +174,7 @@ namespace Assets.Scripts.SpaceShip
                 }
                 else
                 {
-                    _playerShipInput.DisableInput();
+                    _playerShipInput?.DisableInput();
                     OnDeselected?.Invoke();
 
                     _camera.EnableInput = true;

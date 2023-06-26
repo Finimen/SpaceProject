@@ -30,7 +30,7 @@ namespace Assets.Scripts.TreadingSystem
 
         private ResourcesHandler _currentHandler;
 
-        void IInitializable.Initialize()
+        public void Initialize()
         {
             GetComponent<Port>().OnShipEnter += (ship) =>
             {

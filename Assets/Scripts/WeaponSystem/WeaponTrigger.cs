@@ -1,5 +1,4 @@
 ﻿using Assets.Scripts.Damageable;
-using System.Collections.Generic;
 using UnityEngine;
 
 namespace Assets.Scripts.WeaponSystem
@@ -12,8 +11,12 @@ namespace Assets.Scripts.WeaponSystem
         [SerializeField] private float _rotateSpeed;
 
         [SerializeField] private BaseWeapon _currentWeapon;
-
+        
         private DamageableObject _currentEnemy;
+
+        public BaseWeapon Current => _currentWeapon;
+
+        public float Radius => _radius;
 
         private void Update()
         {

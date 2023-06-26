@@ -13,7 +13,7 @@ namespace Assets.Scripts.ResourcesSystem
 
         private ResourcesHandler _resources;
 
-        void IInitializable.Initialize()
+        public void Initialize()
         {
             GetComponent<Ship>().OnSelectedForMoving += () => SetActiveUI(true);
             GetComponent<Ship>().OnDeselected += () => SetActiveUI(false);

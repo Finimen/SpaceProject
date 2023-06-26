@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace Assets.Scripts.Envierment
+namespace Assets.Scripts.Environment
 {
     [RequireComponent(typeof(Rigidbody2D))]
     internal class RigidbodyVelosityRandomizer : MonoBehaviour
