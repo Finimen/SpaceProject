@@ -113,9 +113,17 @@ namespace Assets.Scripts.GeneratorSystem
 
         private void OnDrawGizmos()
         {
+            if(World.Entities == null)
+            {
+                return;
+            }
+
             Gizmos.color = Color.white;
 
-            Gizmos.DrawWireCube(transform.position, new Vector3(_randomPosition * 2, _randomPosition * 2, 0));
+            foreach(var entity in World.Entities)
+            {
+               Gizmos.DrawWireSphere(entity.transform.position, _maxDistanceBetweenPlayer);
+            }
         }
     }
 }

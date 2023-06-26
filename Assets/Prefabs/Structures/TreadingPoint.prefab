@@ -101,7 +101,7 @@ PolygonCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
@@ -177,23 +177,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3f2fa0b9db622634687ea939c1bb0426, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _canvas: {fileID: 0}
-  _gCoins: {fileID: 0}
-  _default:
-    Price: 0.1
-    Sell: {fileID: 0}
-    SellAll: {fileID: 0}
-    Name: {fileID: 0}
-  _red:
-    Price: 1.5
-    Sell: {fileID: 0}
-    SellAll: {fileID: 0}
-    Name: {fileID: 0}
-  _green:
-    Price: 25
-    Sell: {fileID: 0}
-    SellAll: {fileID: 0}
-    Name: {fileID: 0}
+  _defaultPrice: 0
+  _redPrice: 0
+  _greenPrice: 0
 --- !u!1 &5048095513034803060
 GameObject:
   m_ObjectHideFlags: 0
