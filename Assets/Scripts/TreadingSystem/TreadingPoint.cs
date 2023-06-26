@@ -1,60 +1,49 @@
 ﻿using Assets.Scripts.PortSystem;
 using Assets.Scripts.ResourcesSystem;
-using System;
-using TMPro;
+using Assets.Scripts.SpaceShip;
 using UnityEngine;
-using UnityEngine.UI;
 
 namespace Assets.Scripts.TreadingSystem
 {
     [RequireComponent(typeof(Port))]
     internal class TreadingPoint : MonoBehaviour, IInitializable
     {
-        [Serializable]
-        private struct Resource
-        {
-            public float Price;
-
-            public Button Sell;
-            public Button SellAll;
-            public TMP_Text Name;
-        }
-
-        [SerializeField] private GameObject _canvas;
-
-        [SerializeField] private TMP_Text _gCoins;
-
-        [SerializeField] private Resource _default;
-        [SerializeField] private Resource _red;
-        [SerializeField] private Resource _green;
+        [SerializeField] private float _defaultPrice;
+        [SerializeField] private float _redPrice;
+        [SerializeField] private float _greenPrice;
 
         private ResourcesHandler _currentHandler;
+        private TreadingPointCanvas _treadingCanvas;
 
         public void Initialize()
         {
+            _treadingCanvas = FindObjectOfType<TreadingPointCanvas>(true);
+
+            GetComponent<Port>().SetLeavePortButton(_treadingCanvas.LeavePortButton);
+
             GetComponent<Port>().OnShipEnter += (ship) =>
             {
-                _currentHandler = ship.Handler;
+                ship.SetState(Ship.ShipState.Trading);
 
-                _canvas.gameObject.SetActive(true);
+                _currentHandler = ship.Handler;
 
                 UpdateUI();
 
                 if (ship != null)
                 {
-                    ship.OnSelectedForTreading += () => _canvas.gameObject.SetActive(true);
-                    ship.OnDeselected += () => _canvas.gameObject.SetActive(false);
+                    ship.OnSelectedForTreading += () => _treadingCanvas.gameObject.SetActive(true);
+                    ship.OnDeselected += () => _treadingCanvas.gameObject.SetActive(false);
                 }
             };
 
-            _default.Sell.onClick.AddListener(() => SellDefault(10));
-            _default.SellAll.onClick.AddListener(() => SellDefault(_currentHandler.DefaultOre));
+            _treadingCanvas.Default.Sell.onClick.AddListener(() => SellDefault(10));
+            _treadingCanvas.Default.SellAll.onClick.AddListener(() => SellDefault(_currentHandler.DefaultOre));
 
-            _red.Sell.onClick.AddListener(() => SellRed(10));
-            _red.SellAll.onClick.AddListener(() => SellRed(_currentHandler.RedOre));
+            _treadingCanvas.Red.Sell.onClick.AddListener(() => SellRed(10));
+            _treadingCanvas.Red.SellAll.onClick.AddListener(() => SellRed(_currentHandler.RedOre));
 
-            _green.Sell.onClick.AddListener(() => SellGreen(10));
-            _green.SellAll.onClick.AddListener(() => SellGreen(_currentHandler.GreenOre));
+            _treadingCanvas.Green.Sell.onClick.AddListener(() => SellGreen(10));
+            _treadingCanvas.Green.SellAll.onClick.AddListener(() => SellGreen(_currentHandler.GreenOre));
         }
 
         public void SetResourcesHandler(ResourcesHandler resourcesHandler)
@@ -64,17 +53,17 @@ namespace Assets.Scripts.TreadingSystem
 
         private void SellDefault(int amount)
         {
-            SellResource(amount, _currentHandler.DefaultOre, _default.Price, OreType.Default);
+            SellResource(amount, _currentHandler.DefaultOre, _defaultPrice, OreType.Default);
         }
 
         private void SellRed(int amount)
         {
-            SellResource(amount, _currentHandler.RedOre, _red.Price, OreType.Red);
+            SellResource(amount, _currentHandler.RedOre, _redPrice, OreType.Red);
         }
 
         private void SellGreen(int amount)
         {
-            SellResource(amount, _currentHandler.GreenOre, _green.Price, OreType.Green);
+            SellResource(amount, _currentHandler.GreenOre, _greenPrice, OreType.Green);
         }
 
         private void SellResource(int amount, int availableAmount, float price, OreType oreType)
@@ -91,11 +80,11 @@ namespace Assets.Scripts.TreadingSystem
 
         private void UpdateUI()
         {
-            _gCoins.text = $"GCoins: {World.PlayerGCoins}";
+            _treadingCanvas.GCoins.text = $"GCoins: {World.PlayerGCoins}";
 
-            _default.Name.text = $"Default Ore: x{_currentHandler.DefaultOre} / x1 = {_default.Price} GCoin";
-            _red.Name.text = $"Red Ore: x{_currentHandler.RedOre} / x1 = {_red.Price} GCoin";
-            _green.Name.text = $"Green Ore: x{_currentHandler.GreenOre} / x1 = {_green.Price} GCoin";
+            _treadingCanvas.Default.Name.text = $"Default Ore: x{_currentHandler.DefaultOre} / x1 = {_defaultPrice} GCoin";
+            _treadingCanvas.Red.Name.text = $"Red Ore: x{_currentHandler.RedOre} / x1 = {_redPrice} GCoin";
+            _treadingCanvas.Green.Name.text = $"Green Ore: x{_currentHandler.GreenOre} / x1 = {_greenPrice} GCoin";
         }
     }
 }

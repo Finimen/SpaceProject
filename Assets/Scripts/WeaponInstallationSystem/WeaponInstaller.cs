@@ -1,6 +1,5 @@
 using Assets.Scripts.PortSystem;
 using Assets.Scripts.SpaceShip;
-using TMPro;
 using UnityEngine;
 
 namespace Assets.Scripts.WeaponInstallationSystem
@@ -8,32 +7,41 @@ namespace Assets.Scripts.WeaponInstallationSystem
     [RequireComponent(typeof(Port))]
     public class WeaponInstaller : MonoBehaviour, IInitializable
     {
-        [SerializeField] private GameObject _canvas;
-
-        [SerializeField] private TMP_Text _gCoins;
+        private WeaponInstallerCanvas _installerCanvas;
 
         private bool _active;
 
         public void Initialize()
         {
+            _installerCanvas = FindObjectOfType<WeaponInstallerCanvas>(true);
+
+            GetComponent<Port>().SetLeavePortButton(_installerCanvas.LeavePortButton);
+
             GetComponent<Port>().OnShipEnter += (ship) =>
             {
                 _active = true;
 
-                _canvas.SetActive(_active);
+                _installerCanvas.gameObject.SetActive(_active);
 
                 ship.SetState(Ship.ShipState.WeaponInstallation);
+
+                ship.OnSelectedForUpgrades += () =>
+                {
+                    _installerCanvas.gameObject.SetActive(true);
+                };
+
+                ship.OnDeselected += () => _installerCanvas.gameObject.SetActive(false);
             };
             GetComponent<Port>().OnShipLeave += (ship) =>
             {
                 _active = false;
 
-                _canvas.SetActive(_active);
+                _installerCanvas.gameObject.SetActive(_active);
 
                 ship.SetState(Ship.ShipState.Gameplay);
             };
 
-            _canvas.SetActive(false);
+            _installerCanvas.gameObject.SetActive(false);
         }
 
         private void FixedUpdate()
@@ -46,7 +54,7 @@ namespace Assets.Scripts.WeaponInstallationSystem
 
         private void UpdateUI()
         {
-            _gCoins.text = $"GCoins: {World.PlayerGCoins}";
+            _installerCanvas.GCoins.text = $"GCoins: {World.PlayerGCoins}";
         }
     }
 }

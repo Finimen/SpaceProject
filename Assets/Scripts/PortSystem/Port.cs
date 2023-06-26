@@ -17,27 +17,29 @@ namespace Assets.Scripts.PortSystem
 
         private Ship _current;
 
+        public void SetLeavePortButton(Button button)
+        {
+            _leavePortButton = button;
+        }
+
         private void OnTriggerEnter2D(Collider2D other)
         {
-            if (other.GetComponent<Ship>())
+            if (other.GetComponent<PlayerShipInput>())
             {
                 _current = other.GetComponent<Ship>();
 
+                _current.OnSelectedForUpgrades += ShowUI;
                 _current.OnSelectedForTreading += ShowUI;
-                _current.OnDeselected += HideUI;
 
                 OnShipEnter?.Invoke(_current);
 
                 _current.transform.position = _treadingPoint.position;
                 _current.transform.rotation = _treadingPoint.rotation;
-
-                _current.SetState(Ship.ShipState.Trading);
             }
         }
 
         private void ShowUI()
         {
-            _leavePortButton.gameObject.SetActive(true);
             _leavePortButton.onClick.RemoveAllListeners();
             _leavePortButton.onClick.AddListener(() => LeavePort());
         }

@@ -30,8 +30,11 @@ namespace Assets.Scripts.ResourcesSystem
 
         public void DisableCurrent()
         {
-            _currentOre.StopCollecting();
-            _currentOre.OnOreCollected -= ApplyResources;
+            if (_currentOre)
+            {
+                _currentOre.StopCollecting();
+                _currentOre.OnOreCollected -= ApplyResources;
+            }
 
             _currentOre = null;
         }

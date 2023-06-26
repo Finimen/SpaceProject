@@ -19,6 +19,7 @@ namespace Assets.Scripts.SpaceShip
 
         public event Action OnSelectedForMoving;
         public event Action OnSelectedForTreading;
+        public event Action OnSelectedForUpgrades;
         public event Action OnDeselected;
 
         [SerializeField] private ShipState _state;
@@ -135,7 +136,7 @@ namespace Assets.Scripts.SpaceShip
                 case ShipState.WeaponInstallation:
                     _movement.enabled = false;
 
-                    foreach(var weaponPoint in _weaponInstallationPoints)
+                    foreach (var weaponPoint in _weaponInstallationPoints)
                     {
                         weaponPoint.Enable(true);
                     }
@@ -167,6 +168,8 @@ namespace Assets.Scripts.SpaceShip
                             break;
 
                         case ShipState.WeaponInstallation:
+                            OnSelectedForUpgrades?.Invoke();
+
                             _camera.SetDestination(transform.position);
                             _camera.EnableInput = false;
                             break;

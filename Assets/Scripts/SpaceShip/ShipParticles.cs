@@ -7,8 +7,8 @@ namespace Assets.Scripts.SpaceShip
     {
         [SerializeField] private ParticleSystem _engine;
 
-        [SerializeField] private float _speedMultiplayer = 50;
-        [SerializeField] private float _minSpeed = 1;
+        [SerializeField] private float _speedMultiplayer = 100;
+        [SerializeField] private float _minSpeed = .1f;
 
         private ShipMovement _shipMovement;
 

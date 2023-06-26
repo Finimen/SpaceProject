@@ -39,7 +39,7 @@ namespace Assets.Scripts.ResourcesSystem
 
         public void StopCollecting()
         {
-            if(_collecting != null )
+            if(_collecting != null)
             {
                 StopCoroutine(_collecting);
             }
