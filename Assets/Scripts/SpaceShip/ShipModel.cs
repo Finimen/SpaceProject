@@ -26,6 +26,11 @@ namespace Assets.Scripts.SpaceShip
             }
         }
 
+        public void Regenerate(float amount)
+        {
+            _health = Mathf.Clamp(_health + amount, 0, _maxHealth);
+        }
+
         public void Initialize()
         {
             _maxHealth = _health;

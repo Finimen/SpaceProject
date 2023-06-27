@@ -22,7 +22,7 @@ namespace Assets.Scripts.SpaceShip
         private int _currentLevel;
 
         public override event Action OnDestroyed;
-        public override event Action<float> OnDamaged;
+        public override event Action<float> OnHealthChanged;
 
         public override float Health => _model.Health;
         public override float MaxHealth => _model.MaxHealth;
@@ -32,9 +32,16 @@ namespace Assets.Scripts.SpaceShip
             _model.GetDamage(amount);
             _view.UpdateHealth(_model.Health);
 
-            OnDamaged?.Invoke(Health);
+            OnHealthChanged?.Invoke(Health);
 
             UpdateDamageLevels();
+        }
+
+        public override void Regenerate(float amount)
+        {
+            _model.Regenerate(amount);
+
+            OnHealthChanged?.Invoke(Health);
         }
 
         public void Initialize()

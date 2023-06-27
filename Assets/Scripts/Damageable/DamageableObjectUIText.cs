@@ -13,7 +13,7 @@ namespace Assets.Scripts.Damageable
         private void OnEnable()
         {
             _damageableObject = GetComponentInChildren<DamageableObject>();
-            _damageableObject.OnDamaged += OnHealthChanged;
+            _damageableObject.OnHealthChanged += OnHealthChanged;
 
             OnHealthChanged(_damageableObject.MaxHealth);
         }
@@ -33,7 +33,7 @@ namespace Assets.Scripts.Damageable
 
         private void OnDestroy()
         {
-            _damageableObject.OnDamaged -= OnHealthChanged;
+            _damageableObject.OnHealthChanged -= OnHealthChanged;
         }
     }
 }

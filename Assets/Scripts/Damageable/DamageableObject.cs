@@ -14,8 +14,10 @@ namespace Assets.Scripts.Damageable
         public abstract float MaxHealth { get; }
 
         public abstract event Action OnDestroyed;
-        public abstract event Action<float> OnDamaged;
+        public abstract event Action<float> OnHealthChanged;
 
         public abstract void GetDamage(float amount);
+
+        public abstract void Regenerate(float amount);
     }
 }

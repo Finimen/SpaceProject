@@ -21,7 +21,7 @@ namespace Assets.Scripts.Damageable
         {
             _damageableObject = GetComponent<DamageableObject>();
 
-            _damageableObject.OnDamaged += UpdateIU;
+            _damageableObject.OnHealthChanged += UpdateIU;
             _maxHealth = _damageableObject.Health;
             UpdateIU(_damageableObject.MaxHealth);
         }
