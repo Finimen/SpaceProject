@@ -1,5 +1,7 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting.YamlDotNet.Core;
 using UnityEngine;
 
 using Random = UnityEngine.Random;
@@ -23,6 +25,7 @@ namespace Assets.Scripts.GeneratorSystem
         [SerializeField] private float _maxDistanceBetweenPlayer = 100;
         [SerializeField] private float _minDistanceForSpawn = 50;
         [SerializeField] private int _playerId = 0;
+        [SerializeField] private int difference;
 
         [SerializeField] private float _zPosition = -10;
 
@@ -46,29 +49,11 @@ namespace Assets.Scripts.GeneratorSystem
             }
         }
 
-        private GameObject CreateObject(Template template)
-        {
-            var newObject = Instantiate(template.Prefab,
-                        new Vector3(Random.Range(-_randomPosition, _randomPosition),
-                        Random.Range(-_randomPosition, _randomPosition), _zPosition),
-                        Quaternion.identity, transform);
-
-            _spawnedObjects.Add(newObject);
-
-            template.CurrentCount++;
-
-            return newObject;
-        }
-
         private void RemoveUnwantedObjects()
         {
             for (var i = 0; i < _spawnedObjects.Count; i++)
             {
-                if (_spawnedObjects[i] == null)
-                {
-                    _spawnedObjects.Remove(_spawnedObjects[i]);
-                }
-                else
+                if (_spawnedObjects[i] != null)
                 {
                     var doDeleteObject = true;
 
@@ -84,7 +69,6 @@ namespace Assets.Scripts.GeneratorSystem
                     if (doDeleteObject)
                     {
                         Destroy(_spawnedObjects[i]);
-                        _spawnedObjects.RemoveAt(i);
                     }
                 }
             }
@@ -98,11 +82,29 @@ namespace Assets.Scripts.GeneratorSystem
                 {
                     var newObject = CreateObject(template);
                     var playersEntity = World.Entities.Find(x => x.Id == _playerId);
-                    newObject.transform.position = 
-                        playersEntity.transform.up * _minDistanceForSpawn
-                        + playersEntity.transform.right * Random.Range(-_minDistanceForSpawn, _minDistanceForSpawn);
+
+                    difference = (int)(_maxDistanceBetweenPlayer / _minDistanceForSpawn);
+                    newObject.transform.position = playersEntity.transform.position + 
+                        new Vector3(_minDistanceForSpawn * Random.Range(-difference, difference),
+                        _minDistanceForSpawn * Random.Range(-difference, difference));
                 }
             }
+        }
+
+        private GameObject CreateObject(Template template)
+        {
+            var newObject = Instantiate(template.Prefab,
+                        new Vector3(Random.Range(-_randomPosition, _randomPosition),
+                        Random.Range(-_randomPosition, _randomPosition), _zPosition),
+                        Quaternion.identity, transform);
+
+            _spawnedObjects.Add(newObject);
+
+            template.CurrentCount++;
+
+            StartCoroutine(WaitForDestroy(newObject, template));
+
+            return newObject;
         }
 
         private void FixedUpdate()
@@ -122,8 +124,21 @@ namespace Assets.Scripts.GeneratorSystem
 
             foreach(var entity in World.Entities)
             {
-               Gizmos.DrawWireSphere(entity.transform.position, _maxDistanceBetweenPlayer);
+                if(entity != null)
+                {
+                    Gizmos.DrawWireSphere(entity.transform.position, _maxDistanceBetweenPlayer);
+                }
             }
+        }
+
+        private IEnumerator WaitForDestroy(GameObject gameObject, Template template)
+        {
+            while (gameObject != null)
+            {
+                yield return null;
+            }
+            _spawnedObjects.Remove(gameObject);
+            template.CurrentCount--;
         }
     }
 }

@@ -1,11 +1,10 @@
-﻿using Assets.Scripts.PoolSystem;
-using Assets.Scripts.Projectiles;
+﻿using Assets.Scripts.Projectiles;
 using System.Collections;
 using UnityEngine;
 
 namespace Assets.Scripts.WeaponSystem
 {
-    internal class Weapon : BaseWeapon, IInitializable
+    internal class Weapon : BaseWeapon
     {
         [SerializeField] private Bullet _bulletTemplate;
         [SerializeField] private GameObject _shootParticles;
@@ -17,14 +16,7 @@ namespace Assets.Scripts.WeaponSystem
 
         private Coroutine _reloading;
 
-        private ObjectPool _pool;
-
         private int _currentSpawn;
-
-        void IInitializable.Initialize()
-        {
-            _pool = FindObjectOfType<ObjectPool>();
-        }
 
         protected override void ShootInternal()
         {

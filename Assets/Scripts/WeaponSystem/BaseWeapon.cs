@@ -1,3 +1,4 @@
+using Assets.Scripts.PoolSystem;
 using UnityEngine;
 
 namespace Assets.Scripts.WeaponSystem
@@ -6,11 +7,15 @@ namespace Assets.Scripts.WeaponSystem
     {
         public virtual bool CanShoot { get; protected set; } = true;
         
-        public Collider2D[] _ignoreColliders;
+        protected Collider2D[] _ignoreColliders;
+
+        protected ObjectPool _pool;
 
         public void Initialize(Collider2D[] ignoreColliders)
         {
             _ignoreColliders = ignoreColliders;
+
+            _pool = FindObjectOfType<ObjectPool>(true);
         }
 
         public void Shoot()

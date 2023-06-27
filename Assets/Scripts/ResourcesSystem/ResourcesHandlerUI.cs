@@ -27,11 +27,6 @@ namespace Assets.Scripts.ResourcesSystem
             SetActiveUI(false);
         }
 
-        private void OnDisable()
-        {
-            _resources.OnOreChanged -= UpdateOre;
-        }
-
         private void UpdateAllResources()
         {
             _defaultOre.text = $"Default: {_resources.DefaultOre}";

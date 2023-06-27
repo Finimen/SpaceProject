@@ -4,23 +4,17 @@ namespace Assets.Scripts.SpaceShip
 {
     public class PlayerShipInput : MonoBehaviour, IInitializable
     {
-        [SerializeField] private Camera _camera;
+        private Camera _camera;
 
         private ShipMovement _shipMovement;
 
         private bool _isSelected;
 
-        void IInitializable.Initialize()
+        public void Initialize()
         {
             _shipMovement = GetComponent<ShipMovement>();
-        }
 
-        private void Update()
-        {
-            if (_isSelected && Input.GetMouseButtonDown(1))
-            {
-                _shipMovement.SetTargetPoint(_camera.ScreenToWorldPoint(Input.mousePosition));
-            }
+            _camera = FindObjectOfType<Camera>();
         }
 
         public void EnableInput()
@@ -31,6 +25,14 @@ namespace Assets.Scripts.SpaceShip
         public void DisableInput()
         {
             _isSelected = false;
+        }
+
+        private void Update()
+        {
+            if (_isSelected && Input.GetMouseButtonDown(1))
+            {
+                _shipMovement.SetTargetPoint(_camera.ScreenToWorldPoint(Input.mousePosition));
+            }
         }
     }
 }

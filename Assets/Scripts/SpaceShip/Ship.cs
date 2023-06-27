@@ -57,14 +57,14 @@ namespace Assets.Scripts.SpaceShip
             {
                 _collector = GetComponent<ResourcesCollector>();
 
-                ((IInitializable)_collector).Initialize();
+                _collector.Initialize();
             }
             
             if(GetComponent<PlayerShipInput>() != null)
             {
                 _playerShipInput = GetComponent<PlayerShipInput>();
 
-                ((IInitializable)_playerShipInput).Initialize();
+                _playerShipInput.Initialize();
             }
 
             if (GetComponent<ResourcesHandler>() != null)
@@ -142,6 +142,22 @@ namespace Assets.Scripts.SpaceShip
                     }
                     break;
             }
+        }
+
+        public void SetEnableForShooting(bool enabled)
+        {
+            foreach(var  weaponPoint in _weaponInstallationPoints)
+            {
+                if (weaponPoint.Current != null)
+                {
+                    weaponPoint.Current.enabled = enabled;
+                }
+            }
+        }
+
+        public void SetPlayerInput(PlayerShipInput playerInput)
+        {
+            _playerShipInput = playerInput;
         }
 
         private void Update()

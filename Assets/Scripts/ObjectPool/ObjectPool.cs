@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace Assets.Scripts.PoolSystem
 {
-    internal class ObjectPool : MonoBehaviour, IInitializable
+    public class ObjectPool : MonoBehaviour, IInitializable
     {
         [Serializable]
         private struct PoolingObject

@@ -3,13 +3,13 @@ using UnityEngine;
 namespace Assets.Scripts.SpaceShip
 {
     [RequireComponent(typeof(ShipMovement), typeof(Ship))]
-    public class ShipMovementUI : MonoBehaviour, IInitializable
+    public class ShipMovementUI : MonoBehaviour
     {
         [SerializeField] private LineRenderer _pathLine;
 
         private ShipMovement _movement;
 
-        public void Initialize()
+        private void OnEnable()
         {
             _movement = GetComponent<ShipMovement>();
 

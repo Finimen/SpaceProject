@@ -47,11 +47,6 @@ namespace Assets.Scripts
 
 
 
-            foreach(var shipUI in FindObjectsOfType<ShipMovementUI>(true))
-            {
-                shipUI.Initialize();
-            }
-
             foreach (var handler in FindObjectsOfType<ResourcesHandlerUI>(true))
             {
                 handler.Initialize();

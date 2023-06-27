@@ -19,31 +19,9 @@ namespace Assets.Scripts.TreadingSystem
         {
             _treadingCanvas = FindObjectOfType<TreadingPointCanvas>(true);
 
-            GetComponent<Port>().SetLeavePortButton(_treadingCanvas.LeavePortButton);
+            SubscribeToPortEvents();
 
-            GetComponent<Port>().OnShipEnter += (ship) =>
-            {
-                ship.SetState(Ship.ShipState.Trading);
-
-                _currentHandler = ship.Handler;
-
-                UpdateUI();
-
-                if (ship != null)
-                {
-                    ship.OnSelectedForTreading += () => _treadingCanvas.gameObject.SetActive(true);
-                    ship.OnDeselected += () => _treadingCanvas.gameObject.SetActive(false);
-                }
-            };
-
-            _treadingCanvas.Default.Sell.onClick.AddListener(() => SellDefault(10));
-            _treadingCanvas.Default.SellAll.onClick.AddListener(() => SellDefault(_currentHandler.DefaultOre));
-
-            _treadingCanvas.Red.Sell.onClick.AddListener(() => SellRed(10));
-            _treadingCanvas.Red.SellAll.onClick.AddListener(() => SellRed(_currentHandler.RedOre));
-
-            _treadingCanvas.Green.Sell.onClick.AddListener(() => SellGreen(10));
-            _treadingCanvas.Green.SellAll.onClick.AddListener(() => SellGreen(_currentHandler.GreenOre));
+            SubscribeToButtonsEvents();
         }
 
         public void SetResourcesHandler(ResourcesHandler resourcesHandler)
@@ -76,6 +54,35 @@ namespace Assets.Scripts.TreadingSystem
 
                 UpdateUI();
             }
+        }
+
+        private void SubscribeToPortEvents()
+        {
+            GetComponent<Port>().SetLeavePortButton(_treadingCanvas.LeavePortButton);
+
+            GetComponent<Port>().OnShipEnter += (ship) =>
+            {
+                ship.SetState(Ship.ShipState.Trading);
+
+                _currentHandler = ship.Handler;
+
+                UpdateUI();
+
+                ship.OnSelectedForTreading += () => _treadingCanvas.gameObject.SetActive(true);
+                ship.OnDeselected += () => _treadingCanvas.gameObject.SetActive(false);
+            };
+        }
+
+        private void SubscribeToButtonsEvents()
+        {
+            _treadingCanvas.Default.Sell.onClick.AddListener(() => SellDefault(10));
+            _treadingCanvas.Default.SellAll.onClick.AddListener(() => SellDefault(_currentHandler.DefaultOre));
+
+            _treadingCanvas.Red.Sell.onClick.AddListener(() => SellRed(10));
+            _treadingCanvas.Red.SellAll.onClick.AddListener(() => SellRed(_currentHandler.RedOre));
+
+            _treadingCanvas.Green.Sell.onClick.AddListener(() => SellGreen(10));
+            _treadingCanvas.Green.SellAll.onClick.AddListener(() => SellGreen(_currentHandler.GreenOre));
         }
 
         private void UpdateUI()
