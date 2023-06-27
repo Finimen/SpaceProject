@@ -45,6 +45,8 @@ namespace Assets.Scripts.SpaceShip
         public ResourcesHandler Handler => _handler;
         public PlayerShipInput PlayerShipInput => _playerShipInput;
 
+        public Collider2D[] IgnoreCollidersForWeapons => _ignoreCollidersForWeapons;
+
         public void Initialize()
         {
             _camera = FindObjectOfType<PlayerCamera>();

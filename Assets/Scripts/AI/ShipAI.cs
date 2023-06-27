@@ -1,8 +1,9 @@
 using Assets.Scripts.SpaceShip;
 using UnityEngine;
+
 using Random = UnityEngine.Random;
 
-namespace Assets.Scripts
+namespace Assets.Scripts.AI
 {
     [RequireComponent(typeof(Ship))]
     public class ShipAI : MonoBehaviour
@@ -21,6 +22,11 @@ namespace Assets.Scripts
             _transform = GetComponent<Transform>();
 
             _target = transform.position;
+
+            foreach(var weapon in GetComponentsInChildren<WeaponRandomizer>())
+            {
+                weapon.Initialize(_ship.IgnoreCollidersForWeapons);
+            }
         }
 
         private void FixedUpdate()
