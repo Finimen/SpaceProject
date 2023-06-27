@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace Assets.Scripts.ResourcesSystem
 {
-    public class Ore : MonoBehaviour, IInitializable
+    public class Ore : MonoBehaviour
     {
         [SerializeField] private int _amount = 1;
 
@@ -20,7 +20,7 @@ namespace Assets.Scripts.ResourcesSystem
 
         public int Amount => _amount;
 
-        public void Initialize()
+        private void OnEnable()
         {
             World.Ores.Add(this);
         }

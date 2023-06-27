@@ -10,27 +10,34 @@ namespace Assets.Scripts.SpaceShip
 {
     [DisallowMultipleComponent]
     [RequireComponent(typeof(Collider2D))]
-    public class ShipPresenter : DamageableObject, IInitializable
+    public class ShipDamageable : DamageableObject, IInitializable
     {
-        [SerializeField] private ShipModel _model = new ShipModel();
-        [SerializeField] private ShipView _view = new ShipView();
+        [SerializeField] private float _health = 100;
 
         [SerializeField] private DamageableLevel[] _levels = new DamageableLevel[0];
 
         private ObjectPool _pool;
+        
+        private float _maxHealth = 100;
 
-        private int _currentLevel;
+        private int _currentLevel = -1;
 
         public override event Action OnDestroyed;
         public override event Action<float> OnHealthChanged;
 
-        public override float Health => _model.Health;
-        public override float MaxHealth => _model.MaxHealth;
+        public override float Health => _health;
+        public override float MaxHealth => _maxHealth;
 
         public override void GetDamage(float amount)
         {
-            _model.GetDamage(amount);
-            _view.UpdateHealth(_model.Health);
+            _health -= amount;
+
+            if (_health <= 0)
+            {
+                OnDestroyed?.Invoke();
+
+                Dispose();
+            }
 
             OnHealthChanged?.Invoke(Health);
 
@@ -39,7 +46,7 @@ namespace Assets.Scripts.SpaceShip
 
         public override void Regenerate(float amount)
         {
-            _model.Regenerate(amount);
+            _health = Mathf.Clamp(_health + amount, 0, _maxHealth);
 
             OnHealthChanged?.Invoke(Health);
         }
@@ -48,12 +55,7 @@ namespace Assets.Scripts.SpaceShip
         {
             _pool = FindObjectOfType<ObjectPool>();
 
-            _model.Initialize();
-            _view.Initialize(gameObject);
-
-            _model.OnDestroyed += Dispose;
-
-            _currentLevel = -1;
+            _maxHealth = _health;
 
             World.Entities.Add(this);
         }
@@ -78,13 +80,11 @@ namespace Assets.Scripts.SpaceShip
 
         private void Dispose()
         {
-            _model.OnDestroyed -= Dispose;
-
-            OnDestroyed?.Invoke();
-
-            _view.DestroyView();
+            Destroy(gameObject);
 
             World.Entities.Remove(this);
+
+            OnDestroyed?.Invoke();
         }
     }
 }
