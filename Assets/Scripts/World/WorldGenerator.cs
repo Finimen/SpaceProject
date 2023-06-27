@@ -83,10 +83,13 @@ namespace Assets.Scripts.GeneratorSystem
                     var newObject = CreateObject(template);
                     var playersEntity = World.Entities.Find(x => x.Id == _playerId);
 
-                    difference = (int)(_maxDistanceBetweenPlayer / _minDistanceForSpawn);
-                    newObject.transform.position = playersEntity.transform.position + 
-                        new Vector3(_minDistanceForSpawn * Random.Range(-difference, difference),
-                        _minDistanceForSpawn * Random.Range(-difference, difference));
+                    if(playersEntity != null)
+                    {
+                        difference = (int)(_maxDistanceBetweenPlayer / _minDistanceForSpawn);
+                        newObject.transform.position = playersEntity.transform.position +
+                            new Vector3(_minDistanceForSpawn * Random.Range(-difference, difference),
+                            _minDistanceForSpawn * Random.Range(-difference, difference));
+                    }
                 }
             }
         }
@@ -94,9 +97,9 @@ namespace Assets.Scripts.GeneratorSystem
         private GameObject CreateObject(Template template)
         {
             var newObject = Instantiate(template.Prefab,
-                        new Vector3(Random.Range(-_randomPosition, _randomPosition),
-                        Random.Range(-_randomPosition, _randomPosition), _zPosition),
-                        Quaternion.identity, transform);
+                    new Vector3(Random.Range(-_randomPosition, _randomPosition),
+                    Random.Range(-_randomPosition, _randomPosition), _zPosition),
+                    Quaternion.identity, transform);
 
             _spawnedObjects.Add(newObject);
 
@@ -137,6 +140,7 @@ namespace Assets.Scripts.GeneratorSystem
             {
                 yield return null;
             }
+
             _spawnedObjects.Remove(gameObject);
             template.CurrentCount--;
         }

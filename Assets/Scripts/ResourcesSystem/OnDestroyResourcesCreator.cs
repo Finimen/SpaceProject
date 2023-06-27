@@ -22,6 +22,11 @@ namespace Assets.Scripts.ResourcesSystem
 
         private void OnDestroy()
         {
+            if (!gameObject.scene.isLoaded)
+            {
+                return;
+            }
+
             foreach(var resource in _resources)
             {
                 if(resource.Chance > Random.Range(0f, 1f))

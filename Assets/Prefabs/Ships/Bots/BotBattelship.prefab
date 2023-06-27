@@ -5874,8 +5874,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _id: 1
   _model:
-    _health: 75
-    _maxHealth: 75
+    _health: 100
+    _maxHealth: 100
   _view:
     _debug: 0
   _levels:

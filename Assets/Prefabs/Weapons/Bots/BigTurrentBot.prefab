@@ -283,7 +283,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _id: 1
-  _radius: 13.5
+  _radius: 11.5
   _rotateSpeed: 12.5
   _currentWeapon: {fileID: 5673416600176204574}
 --- !u!1 &5673416601157232005

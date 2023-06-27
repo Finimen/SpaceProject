@@ -268,7 +268,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _speed: 0.1
   _movingVector: {x: -1, y: 0}
-  _damage: 0.5
+  _damage: 0.25
   _lifeTime: 5
 --- !u!114 &-5262387180265595643
 MonoBehaviour:

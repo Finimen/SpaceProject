@@ -99,7 +99,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: beb3b8bce3b92c94c9040095d83fe134, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _ignoreColliders: []
   _bulletTemplate: {fileID: 5485491987804436713, guid: 77e4fc77b0f6eac41821d292f7e1bd73, type: 3}
   _shootParticles: {fileID: 0}
   _spawnPoints:
@@ -119,7 +118,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _id: 0
-  _radius: 10
+  _radius: 9
   _rotateSpeed: 15
   _currentWeapon: {fileID: 5599070975130637250}
 --- !u!1 &5599070976363326809
