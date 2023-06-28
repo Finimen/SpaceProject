@@ -17,8 +17,7 @@ namespace Assets.Scripts.WeaponSystem
         {
             _installationPoint = GetComponent<WeaponInstallationPoint>();
 
-            _attackRadius.SetActive(false);
-            _selectable.SetActive(false);
+            SetActiveUI(false);
         }
 
         void IPointerEnterHandler.OnPointerEnter(PointerEventData eventData)
@@ -29,15 +28,19 @@ namespace Assets.Scripts.WeaponSystem
 
                 _attackRadius.transform.localScale = new Vector3(weapon.Radius / _scaleFactor, weapon.Radius / _scaleFactor, 1);
 
-                _attackRadius.SetActive(true);
-                _selectable.SetActive(true);
+                SetActiveUI(true);
             }
         }
 
         void IPointerExitHandler.OnPointerExit(PointerEventData eventData)
         {
-            _attackRadius.SetActive(false);
-            _selectable.SetActive(false);
+            SetActiveUI(false);
+        }
+
+        private void SetActiveUI(bool active)
+        {
+            _attackRadius.SetActive(active);
+            _selectable.SetActive(active);
         }
     }
 }

@@ -1,5 +1,7 @@
 using Assets.Scripts.PortSystem;
+using Assets.Scripts.ResourcesSystem;
 using Assets.Scripts.SpaceShip;
+using Assets.Scripts.WeaponSystem;
 using UnityEngine;
 
 namespace Assets.Scripts.TreadingSystem
@@ -29,6 +31,14 @@ namespace Assets.Scripts.TreadingSystem
             _shipForSale = Instantiate(_shipForSale, _spawnPoint.transform.position, _spawnPoint.transform.rotation, transform);
             _shipForSale.Initialize();
             _shipForSale.SetEnableForShooting(false);
+
+            _shipForSale.Collector.enabled = false;
+            _shipForSale.GetComponent<ResourcesCollectorUI>().enabled = false;
+
+            foreach (var triggerUI in _shipForSale.GetComponentsInChildren<WeaponTriggerUI>())
+            {
+                triggerUI.enabled = false;
+            }
         }
 
         private void SubscribeToEvents()
@@ -64,6 +74,14 @@ namespace Assets.Scripts.TreadingSystem
             _shipForSale.transform.parent = _entitiesParent;
             
             _canvas.ByShipButton.gameObject.SetActive(false);
+
+            _shipForSale.Collector.enabled = true;
+            _shipForSale.GetComponent<ResourcesCollectorUI>().enabled = true;
+
+            foreach (var triggerUI in _shipForSale.GetComponentsInChildren<WeaponTriggerUI>(true))
+            {
+                triggerUI.enabled = true;
+            }
         }
     }
 }

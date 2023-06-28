@@ -26,15 +26,20 @@ namespace Assets.Scripts.PortSystem
         {
             if (other.GetComponent<PlayerShipInput>())
             {
+                if(_current != null)
+                {
+                    LeavePort();
+                }
+
                 _current = other.GetComponent<Ship>();
 
                 _current.OnSelectedForUpgrades += ShowUI;
                 _current.OnSelectedForTreading += ShowUI;
 
-                OnShipEnter?.Invoke(_current);
-
                 _current.transform.position = _treadingPoint.position;
                 _current.transform.rotation = _treadingPoint.rotation;
+                
+                OnShipEnter?.Invoke(_current);
             }
         }
 
@@ -43,23 +48,15 @@ namespace Assets.Scripts.PortSystem
             _leavePortButton.onClick.RemoveAllListeners();
             _leavePortButton.onClick.AddListener(() => LeavePort());
         }
-
-        private void HideUI()
-        {
-            _leavePortButton.gameObject.SetActive(false);
-        }
-
+        
         private void LeavePort()
         {
             _current.transform.position = _leavingPoint.position;
             _current.transform.rotation = _leavingPoint.rotation;
 
-            _current.SetState(Ship.ShipState.Gameplay);
-
             _current.OnSelectedForTreading -= ShowUI;
-            _current.OnDeselected -= HideUI;
 
-            HideUI();
+            _current.SetState(Ship.ShipState.Gameplay);
 
             OnShipLeave?.Invoke(_current);
         }
