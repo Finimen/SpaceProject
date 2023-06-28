@@ -7,12 +7,18 @@ namespace Assets.Scripts.WeaponSystem
     {
         [SerializeField] private int _id;
 
-        [SerializeField] private float _radius;
-        [SerializeField] private float _rotateSpeed;
+        [SerializeField] private float _radius = 5;
+        [SerializeField] private float _rotateSpeed = 25;
 
         [SerializeField] private BaseWeapon _currentWeapon;
         
         private DamageableObject _currentEnemy;
+
+        private float _minAngleToMove = 7.5f;
+        
+        private float _offset = -90;
+        
+        private float _angelBetweenDirection;
 
         public BaseWeapon Current => _currentWeapon;
 
@@ -30,8 +36,12 @@ namespace Assets.Scripts.WeaponSystem
                 Rotate();
             }
 
+            Vector3 direction = _currentEnemy.transform.position - transform.position;
+
+            _angelBetweenDirection = Vector2.Angle(direction, transform.right) - Mathf.Abs(_offset);
+
             if (Vector2.Distance(transform.position, _currentEnemy.transform.position) < _radius
-                && _currentWeapon.CanShoot)
+                && _currentWeapon.CanShoot && Mathf.Abs(_angelBetweenDirection) < _minAngleToMove)
             {
                 _currentWeapon.Shoot();
             }

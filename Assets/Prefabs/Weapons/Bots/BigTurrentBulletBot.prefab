@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 3888112399501043468}
   - component: {fileID: 3888112399501043473}
   - component: {fileID: 3888112399501043474}
-  - component: {fileID: 5705223980167430910}
+  - component: {fileID: 7063228988580453825}
   m_Layer: 0
   m_Name: BigTurrentBulletBot
   m_TagString: Untagged
@@ -130,7 +130,7 @@ MonoBehaviour:
   _movingVector: {x: -1, y: 0}
   _damage: 0.5
   _lifeTime: 5
---- !u!114 &5705223980167430910
+--- !u!114 &7063228988580453825
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -139,7 +139,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 3888112399501043469}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 529bde51de01bd34cbb18a609a5ae54d, type: 3}
+  m_Script: {fileID: 11500000, guid: 58c8feb0b91ff1a40828ef5b87b7b8d4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _prefab: {fileID: 2588952575440675359, guid: 613471dde830e8a458d485ca460e9a3f, type: 3}

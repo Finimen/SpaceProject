@@ -26,8 +26,8 @@ MonoBehaviour:
         - serializedVersion: 3
           time: 0
           value: 0
-          inSlope: 0.7496622
-          outSlope: 0.7496622
+          inSlope: 0.7688997
+          outSlope: 0.7688997
           tangentMode: 0
           weightedMode: 0
           inWeight: 0
@@ -35,8 +35,8 @@ MonoBehaviour:
         - serializedVersion: 3
           time: 1
           value: 1
-          inSlope: 1.1786743
-          outSlope: 1.1786743
+          inSlope: 1.7135489
+          outSlope: 1.7135489
           tangentMode: 0
           weightedMode: 0
           inWeight: 0
@@ -249,13 +249,13 @@ MonoBehaviour:
   active: 1
   lift:
     m_OverrideState: 1
-    m_Value: {x: 0.9964792, y: 1, z: 0.97423357, w: 0}
+    m_Value: {x: 0.9268296, y: 0.9741877, z: 1, w: 0}
   gamma:
     m_OverrideState: 1
-    m_Value: {x: 1, y: 0.97565705, z: 0.94159573, w: -0.02247191}
+    m_Value: {x: 1, y: 0.98889345, z: 0.93250585, w: -0.02247191}
   gain:
     m_OverrideState: 1
-    m_Value: {x: 0.92696464, y: 0.92892134, z: 1, w: 0}
+    m_Value: {x: 0.94175994, y: 0.9525243, z: 1, w: 0}
 --- !u!114 &9092014247086646141
 MonoBehaviour:
   m_ObjectHideFlags: 3
