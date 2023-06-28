@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace Assets.Scripts.WeaponSystem
 {
-    internal class Weapon : BaseWeapon
+    public class Weapon : BaseWeapon
     {
         [SerializeField] private Bullet _bulletTemplate;
         [SerializeField] private GameObject _shootParticles;
