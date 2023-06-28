@@ -2,7 +2,7 @@
 
 namespace Assets.Scripts.Environment
 {
-    internal class OnDisableCreator : MonoBehaviour
+    public class OnDisableCreator : MonoBehaviour
     {
         [SerializeField] private GameObject _prefab;
 
