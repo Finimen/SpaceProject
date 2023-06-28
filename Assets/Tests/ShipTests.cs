@@ -5,7 +5,7 @@ using UnityEngine;
 public class ShipTests
 {
     private GameObject _shipObject;
-    private ShipDamageable _ship;
+    private ShipDamageDealer _ship;
 
     [SetUp]
     public void Setup()
@@ -13,7 +13,7 @@ public class ShipTests
         _shipObject = new GameObject("Ship");
         _shipObject.AddComponent<BoxCollider2D>();
 
-        _ship = _shipObject.AddComponent<ShipDamageable>();
+        _ship = _shipObject.AddComponent<ShipDamageDealer>();
         _ship.Initialize();
     }
 

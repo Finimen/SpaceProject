@@ -10,7 +10,7 @@ namespace Assets.Scripts.SpaceShip
 {
     [DisallowMultipleComponent]
     [RequireComponent(typeof(Collider2D))]
-    public class ShipDamageable : DamageableObject, IInitializable
+    public class ShipDamageDealer : DamageableObject, IInitializable
     {
         [SerializeField] private float _health = 100;
 
@@ -56,8 +56,6 @@ namespace Assets.Scripts.SpaceShip
             _pool = FindObjectOfType<ObjectPool>();
 
             _maxHealth = _health;
-
-            World.Entities.Add(this);
         }
 
         private void UpdateDamageLevels()
@@ -81,8 +79,6 @@ namespace Assets.Scripts.SpaceShip
         private void Dispose()
         {
             Destroy(gameObject);
-
-            World.Entities.Remove(this);
 
             OnDestroyed?.Invoke();
         }

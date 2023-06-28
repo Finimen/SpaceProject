@@ -29,6 +29,7 @@ namespace Assets.Scripts.TreadingSystem
 
         private ShipPurchasePointCanvas _canvas;
         private Ship _currentShip;
+        private Ship _playerShip;
 
         private int _price;
 
@@ -65,6 +66,8 @@ namespace Assets.Scripts.TreadingSystem
             GetComponent<Port>().SetLeavePortButton(_canvas.LeavePortButton);
             GetComponent<Port>().OnShipEnter += (ship) =>
             {
+                _playerShip = ship;
+
                 ship.SetState(Ship.ShipState.Trading);
 
                 ship.OnSelectedForTreading += EnableCanvas;
@@ -103,7 +106,9 @@ namespace Assets.Scripts.TreadingSystem
 
         private void ByShip()
         {
-            var playerInput = _currentShip.gameObject.AddComponent<PlayerShipInput>();
+            Destroy(_playerShip.gameObject);
+
+            var playerInput = _currentShip.PlayerInput;
             playerInput.Initialize();
 
             _currentShip.SetPlayerInput(playerInput);

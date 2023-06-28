@@ -403,12 +403,12 @@ GameObject:
   - component: {fileID: 6832521543072057107}
   - component: {fileID: 6832521543072057106}
   - component: {fileID: 6832521543072057117}
-  - component: {fileID: 6832521543072057116}
-  - component: {fileID: 6832521543072057119}
   - component: {fileID: 6832521543072057118}
+  - component: {fileID: 6832521543072057110}
+  - component: {fileID: 6832521543072057116}
   - component: {fileID: 6832521543072057105}
   - component: {fileID: 6832521543072057104}
-  - component: {fileID: 6832521543072057110}
+  - component: {fileID: 6832521543072057119}
   - component: {fileID: 6832521543072057111}
   - component: {fileID: 6832521543072057108}
   - component: {fileID: 6832521543072057109}
@@ -511,53 +511,6 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!114 &6832521543072057116
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6832521543072057113}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1f92e3733d199754195f767de71a022c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _id: 1
-  _model:
-    _health: 125
-    _maxHealth: 125
-  _view:
-    _debug: 0
-  _levels:
-  - MinHealth: 80
-    RandomSpawnOffset: 1
-    EffectsTemplate: {fileID: 6714780499335665217, guid: 4de15fac40144b149836abb481d30ea9, type: 3}
-  - MinHealth: 60
-    RandomSpawnOffset: 1
-    EffectsTemplate: {fileID: 6714780499335665217, guid: 4de15fac40144b149836abb481d30ea9, type: 3}
-  - MinHealth: 30
-    RandomSpawnOffset: 1
-    EffectsTemplate: {fileID: 6714780499335665217, guid: 4de15fac40144b149836abb481d30ea9, type: 3}
---- !u!114 &6832521543072057119
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6832521543072057113}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2bb93263977b9054ea01a8bd7769b169, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _target: {x: 0, y: 0, z: 0}
-  _maxSpeed: 4
-  _acceleration: 0.1
-  _rotationSpeed: 10
-  _minAngleToMove: 15
-  _stoppingDistance: 1
-  _offset: -90
 --- !u!60 &6832521543072057118
 PolygonCollider2D:
   m_ObjectHideFlags: 0
@@ -601,6 +554,45 @@ PolygonCollider2D:
       - {x: 0.55963045, y: -1.1811125}
       - {x: 0.54763836, y: -0.31618086}
       - {x: 0.5276384, y: -0.21851557}
+--- !u!114 &6832521543072057110
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6832521543072057113}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 105a814aaf636f243b8d44b453f12ad5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _state: 0
+  _ignoreCollidersForWeapons:
+  - {fileID: 6832521543072057118}
+--- !u!114 &6832521543072057116
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6832521543072057113}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1f92e3733d199754195f767de71a022c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _id: 1
+  _health: 100
+  _levels:
+  - MinHealth: 80
+    RandomSpawnOffset: 1
+    EffectsTemplate: {fileID: 6714780499335665217, guid: 4de15fac40144b149836abb481d30ea9, type: 3}
+  - MinHealth: 60
+    RandomSpawnOffset: 1
+    EffectsTemplate: {fileID: 6714780499335665217, guid: 4de15fac40144b149836abb481d30ea9, type: 3}
+  - MinHealth: 30
+    RandomSpawnOffset: 1
+    EffectsTemplate: {fileID: 6714780499335665217, guid: 4de15fac40144b149836abb481d30ea9, type: 3}
 --- !u!114 &6832521543072057105
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -630,7 +622,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _text: {fileID: 6832521542854215929}
---- !u!114 &6832521543072057110
+--- !u!114 &6832521543072057119
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -639,12 +631,16 @@ MonoBehaviour:
   m_GameObject: {fileID: 6832521543072057113}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 105a814aaf636f243b8d44b453f12ad5, type: 3}
+  m_Script: {fileID: 11500000, guid: 2bb93263977b9054ea01a8bd7769b169, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _state: 0
-  _ignoreCollidersForWeapons:
-  - {fileID: 6832521543072057118}
+  _target: {x: 0, y: 0, z: 0}
+  _maxSpeed: 4
+  _acceleration: 0.1
+  _rotationSpeed: 10
+  _minAngleToMove: 15
+  _stoppingDistance: 1
+  _offset: -90
 --- !u!114 &6832521543072057111
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -657,6 +653,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 23bdf92a951d6ac4496322865fe87664, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _type: 1
   _distanceToAttack: 17.5
   _waypointDistance: 1
 --- !u!114 &6832521543072057108

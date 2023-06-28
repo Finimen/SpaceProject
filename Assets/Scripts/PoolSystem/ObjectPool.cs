@@ -24,7 +24,7 @@ namespace Assets.Scripts.PoolSystem
         
         private ConcreteObjectPool[] _concreteObjectPools;
 
-        void IInitializable.Initialize()
+        public void Initialize()
         {
             _concreteObjectPools = new ConcreteObjectPool[_poolingObjects.Length];
 

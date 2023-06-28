@@ -5,6 +5,8 @@ using Assets.Scripts.ResourcesSystem;
 using Assets.Scripts.TreadingSystem;
 using Assets.Scripts.WeaponInstallationSystem;
 using UnityEngine;
+using Assets.Scripts.AI;
+using Assets.Scripts.PoolSystem;
 
 namespace Assets.Scripts
 {
@@ -23,14 +25,17 @@ namespace Assets.Scripts
 
             FindObjectOfType<PlayerCamera>().Initialize();
 
-            FindObjectOfType<WorldGenerator>().Initialize();
-
             foreach (var ship in FindObjectsOfType<Ship>(true))
             {
                 ship.Initialize();
             }
 
-            foreach(var treadingPoint in FindObjectsOfType<TreadingPoint>(true))
+            foreach (var ship in FindObjectsOfType<ShipAI>(true))
+            {
+                ship.Initialize();
+            }
+
+            foreach (var treadingPoint in FindObjectsOfType<TreadingPoint>(true))
             {
                 treadingPoint.Initialize();
             }
@@ -45,7 +50,9 @@ namespace Assets.Scripts
                 collector.Initialize();
             }
 
+            FindObjectOfType<WorldGenerator>().Initialize();
 
+            FindObjectOfType<ObjectPool>().Initialize();
 
             foreach (var handler in FindObjectsOfType<ResourcesHandlerUI>(true))
             {

@@ -1,7 +1,9 @@
-﻿using System;
+﻿using Assets.Scripts.AI;
+using Assets.Scripts.Damageable;
+using Assets.Scripts.SpaceShip;
+using System;
 using System.Collections;
 using System.Collections.Generic;
-using Unity.VisualScripting.YamlDotNet.Core;
 using UnityEngine;
 
 using Random = UnityEngine.Random;
@@ -18,6 +20,7 @@ namespace Assets.Scripts.GeneratorSystem
             public int CurrentCount;
         }
 
+        [Header("Spawning")]
         [SerializeField] private Template[] _templates;
 
         [SerializeField] private float _randomPosition = 1000;
@@ -25,15 +28,27 @@ namespace Assets.Scripts.GeneratorSystem
         [SerializeField] private float _maxDistanceBetweenPlayer = 100;
         [SerializeField] private float _minDistanceForSpawn = 50;
         [SerializeField] private int _playerId = 0;
-        [SerializeField] private int difference;
 
         [SerializeField] private float _zPosition = -10;
+
+        [Space(25), Header("AI")]
+        [SerializeField] private int _aiMaxCount = 5;
+        [SerializeField] private float _spawnDelay = 2.5f;
+        [SerializeField] private float _minDistanceForShip = 5;
+        [SerializeField, Range(0, 1)] private float _spawnChance = .1f;
+        [SerializeField] private Ship[] _aiShips;
+
+        private List<Ship> _spawnedShips;
 
         private List<GameObject> _spawnedObjects;
 
         public void Initialize()
         {
             _spawnedObjects = new List<GameObject>();
+
+            _spawnedShips = new List<Ship>(_aiMaxCount);
+
+            StartCoroutine(SpawnAI());
 
             foreach (var template in _templates)
             {
@@ -49,6 +64,57 @@ namespace Assets.Scripts.GeneratorSystem
             }
         }
 
+        private IEnumerator SpawnAI()
+        {
+            while (true)
+            {
+                if(_spawnedShips.Count < _aiMaxCount && _spawnChance > Random.Range(0f, 1f))
+                {
+                    var player = World.Ships.Find(x => x.DamageDealer.Id == _playerId);
+
+                    var newAI = Instantiate(_aiShips[Random.Range(0, _aiShips.Length)],
+                        player.transform.position, Quaternion.identity, transform);
+
+                    newAI.transform.position += new Vector3(
+                        Random.Range(_minDistanceForShip, _maxDistanceBetweenPlayer) * (Random.Range(0, 2) == 0 ? -1 : 1),
+                        Random.Range(_minDistanceForShip, _maxDistanceBetweenPlayer) * (Random.Range(0, 2) == 0 ? -1 : 1), _zPosition);
+
+                    newAI.Initialize();
+                    newAI.GetComponent<ShipAI>().Initialize();
+
+                    _spawnedShips.Add(newAI);
+                }
+
+                for (int i = 0; i < _spawnedShips.Count; i++)
+                {
+                    if (_spawnedShips[i] == null)
+                    {
+                        _spawnedShips.RemoveAt(i);
+                    }
+                    else
+                    {
+                        var needDestroy = true;
+                        
+                        foreach(var playerShip in World.Ships.FindAll(x => x.DamageDealer.Id == _playerId))
+                        {
+                            if (Vector3.Distance(_spawnedShips[i].transform.position, playerShip.transform.position) < _maxDistanceBetweenPlayer)
+                            {
+                                needDestroy = false;
+                            }
+                        }
+
+                        if (needDestroy)
+                        {
+                            Destroy(_spawnedShips[i].gameObject);
+                            _spawnedShips.RemoveAt(i);
+                        }
+                    }
+                }
+
+                yield return new WaitForSeconds(_spawnDelay);
+            }
+        }
+
         private void RemoveUnwantedObjects()
         {
             for (var i = 0; i < _spawnedObjects.Count; i++)
@@ -57,13 +123,12 @@ namespace Assets.Scripts.GeneratorSystem
                 {
                     var doDeleteObject = true;
 
-                    foreach (var entity in World.Entities)
+                    var player = World.Ships.Find(x => x.DamageDealer.Id == _playerId);
+
+                    if (Vector3.Distance(player.transform.position, _spawnedObjects[i].transform.position) < _maxDistanceBetweenPlayer)
                     {
-                        if (Vector3.Distance(entity.transform.position, _spawnedObjects[i].transform.position) < _maxDistanceBetweenPlayer)
-                        {
-                            doDeleteObject = false;
-                            break;
-                        }
+                        doDeleteObject = false;
+                        break;
                     }
 
                     if (doDeleteObject)
@@ -81,15 +146,12 @@ namespace Assets.Scripts.GeneratorSystem
                 if(template.CurrentCount < template.Count)
                 {
                     var newObject = CreateObject(template);
-                    var playersEntity = World.Entities.Find(x => x.Id == _playerId);
+                    var player = World.Ships.Find(x => x.DamageDealer.Id == _playerId);
 
-                    if(playersEntity != null)
-                    {
-                        difference = (int)(_maxDistanceBetweenPlayer / _minDistanceForSpawn);
-                        newObject.transform.position = playersEntity.transform.position +
-                            new Vector3(_minDistanceForSpawn * Random.Range(-difference, difference),
-                            _minDistanceForSpawn * Random.Range(-difference, difference));
-                    }
+                    var difference = (int)(_maxDistanceBetweenPlayer / _minDistanceForSpawn);
+                    newObject.transform.position = player.transform.position +
+                        new Vector3(_minDistanceForSpawn * Random.Range(-difference, difference),
+                        _minDistanceForSpawn * Random.Range(-difference, difference));
                 }
             }
         }
@@ -110,30 +172,6 @@ namespace Assets.Scripts.GeneratorSystem
             return newObject;
         }
 
-        private void FixedUpdate()
-        {
-            RemoveUnwantedObjects();
-            CreateNewObjects();
-        }
-
-        private void OnDrawGizmos()
-        {
-            if(World.Entities == null)
-            {
-                return;
-            }
-
-            Gizmos.color = Color.white;
-
-            foreach(var entity in World.Entities)
-            {
-                if(entity != null)
-                {
-                    Gizmos.DrawWireSphere(entity.transform.position, _maxDistanceBetweenPlayer);
-                }
-            }
-        }
-
         private IEnumerator WaitForDestroy(GameObject gameObject, Template template)
         {
             while (gameObject != null)
@@ -143,6 +181,30 @@ namespace Assets.Scripts.GeneratorSystem
 
             _spawnedObjects.Remove(gameObject);
             template.CurrentCount--;
+        }
+
+        private void FixedUpdate()
+        {
+            RemoveUnwantedObjects();
+            CreateNewObjects();
+        }
+
+        private void OnDrawGizmos()
+        {
+            if(World.Ships == null)
+            {
+                return;
+            }
+
+            Gizmos.color = Color.white;
+
+            foreach(var entity in World.Ships)
+            {
+                if(entity != null)
+                {
+                    Gizmos.DrawWireSphere(entity.transform.position, _maxDistanceBetweenPlayer);
+                }
+            }
         }
     }
 }

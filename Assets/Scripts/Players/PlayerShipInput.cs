@@ -1,6 +1,7 @@
-﻿using UnityEngine;
+﻿using Assets.Scripts.SpaceShip;
+using UnityEngine;
 
-namespace Assets.Scripts.SpaceShip
+namespace Assets.Scripts.Players
 {
     public class PlayerShipInput : MonoBehaviour, IInitializable
     {

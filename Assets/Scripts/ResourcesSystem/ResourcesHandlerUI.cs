@@ -1,5 +1,4 @@
 ﻿using UnityEngine;
-using TMPro;
 using Assets.Scripts.SpaceShip;
 
 namespace Assets.Scripts.ResourcesSystem

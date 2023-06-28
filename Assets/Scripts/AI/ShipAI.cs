@@ -1,4 +1,3 @@
-using Assets.Scripts.Damageable;
 using Assets.Scripts.SpaceShip;
 using UnityEngine;
 
@@ -7,7 +6,7 @@ using Random = UnityEngine.Random;
 namespace Assets.Scripts.AI
 {
     [RequireComponent(typeof(Ship))]
-    public class ShipAI : MonoBehaviour
+    public class ShipAI : MonoBehaviour, IInitializable
     {
         private enum AIType
         {
@@ -23,14 +22,14 @@ namespace Assets.Scripts.AI
         private Vector3 _target;
 
         private Ship _ship;
-        private ShipDamageable _damageable;
+        private ShipDamageDealer _damageable;
         private Transform _transform;
 
-        private void OnEnable()
+        public void Initialize()
         {
             _ship = GetComponent<Ship>();
             _transform = GetComponent<Transform>();
-            _damageable = GetComponent<ShipDamageable>();
+            _damageable = GetComponent<ShipDamageDealer>();
 
             _target = transform.position;
 
@@ -60,7 +59,7 @@ namespace Assets.Scripts.AI
         {
             if (Vector3.Distance(transform.position, _target) < _waypointDistance)
             {
-                _target = transform.up * Random.Range(5, 50) + _transform.right * Random.Range(-5, 5);
+                _target = transform.up * Random.Range(-50, 51) + _transform.right * Random.Range(-5, 6);
 
                 _ship.Movement.SetTargetPoint(_target);
             }
@@ -68,9 +67,9 @@ namespace Assets.Scripts.AI
 
         private void TryFindEnemy()
         {
-            foreach (var entity in World.Entities)
+            foreach (var entity in World.Ships)
             {
-                if (entity.Id != _damageable.Id && Vector3.Distance(_transform.position, entity.transform.position) < _distanceToAttack)
+                if (entity.State == Ship.ShipState.Gameplay && entity.DamageDealer.Id != _damageable.Id && Vector3.Distance(_transform.position, entity.transform.position) < _distanceToAttack)
                 {
                     _target = entity.transform.position;
 

@@ -61,11 +61,11 @@ namespace Assets.Scripts.WeaponSystem
 
         private void FindEnemy()
         {
-            foreach (var entity in World.Entities)
+            foreach (var entity in World.Ships)
             {
-                if (entity.Id != _id && entity != null && Vector2.Distance(entity.transform.position, transform.position) < _radius)
+                if (entity.DamageDealer.Id != _id && entity != null && Vector2.Distance(entity.transform.position, transform.position) < _radius)
                 {
-                    _currentEnemy = entity;
+                    _currentEnemy = entity.DamageDealer;
                 }
             }
         }

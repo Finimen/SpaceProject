@@ -43,7 +43,7 @@ namespace Assets.Scripts.SpaceShip
             }
         }
 
-        void IInitializable.Initialize()
+        public void Initialize()
         {
             _transform = transform;
             _target = _transform.position;
@@ -73,6 +73,10 @@ namespace Assets.Scripts.SpaceShip
             if (Mathf.Abs(_angelBetweenDirection) < _minAngleToMove)
             {
                 UpdateSpeed();
+            }
+            else
+            {
+                _currentSpeed = Mathf.Clamp(_currentSpeed - (_acceleration * Time.deltaTime), 0f, _maxSpeed);
             }
         }
 

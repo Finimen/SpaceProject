@@ -1,3 +1,4 @@
+using Assets.Scripts.Players;
 using UnityEngine;
 
 namespace Assets.Scripts.CameraSystem
@@ -18,6 +19,7 @@ namespace Assets.Scripts.CameraSystem
 
         [SerializeField] private Camera _minimap;
 
+        private PlayerShipInput _player;
         private Camera _main;
 
         private Vector3 _startPosition;
@@ -30,9 +32,11 @@ namespace Assets.Scripts.CameraSystem
 
         public void Initialize()
         {
-            SetDestination(transform.position);
-
             _main = GetComponent<Camera>();
+
+            _player = FindObjectOfType<PlayerShipInput>();
+
+            SetDestination(_player.transform.position);
         }
 
         public void SetDestination(Vector3 destination)

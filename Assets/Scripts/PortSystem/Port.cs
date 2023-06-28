@@ -1,3 +1,4 @@
+using Assets.Scripts.Players;
 using Assets.Scripts.SpaceShip;
 using System;
 using UnityEngine;
@@ -13,7 +14,7 @@ namespace Assets.Scripts.PortSystem
         [SerializeField] private Transform _treadingPoint;
         [SerializeField] private Transform _leavingPoint;
 
-        [SerializeField] private Button _leavePortButton;
+        private Button _leavePortButton;
 
         private Ship _current;
 

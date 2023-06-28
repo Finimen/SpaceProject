@@ -1,3 +1,4 @@
+using DG.Tweening;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
@@ -7,7 +8,11 @@ namespace Assets.Scripts.ResourcesSystem
     {
         [SerializeField] private LineRenderer _line;
 
-        [SerializeField] private GameObject _radius;
+        [SerializeField] private Transform _radius;
+
+        [SerializeField] protected Ease _ease = Ease.InQuad;
+
+        [SerializeField] protected float _duration = .25f;
 
         private ResourcesCollector _collector;
         
@@ -20,7 +25,7 @@ namespace Assets.Scripts.ResourcesSystem
             _line = Instantiate(_line, Vector3.zero, Quaternion.identity);
             _line.positionCount = 0;
 
-            _radius.SetActive(false);
+            _radius.DOScale(Vector3.zero, _duration).SetEase(_ease);
         }
 
         private void FixedUpdate()
@@ -45,13 +50,12 @@ namespace Assets.Scripts.ResourcesSystem
 
         void IPointerEnterHandler.OnPointerEnter(PointerEventData eventData)
         {
-            _radius.transform.localScale = new Vector3(_collector.Radius * _scaleFactor, _collector.Radius * _scaleFactor, 1);
-            _radius.SetActive(true);
+            _radius.DOScale(new Vector3(_collector.Radius * _scaleFactor, _collector.Radius * _scaleFactor, 1), _duration).SetEase(_ease);
         }
 
         void IPointerExitHandler.OnPointerExit(PointerEventData eventData)
         {
-            _radius.SetActive(false);
+            _radius.DOScale(Vector3.zero, _duration).SetEase(_ease);
         }
     }
 }

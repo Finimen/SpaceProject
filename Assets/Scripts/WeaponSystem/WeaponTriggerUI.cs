@@ -1,21 +1,33 @@
 using Assets.Scripts.WeaponInstallationSystem;
+using DG.Tweening;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using static Codice.Client.Common.Connection.AskCredentialsToUser;
 
 namespace Assets.Scripts.WeaponSystem
 {
     public class WeaponTriggerUI : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
     {
-        [SerializeField] private GameObject _attackRadius;
-        [SerializeField] private GameObject _selectable;
+        [SerializeField] private Transform _attackRadius;
+        [SerializeField] private Transform _selectable;
+
+        [SerializeField] protected Ease _ease = Ease.InQuad;
+
+        [SerializeField] protected float _duration = .25f;
 
         private WeaponInstallationPoint _installationPoint;
+
+        private WeaponTrigger weapon;
+
+        private Vector3 _selectableScale;
 
         private float _scaleFactor = .314f;
 
         private void OnEnable()
         {
             _installationPoint = GetComponent<WeaponInstallationPoint>();
+
+            _selectableScale = _selectable.localScale;
 
             SetActiveUI(false);
         }
@@ -24,7 +36,7 @@ namespace Assets.Scripts.WeaponSystem
         {
             if (_installationPoint.Current != null)
             {
-               var weapon = _installationPoint.Current.GetComponent<WeaponTrigger>();
+                weapon = _installationPoint.Current.GetComponent<WeaponTrigger>();
 
                 _attackRadius.transform.localScale = new Vector3(weapon.Radius / _scaleFactor, weapon.Radius / _scaleFactor, 1);
 
@@ -39,8 +51,16 @@ namespace Assets.Scripts.WeaponSystem
 
         private void SetActiveUI(bool active)
         {
-            _attackRadius.SetActive(active);
-            _selectable.SetActive(active);
+            if (active)
+            {
+                _attackRadius.DOScale(new Vector3(weapon.Radius / _scaleFactor, weapon.Radius / _scaleFactor, 1), _duration).SetEase(_ease);
+                _selectable.DOScale(_selectableScale, _duration).SetEase(_ease);
+            }
+            else
+            {
+                _attackRadius.DOScale(Vector3.zero, _duration).SetEase(_ease);
+                _selectable.DOScale(Vector3.zero, _duration).SetEase(_ease);
+            }
         }
     }
 }
