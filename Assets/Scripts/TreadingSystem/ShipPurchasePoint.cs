@@ -2,20 +2,35 @@ using Assets.Scripts.PortSystem;
 using Assets.Scripts.ResourcesSystem;
 using Assets.Scripts.SpaceShip;
 using Assets.Scripts.WeaponSystem;
+using System;
 using UnityEngine;
+
+using Random = UnityEngine.Random;
 
 namespace Assets.Scripts.TreadingSystem
 {
     [RequireComponent(typeof(Port))]
     public class ShipPurchasePoint : MonoBehaviour, IInitializable
     {
-        [SerializeField] private Ship _shipForSale;
+        [Serializable]
+        private struct ShipData
+        {
+            public Ship Ship;
+
+            public float MinPrice;
+            public float MaxPrice;
+        }
+
+        [SerializeField] private ShipData[] _shipsForSale;
+
+        [Space(25)]
         [SerializeField] private Transform _spawnPoint;
         [SerializeField] private Transform _entitiesParent;
 
-        [SerializeField] private float _price;
-
         private ShipPurchasePointCanvas _canvas;
+        private Ship _currentShip;
+
+        private int _price;
 
         public void Initialize()
         {
@@ -28,14 +43,18 @@ namespace Assets.Scripts.TreadingSystem
 
         private void SpawnShip()
         {
-            _shipForSale = Instantiate(_shipForSale, _spawnPoint.transform.position, _spawnPoint.transform.rotation, transform);
-            _shipForSale.Initialize();
-            _shipForSale.SetEnableForShooting(false);
+            var index = Random.Range(0, _shipsForSale.Length);
 
-            _shipForSale.Collector.enabled = false;
-            _shipForSale.GetComponent<ResourcesCollectorUI>().enabled = false;
+            _currentShip = Instantiate(_shipsForSale[index].Ship, _spawnPoint.transform.position, _spawnPoint.transform.rotation, transform);
+            _currentShip.Initialize();
+            _currentShip.SetEnableForShooting(false);
 
-            foreach (var triggerUI in _shipForSale.GetComponentsInChildren<WeaponTriggerUI>())
+            _currentShip.Collector.enabled = false;
+            _currentShip.GetComponent<ResourcesCollectorUI>().enabled = false;
+
+            _price = (int)Random.Range(_shipsForSale[index].MinPrice, _shipsForSale[index].MaxPrice);
+
+            foreach (var triggerUI in _currentShip.GetComponentsInChildren<WeaponTriggerUI>())
             {
                 triggerUI.enabled = false;
             }
@@ -48,11 +67,28 @@ namespace Assets.Scripts.TreadingSystem
             {
                 ship.SetState(Ship.ShipState.Trading);
 
-                ship.OnSelectedForTreading += () => _canvas.gameObject.SetActive(true);
-                ship.OnDeselected += () => _canvas.gameObject.SetActive(false);
+                ship.OnSelectedForTreading += EnableCanvas;
+                ship.OnDeselected += DisableCanvas;
 
                 UpdateUI();
             };
+            GetComponent<Port>().OnShipLeave += (ship) =>
+            {
+                ship.OnSelectedForTreading -= EnableCanvas;
+                ship.OnDeselected -= DisableCanvas;
+
+                _canvas.gameObject.SetActive(false);
+            };
+        }
+
+        private void EnableCanvas()
+        {
+            _canvas.gameObject.SetActive(true);
+        }
+
+        private void DisableCanvas()
+        {
+            _canvas.gameObject.SetActive(false);
         }
 
         private void UpdateUI()
@@ -67,18 +103,18 @@ namespace Assets.Scripts.TreadingSystem
 
         private void ByShip()
         {
-            var playerInput = _shipForSale.gameObject.AddComponent<PlayerShipInput>();
+            var playerInput = _currentShip.gameObject.AddComponent<PlayerShipInput>();
             playerInput.Initialize();
 
-            _shipForSale.SetPlayerInput(playerInput);
-            _shipForSale.transform.parent = _entitiesParent;
+            _currentShip.SetPlayerInput(playerInput);
+            _currentShip.transform.parent = _entitiesParent;
             
             _canvas.ByShipButton.gameObject.SetActive(false);
 
-            _shipForSale.Collector.enabled = true;
-            _shipForSale.GetComponent<ResourcesCollectorUI>().enabled = true;
+            _currentShip.Collector.enabled = true;
+            _currentShip.GetComponent<ResourcesCollectorUI>().enabled = true;
 
-            foreach (var triggerUI in _shipForSale.GetComponentsInChildren<WeaponTriggerUI>(true))
+            foreach (var triggerUI in _currentShip.GetComponentsInChildren<WeaponTriggerUI>(true))
             {
                 triggerUI.enabled = true;
             }

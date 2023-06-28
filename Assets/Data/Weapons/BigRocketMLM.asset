@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: BigRocketMLM
   m_EditorClassIdentifier: 
   _icon: {fileID: 21300000, guid: 9b09f0b5e5d9956448f005420deeec8b, type: 3}
-  _price: 5
+  _price: 17.5
   _prefab: {fileID: 1956866384201432980, guid: 373641087d580ac4694ca544401dde9e, type: 3}

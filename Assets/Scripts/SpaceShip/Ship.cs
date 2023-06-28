@@ -120,16 +120,10 @@ namespace Assets.Scripts.SpaceShip
                 case ShipState.Trading:
                     _movement.enabled = false;
 
-                    if (_collector != null)
-                    {
-                        _collector.DisableCurrent();
-                        _collector.enabled = false;
-                    }
+                    _collector.DisableCurrent();
+                    _collector.enabled = false;
 
-                    if (_playerShipInput != null)
-                    {
-                        _playerShipInput.DisableInput();
-                    }
+                    _playerShipInput.DisableInput();
 
                     OnDeselected?.Invoke();
                     OnSelectedForTreading?.Invoke();
@@ -137,6 +131,11 @@ namespace Assets.Scripts.SpaceShip
                     
                 case ShipState.WeaponInstallation:
                     _movement.enabled = false;
+
+                    _collector.DisableCurrent();
+                    _collector.enabled = false;
+
+                    _playerShipInput.DisableInput();
 
                     foreach (var weaponPoint in _weaponInstallationPoints)
                     {

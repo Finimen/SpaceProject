@@ -59,6 +59,8 @@ namespace Assets.Scripts.PortSystem
             _current.SetState(Ship.ShipState.Gameplay);
 
             OnShipLeave?.Invoke(_current);
+
+            _current = null;
         }
     }
 }
