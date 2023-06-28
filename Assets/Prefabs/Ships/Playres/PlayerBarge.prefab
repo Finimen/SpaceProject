@@ -1363,7 +1363,6 @@ GameObject:
   - component: {fileID: 6044290446893988508}
   - component: {fileID: 6044290446893988514}
   - component: {fileID: 6044290446893988515}
-  - component: {fileID: 8733557446164793567}
   - component: {fileID: 8129968148132509602}
   m_Layer: 0
   m_Name: PlayerBarge
@@ -1688,18 +1687,6 @@ MonoBehaviour:
   _background: {fileID: 6044290446500638899}
   _maxHealthColor: {r: 0.5529412, g: 1, b: 0.5921569, a: 1}
   _minHealthColor: {r: 1, g: 0.39846793, b: 0.3915094, a: 1}
---- !u!114 &8733557446164793567
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6044290446893988493}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9fdd17519f254d14599b72bdb16d39c0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &8129968148132509602
 MonoBehaviour:
   m_ObjectHideFlags: 0

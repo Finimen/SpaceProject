@@ -13,6 +13,8 @@ namespace Assets.Scripts.ResourcesSystem
 
         private ResourcesHandler _resources;
 
+        private bool _active;
+
         public void Initialize()
         {
             GetComponent<Ship>().OnSelectedForMoving += () => SetActiveUI(true);
@@ -21,8 +23,6 @@ namespace Assets.Scripts.ResourcesSystem
             _resources = GetComponent<ResourcesHandler>();
 
             _resources.OnOreChanged += UpdateOre;
-
-            UpdateAllResources();
 
             SetActiveUI(false);
         }
@@ -36,6 +36,11 @@ namespace Assets.Scripts.ResourcesSystem
 
         private void UpdateOre(OreType type, int amount)
         {
+            if (!_active)
+            {
+                return;
+            }
+
             switch (type)
             {
                 case OreType.Default:
@@ -52,9 +57,16 @@ namespace Assets.Scripts.ResourcesSystem
 
         private void SetActiveUI(bool active)
         {
-            _defaultOre.gameObject.SetActive(active);
-            _redOre.gameObject.SetActive(active);
-            _greenOre.gameObject.SetActive(active);
+            if(_active != active)
+            {
+                UpdateAllResources();
+
+                _active = active;
+
+                _defaultOre.gameObject.SetActive(active);
+                _redOre.gameObject.SetActive(active);
+                _greenOre.gameObject.SetActive(active);
+            }
         }
     }
 }
