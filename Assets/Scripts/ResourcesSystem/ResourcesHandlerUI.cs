@@ -7,16 +7,15 @@ namespace Assets.Scripts.ResourcesSystem
     [RequireComponent(typeof(ResourcesHandler), typeof(Ship))]
     public class ResourcesHandlerUI : MonoBehaviour, IInitializable
     {
-        [SerializeField] private TMP_Text _defaultOre;
-        [SerializeField] private TMP_Text _redOre;
-        [SerializeField] private TMP_Text _greenOre;
-
+        private ResourcesCanvas _canvas;
         private ResourcesHandler _resources;
 
         private bool _active;
 
         public void Initialize()
         {
+            _canvas = FindObjectOfType<ResourcesCanvas>(true);
+
             GetComponent<Ship>().OnSelectedForMoving += () => SetActiveUI(true);
             GetComponent<Ship>().OnDeselected += () => SetActiveUI(false);
 
@@ -29,9 +28,9 @@ namespace Assets.Scripts.ResourcesSystem
 
         private void UpdateAllResources()
         {
-            _defaultOre.text = $"Default: {_resources.DefaultOre}";
-            _redOre.text = $"Red: {_resources.RedOre}";
-            _greenOre.text = $"Green: {_resources.GreenOre}";
+            _canvas.DefaultOre.text = $"Default: {_resources.DefaultOre}";
+            _canvas.RedOre.text = $"Red: {_resources.RedOre}";
+            _canvas.GreenOre.text = $"Green: {_resources.GreenOre}";
         }
 
         private void UpdateOre(OreType type, int amount)
@@ -44,13 +43,13 @@ namespace Assets.Scripts.ResourcesSystem
             switch (type)
             {
                 case OreType.Default:
-                    _defaultOre.text = $"Default: {amount}";
+                    _canvas.DefaultOre.text = $"Default: {amount}";
                     break;
                 case OreType.Red:
-                    _redOre.text = $"Red: {amount}";
+                    _canvas.RedOre.text = $"Red: {amount}";
                     break;
                 case OreType.Green:
-                    _greenOre.text = $"Green: {amount}";
+                    _canvas.GreenOre.text = $"Green: {amount}";
                     break;
             }
         }
@@ -63,9 +62,7 @@ namespace Assets.Scripts.ResourcesSystem
 
                 _active = active;
 
-                _defaultOre.gameObject.SetActive(active);
-                _redOre.gameObject.SetActive(active);
-                _greenOre.gameObject.SetActive(active);
+                _canvas.gameObject.SetActive(active);
             }
         }
     }
