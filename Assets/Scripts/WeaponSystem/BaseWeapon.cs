@@ -1,10 +1,12 @@
 using Assets.Scripts.PoolSystem;
+using System;
 using UnityEngine;
 
 namespace Assets.Scripts.WeaponSystem
 {
     public abstract class BaseWeapon : MonoBehaviour
     {
+        public abstract event Action OnFired;
         public virtual bool CanShoot { get; protected set; } = true;
         
         protected Collider2D[] _ignoreColliders;

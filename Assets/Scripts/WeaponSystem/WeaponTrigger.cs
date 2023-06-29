@@ -1,10 +1,13 @@
 ﻿using Assets.Scripts.Damageable;
+using System;
 using UnityEngine;
 
 namespace Assets.Scripts.WeaponSystem
 {
-    internal class WeaponTrigger : MonoBehaviour
+    public class WeaponTrigger : MonoBehaviour
     {
+        public event Action OnEnemyDetected;
+
         [SerializeField] private int _id;
 
         [SerializeField] private float _radius = 5;
@@ -65,6 +68,8 @@ namespace Assets.Scripts.WeaponSystem
             {
                 if (entity.DamageDealer.Id != _id && entity != null && Vector2.Distance(entity.transform.position, transform.position) < _radius)
                 {
+                    OnEnemyDetected?.Invoke();
+
                     _currentEnemy = entity.DamageDealer;
                 }
             }

@@ -269,7 +269,7 @@ MonoBehaviour:
   - {fileID: 1051444436100340469}
   - {fileID: 1051444436123954569}
   _scatter: 2.5
-  _delayForNextShoot: 0.02
+  _delayForNextShoot: 0.03
 --- !u!114 &6211103107040661095
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -283,7 +283,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _id: 0
-  _radius: 12.5
+  _radius: 11.75
   _rotateSpeed: 12.5
   _currentWeapon: {fileID: 6211103107040661094}
 --- !u!1 &6211103108222857469

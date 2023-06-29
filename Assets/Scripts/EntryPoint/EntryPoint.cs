@@ -7,6 +7,7 @@ using Assets.Scripts.WeaponInstallationSystem;
 using UnityEngine;
 using Assets.Scripts.AI;
 using Assets.Scripts.PoolSystem;
+using Assets.Scripts.Players;
 
 namespace Assets.Scripts
 {
@@ -50,9 +51,15 @@ namespace Assets.Scripts
                 collector.Initialize();
             }
 
-            FindObjectOfType<WorldGenerator>().Initialize();
+            var worldGenerator = FindObjectOfType<WorldGenerator>();
+            worldGenerator.Initialize();
 
             FindObjectOfType<ObjectPool>().Initialize();
+
+            var gameOverController = FindObjectOfType<GameOverController>();
+            gameOverController.Initialize();
+
+            gameOverController.OnGameStopped += worldGenerator.StopGenerating;
 
             foreach (var handler in FindObjectsOfType<ResourcesHandlerUI>(true))
             {

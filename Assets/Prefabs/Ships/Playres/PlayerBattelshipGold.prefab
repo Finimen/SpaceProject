@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 8223069737376518141}
   - component: {fileID: 5512042827780068355}
   - component: {fileID: 8339919548709521737}
+  - component: {fileID: 4560814134290289233}
   m_Layer: 0
   m_Name: BigWeaponPoint (1)
   m_TagString: Untagged
@@ -145,6 +146,21 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _attackRadius: {fileID: 3837144118204726937}
   _selectable: {fileID: 3585186301367458009}
+  _ease: 5
+  _duration: 0.25
+--- !u!114 &4560814134290289233
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1365627806813889149}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4ff8faad7768e0a4e845d446f3057f0a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _audio: {fileID: 3960414412912086401, guid: d7654d72b3448c34993df7403b6a667f, type: 3}
 --- !u!1 &1945305629866415295
 GameObject:
   m_ObjectHideFlags: 0
@@ -1170,6 +1186,7 @@ GameObject:
   - component: {fileID: 4313011106918068062}
   - component: {fileID: 4313011106918068063}
   - component: {fileID: 4313011106918068064}
+  - component: {fileID: 2586520685807059584}
   m_Layer: 0
   m_Name: WeaponPoint
   m_TagString: Untagged
@@ -1303,6 +1320,21 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _attackRadius: {fileID: 4313011107428870018}
   _selectable: {fileID: 4313011107659475040}
+  _ease: 5
+  _duration: 0.25
+--- !u!114 &2586520685807059584
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4313011106918068059}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4ff8faad7768e0a4e845d446f3057f0a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _audio: {fileID: 3960414412912086401, guid: d7654d72b3448c34993df7403b6a667f, type: 3}
 --- !u!1 &4313011107329548300
 GameObject:
   m_ObjectHideFlags: 0
@@ -1428,6 +1460,7 @@ GameObject:
   - component: {fileID: 4313011107378084188}
   - component: {fileID: 4313011107378084187}
   - component: {fileID: 4313011107378084186}
+  - component: {fileID: 4257901571275645387}
   m_Layer: 0
   m_Name: WeaponPoint (2)
   m_TagString: Untagged
@@ -1561,6 +1594,21 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _attackRadius: {fileID: 4313011106456747442}
   _selectable: {fileID: 4313011106468152740}
+  _ease: 5
+  _duration: 0.25
+--- !u!114 &4257901571275645387
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4313011107378084184}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4ff8faad7768e0a4e845d446f3057f0a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _audio: {fileID: 3960414412912086401, guid: d7654d72b3448c34993df7403b6a667f, type: 3}
 --- !u!1 &4313011107380016526
 GameObject:
   m_ObjectHideFlags: 0
@@ -1586,6 +1634,7 @@ GameObject:
   - component: {fileID: 4313011107380016536}
   - component: {fileID: 4313011107380016541}
   - component: {fileID: 4313011107380016537}
+  - component: {fileID: 2597144218690478485}
   m_Layer: 0
   m_Name: PlayerBattelshipGold
   m_TagString: Untagged
@@ -1864,6 +1913,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _line: {fileID: 8079252448535872471, guid: 29a34fcf2a6a8fd4daa455633166e4df, type: 3}
   _radius: {fileID: 4313011106868521677}
+  _ease: 5
+  _duration: 0.25
 --- !u!114 &4313011107380016542
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1919,6 +1970,20 @@ MonoBehaviour:
   _engine: {fileID: 4313011107766548032}
   _speedMultiplayer: 100
   _minSpeed: 0.1
+--- !u!114 &2597144218690478485
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4313011107380016526}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f3c0b5d1254ee304885fbc4397bd887e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _damageAudio: {fileID: 3404102220227127079, guid: 3f4606e249ab2ac419e7df3b403f40db, type: 3}
+  _pitchRandomness: 0.1
 --- !u!1 &4313011107428870018
 GameObject:
   m_ObjectHideFlags: 0
@@ -2126,6 +2191,7 @@ GameObject:
   - component: {fileID: 4313011107611847017}
   - component: {fileID: 4313011107611847016}
   - component: {fileID: 4313011107611847015}
+  - component: {fileID: 1433053641298572744}
   m_Layer: 0
   m_Name: WeaponPoint (1)
   m_TagString: Untagged
@@ -2259,6 +2325,21 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _attackRadius: {fileID: 4313011107477846077}
   _selectable: {fileID: 4313011107907526383}
+  _ease: 5
+  _duration: 0.25
+--- !u!114 &1433053641298572744
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4313011107611847013}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4ff8faad7768e0a4e845d446f3057f0a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _audio: {fileID: 3960414412912086401, guid: d7654d72b3448c34993df7403b6a667f, type: 3}
 --- !u!1 &4313011107659475040
 GameObject:
   m_ObjectHideFlags: 0
@@ -7278,6 +7359,7 @@ GameObject:
   - component: {fileID: 6823159659346004852}
   - component: {fileID: 698207839579638080}
   - component: {fileID: 7691638252532450741}
+  - component: {fileID: 9100344686098829682}
   m_Layer: 0
   m_Name: BigWeaponPoint
   m_TagString: Untagged
@@ -7410,6 +7492,21 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _attackRadius: {fileID: 1945305629866415295}
   _selectable: {fileID: 8335947890022446861}
+  _ease: 5
+  _duration: 0.25
+--- !u!114 &9100344686098829682
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5818968642948435286}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4ff8faad7768e0a4e845d446f3057f0a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _audio: {fileID: 3960414412912086401, guid: d7654d72b3448c34993df7403b6a667f, type: 3}
 --- !u!1 &8335947890022446861
 GameObject:
   m_ObjectHideFlags: 0

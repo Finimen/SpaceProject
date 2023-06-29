@@ -1,5 +1,6 @@
 ﻿using Assets.Scripts.Damageable;
 using Assets.Scripts.PoolSystem;
+using System;
 using System.Collections;
 using UnityEngine;
 
@@ -8,6 +9,8 @@ namespace Assets.Scripts.Projectiles
     [RequireComponent(typeof(Collider2D))]
     internal class Bullet : Projectile, IInitializable
     {
+        public event Action OnEnemyHit;
+
         [Space(25)]
         [SerializeField] private float _damage;
         [SerializeField] private float _lifeTime = 5;
@@ -65,6 +68,9 @@ namespace Assets.Scripts.Projectiles
             if(other.GetComponent<IDamageable>() != null)
             {
                 other.GetComponent<IDamageable>().GetDamage(_damage);
+
+                OnEnemyHit?.Invoke();
+
                 _pool.Add(gameObject);
             }
         }

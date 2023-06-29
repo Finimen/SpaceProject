@@ -8,11 +8,11 @@ namespace Assets.Scripts.ResourcesSystem
     /// </summary>
     public class ResourcesHandler : MonoBehaviour
     {
+        public event Action<OreType, int> OnOreChanged;
+
         [SerializeField] private int _defaultOre;
         [SerializeField] private int _redOre;
         [SerializeField] private int _greenOre;
-
-        public event Action<OreType, int> OnOreChanged;
 
         public int DefaultOre => _defaultOre;
         public int RedOre => _redOre;

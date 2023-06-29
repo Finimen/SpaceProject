@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 5599070975130637249}
   - component: {fileID: 5599070975130637248}
   - component: {fileID: 5599070975130637250}
+  - component: {fileID: 1873892151015698115}
   - component: {fileID: 5599070975130637251}
   m_Layer: 0
   m_Name: RailGun
@@ -105,6 +106,19 @@ MonoBehaviour:
   - {fileID: 5599070976363326808}
   _scatter: 1
   _delayForNextShoot: 3
+--- !u!114 &1873892151015698115
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5599070975130637262}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e0228931229244042bef70b5ea371459, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _audio: {fileID: 245057346015589131, guid: c33835ce1f6184245a045d593310c103, type: 3}
 --- !u!114 &5599070975130637251
 MonoBehaviour:
   m_ObjectHideFlags: 0

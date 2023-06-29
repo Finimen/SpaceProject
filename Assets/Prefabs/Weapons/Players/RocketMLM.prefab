@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 1024143426249740984}
   - component: {fileID: 1024143426249740987}
   - component: {fileID: -3588068403964703113}
+  - component: {fileID: -5206908916758727744}
   m_Layer: 0
   m_Name: RocketMLM
   m_TagString: Untagged
@@ -143,6 +144,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _prefab: {fileID: 1752185124245746765, guid: 2a8009d58d8051d4abd94c28acc62c9c, type: 3}
+--- !u!114 &-5206908916758727744
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1024143426249740964}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: abb7d2f5768d5fc4dad4054f905319cf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _audio: {fileID: 3404102220227127079, guid: 3f4606e249ab2ac419e7df3b403f40db, type: 3}
 --- !u!1 &9051619739974016476
 GameObject:
   m_ObjectHideFlags: 0

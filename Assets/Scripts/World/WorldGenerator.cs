@@ -1,5 +1,4 @@
 ﻿using Assets.Scripts.AI;
-using Assets.Scripts.Damageable;
 using Assets.Scripts.SpaceShip;
 using System;
 using System.Collections;
@@ -20,6 +19,8 @@ namespace Assets.Scripts.GeneratorSystem
             public int CurrentCount;
         }
 
+        [SerializeField] private bool _generating;
+
         [Header("Spawning")]
         [SerializeField] private Template[] _templates;
 
@@ -36,19 +37,27 @@ namespace Assets.Scripts.GeneratorSystem
         [SerializeField] private float _spawnDelay = 2.5f;
         [SerializeField] private float _minDistanceForShip = 5;
         [SerializeField, Range(0, 1)] private float _spawnChance = .1f;
-        [SerializeField] private Ship[] _aiShips;
 
         private List<Ship> _spawnedShips;
 
         private List<GameObject> _spawnedObjects;
 
+        private AIFactory _factory;
+
         public void Initialize()
         {
+            _factory = FindObjectOfType<AIFactory>();
+
             _spawnedObjects = new List<GameObject>();
 
             _spawnedShips = new List<Ship>(_aiMaxCount);
 
             StartCoroutine(SpawnAI());
+
+            if (!_generating)
+            {
+                return;
+            }
 
             foreach (var template in _templates)
             {
@@ -64,49 +73,62 @@ namespace Assets.Scripts.GeneratorSystem
             }
         }
 
+        public void StartGenerating()
+        {
+            _generating = true;
+        }
+
+        public void StopGenerating()
+        {
+            StopAllCoroutines();
+            Destroy(this);
+        }
+
         private IEnumerator SpawnAI()
         {
             while (true)
             {
-                if(_spawnedShips.Count < _aiMaxCount && _spawnChance > Random.Range(0f, 1f))
+                if (_generating)
                 {
-                    var player = World.Ships.Find(x => x.DamageDealer.Id == _playerId);
-
-                    var newAI = Instantiate(_aiShips[Random.Range(0, _aiShips.Length)],
-                        player.transform.position, Quaternion.identity, transform);
-
-                    newAI.transform.position += new Vector3(
-                        Random.Range(_minDistanceForShip, _maxDistanceBetweenPlayer) * (Random.Range(0, 2) == 0 ? -1 : 1),
-                        Random.Range(_minDistanceForShip, _maxDistanceBetweenPlayer) * (Random.Range(0, 2) == 0 ? -1 : 1), _zPosition);
-
-                    newAI.Initialize();
-                    newAI.GetComponent<ShipAI>().Initialize();
-
-                    _spawnedShips.Add(newAI);
-                }
-
-                for (int i = 0; i < _spawnedShips.Count; i++)
-                {
-                    if (_spawnedShips[i] == null)
+                    if (_spawnedShips.Count < _aiMaxCount && _spawnChance > Random.Range(0f, 1f))
                     {
-                        _spawnedShips.RemoveAt(i);
+                        var player = World.Ships.Find(x => x.DamageDealer.Id == _playerId);
+
+                        Ship newAI = _factory.GetShip(player.transform.position, Quaternion.identity, transform);
+
+                        newAI.transform.position += new Vector3(
+                            Random.Range(_minDistanceForShip, _maxDistanceBetweenPlayer) * (Random.Range(0, 2) == 0 ? -1 : 1),
+                            Random.Range(_minDistanceForShip, _maxDistanceBetweenPlayer) * (Random.Range(0, 2) == 0 ? -1 : 1), _zPosition);
+
+                        newAI.Initialize();
+                        newAI.GetComponent<ShipAI>().Initialize();
+
+                        _spawnedShips.Add(newAI);
                     }
-                    else
-                    {
-                        var needDestroy = true;
-                        
-                        foreach(var playerShip in World.Ships.FindAll(x => x.DamageDealer.Id == _playerId))
-                        {
-                            if (Vector3.Distance(_spawnedShips[i].transform.position, playerShip.transform.position) < _maxDistanceBetweenPlayer)
-                            {
-                                needDestroy = false;
-                            }
-                        }
 
-                        if (needDestroy)
+                    for (int i = 0; i < _spawnedShips.Count; i++)
+                    {
+                        if (_spawnedShips[i] == null)
                         {
-                            Destroy(_spawnedShips[i].gameObject);
                             _spawnedShips.RemoveAt(i);
+                        }
+                        else
+                        {
+                            var needDestroy = true;
+
+                            foreach (var playerShip in World.Ships.FindAll(x => x.DamageDealer.Id == _playerId))
+                            {
+                                if (Vector3.Distance(_spawnedShips[i].transform.position, playerShip.transform.position) < _maxDistanceBetweenPlayer)
+                                {
+                                    needDestroy = false;
+                                }
+                            }
+
+                            if (needDestroy)
+                            {
+                                Destroy(_spawnedShips[i].gameObject);
+                                _spawnedShips.RemoveAt(i);
+                            }
                         }
                     }
                 }
@@ -185,6 +207,13 @@ namespace Assets.Scripts.GeneratorSystem
 
         private void FixedUpdate()
         {
+            if (!_generating)
+            {
+                return;
+            }
+
+            UnityEngine.Debug.Log("TEDFEF");
+
             RemoveUnwantedObjects();
             CreateNewObjects();
         }

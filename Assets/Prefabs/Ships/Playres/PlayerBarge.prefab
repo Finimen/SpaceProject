@@ -338,9 +338,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6044290446216028255}
-  - component: {fileID: 6044290446216028254}
   - component: {fileID: 6044290446216028253}
   - component: {fileID: 6044290446216028252}
+  - component: {fileID: 6044290446216028254}
+  - component: {fileID: 5729598175183007873}
   - component: {fileID: 6044290446216028259}
   m_Layer: 0
   m_Name: WeaponPoint
@@ -366,23 +367,6 @@ Transform:
   m_Father: {fileID: 6044290446877077262}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &6044290446216028254
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6044290446216028248}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c68e77f0555f2c34583ac4a5517ec0c0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _current: {fileID: 0}
-  _availableWeapons:
-  - {fileID: 11400000, guid: 0bdd50502a2acdc4b8651ca6b5f21448, type: 2}
-  - {fileID: 11400000, guid: 3638831378b9141488efe11edaabb877, type: 2}
-  - {fileID: 11400000, guid: f6775a89f918f6542b9db9e740d86737, type: 2}
 --- !u!61 &6044290446216028253
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -461,6 +445,36 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &6044290446216028254
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6044290446216028248}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c68e77f0555f2c34583ac4a5517ec0c0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _current: {fileID: 0}
+  _availableWeapons:
+  - {fileID: 11400000, guid: 0bdd50502a2acdc4b8651ca6b5f21448, type: 2}
+  - {fileID: 11400000, guid: 3638831378b9141488efe11edaabb877, type: 2}
+  - {fileID: 11400000, guid: f6775a89f918f6542b9db9e740d86737, type: 2}
+--- !u!114 &5729598175183007873
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6044290446216028248}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4ff8faad7768e0a4e845d446f3057f0a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _audio: {fileID: 3960414412912086401, guid: d7654d72b3448c34993df7403b6a667f, type: 3}
 --- !u!114 &6044290446216028259
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -475,6 +489,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _attackRadius: {fileID: 6044290446707435649}
   _selectable: {fileID: 6044290447483823971}
+  _ease: 5
+  _duration: 0.25
 --- !u!1 &6044290446375233428
 GameObject:
   m_ObjectHideFlags: 0
@@ -1202,9 +1218,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6044290446891529818}
-  - component: {fileID: 6044290446891529822}
   - component: {fileID: 6044290446891529823}
   - component: {fileID: 6044290446891529816}
+  - component: {fileID: 6044290446891529822}
+  - component: {fileID: 6268039815836002598}
   - component: {fileID: 6044290446891529817}
   m_Layer: 0
   m_Name: WeaponPoint (2)
@@ -1230,23 +1247,6 @@ Transform:
   m_Father: {fileID: 6044290446877077262}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &6044290446891529822
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6044290446891529819}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c68e77f0555f2c34583ac4a5517ec0c0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _current: {fileID: 0}
-  _availableWeapons:
-  - {fileID: 11400000, guid: 0bdd50502a2acdc4b8651ca6b5f21448, type: 2}
-  - {fileID: 11400000, guid: 3638831378b9141488efe11edaabb877, type: 2}
-  - {fileID: 11400000, guid: f6775a89f918f6542b9db9e740d86737, type: 2}
 --- !u!61 &6044290446891529823
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -1325,6 +1325,36 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &6044290446891529822
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6044290446891529819}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c68e77f0555f2c34583ac4a5517ec0c0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _current: {fileID: 0}
+  _availableWeapons:
+  - {fileID: 11400000, guid: 0bdd50502a2acdc4b8651ca6b5f21448, type: 2}
+  - {fileID: 11400000, guid: 3638831378b9141488efe11edaabb877, type: 2}
+  - {fileID: 11400000, guid: f6775a89f918f6542b9db9e740d86737, type: 2}
+--- !u!114 &6268039815836002598
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6044290446891529819}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4ff8faad7768e0a4e845d446f3057f0a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _audio: {fileID: 3960414412912086401, guid: d7654d72b3448c34993df7403b6a667f, type: 3}
 --- !u!114 &6044290446891529817
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1339,6 +1369,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _attackRadius: {fileID: 6044290446543237809}
   _selectable: {fileID: 6044290446527384231}
+  _ease: 5
+  _duration: 0.25
 --- !u!1 &6044290446893988493
 GameObject:
   m_ObjectHideFlags: 0
@@ -1364,6 +1396,7 @@ GameObject:
   - component: {fileID: 6044290446893988510}
   - component: {fileID: 6044290446893988507}
   - component: {fileID: 6044290446893988506}
+  - component: {fileID: -5926138549982982851}
   m_Layer: 0
   m_Name: PlayerBarge
   m_TagString: Untagged
@@ -1643,6 +1676,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _line: {fileID: 8079252448535872471, guid: 29a34fcf2a6a8fd4daa455633166e4df, type: 3}
   _radius: {fileID: 6044290446130308558}
+  _ease: 5
+  _duration: 0.25
 --- !u!114 &6044290446893988509
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1698,6 +1733,20 @@ MonoBehaviour:
   _engine: {fileID: 6044290447581985091}
   _speedMultiplayer: 100
   _minSpeed: 0.1
+--- !u!114 &-5926138549982982851
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6044290446893988493}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f3c0b5d1254ee304885fbc4397bd887e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _damageAudio: {fileID: 3404102220227127079, guid: 3f4606e249ab2ac419e7df3b403f40db, type: 3}
+  _pitchRandomness: 0.1
 --- !u!1 &6044290446911862927
 GameObject:
   m_ObjectHideFlags: 0
@@ -6789,9 +6838,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6044290447664260709}
-  - component: {fileID: 6044290447664260713}
   - component: {fileID: 6044290447664260714}
   - component: {fileID: 6044290447664260715}
+  - component: {fileID: 6044290447664260713}
+  - component: {fileID: 2750462561426407538}
   - component: {fileID: 6044290447664260708}
   m_Layer: 0
   m_Name: WeaponPoint (1)
@@ -6817,23 +6867,6 @@ Transform:
   m_Father: {fileID: 6044290446877077262}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &6044290447664260713
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6044290447664260710}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c68e77f0555f2c34583ac4a5517ec0c0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _current: {fileID: 0}
-  _availableWeapons:
-  - {fileID: 11400000, guid: 0bdd50502a2acdc4b8651ca6b5f21448, type: 2}
-  - {fileID: 11400000, guid: 3638831378b9141488efe11edaabb877, type: 2}
-  - {fileID: 11400000, guid: f6775a89f918f6542b9db9e740d86737, type: 2}
 --- !u!61 &6044290447664260714
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -6912,6 +6945,36 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &6044290447664260713
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6044290447664260710}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c68e77f0555f2c34583ac4a5517ec0c0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _current: {fileID: 0}
+  _availableWeapons:
+  - {fileID: 11400000, guid: 0bdd50502a2acdc4b8651ca6b5f21448, type: 2}
+  - {fileID: 11400000, guid: 3638831378b9141488efe11edaabb877, type: 2}
+  - {fileID: 11400000, guid: f6775a89f918f6542b9db9e740d86737, type: 2}
+--- !u!114 &2750462561426407538
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6044290447664260710}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4ff8faad7768e0a4e845d446f3057f0a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _audio: {fileID: 3960414412912086401, guid: d7654d72b3448c34993df7403b6a667f, type: 3}
 --- !u!114 &6044290447664260708
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6926,6 +6989,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _attackRadius: {fileID: 6044290446724953918}
   _selectable: {fileID: 6044290447439843820}
+  _ease: 5
+  _duration: 0.25
 --- !u!1 &7189490973832808222
 GameObject:
   m_ObjectHideFlags: 0
@@ -6935,9 +7000,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8311422225216758185}
-  - component: {fileID: 3665674950880420032}
   - component: {fileID: 1044314873990792983}
   - component: {fileID: 273076211339757959}
+  - component: {fileID: 3665674950880420032}
+  - component: {fileID: 4530788351222733118}
   - component: {fileID: 8265132299765681975}
   m_Layer: 0
   m_Name: WeaponPoint (3)
@@ -6963,23 +7029,6 @@ Transform:
   m_Father: {fileID: 6044290446877077262}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &3665674950880420032
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7189490973832808222}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c68e77f0555f2c34583ac4a5517ec0c0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _current: {fileID: 0}
-  _availableWeapons:
-  - {fileID: 11400000, guid: 0bdd50502a2acdc4b8651ca6b5f21448, type: 2}
-  - {fileID: 11400000, guid: 3638831378b9141488efe11edaabb877, type: 2}
-  - {fileID: 11400000, guid: f6775a89f918f6542b9db9e740d86737, type: 2}
 --- !u!61 &1044314873990792983
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -7058,6 +7107,36 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &3665674950880420032
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7189490973832808222}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c68e77f0555f2c34583ac4a5517ec0c0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _current: {fileID: 0}
+  _availableWeapons:
+  - {fileID: 11400000, guid: 0bdd50502a2acdc4b8651ca6b5f21448, type: 2}
+  - {fileID: 11400000, guid: 3638831378b9141488efe11edaabb877, type: 2}
+  - {fileID: 11400000, guid: f6775a89f918f6542b9db9e740d86737, type: 2}
+--- !u!114 &4530788351222733118
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7189490973832808222}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4ff8faad7768e0a4e845d446f3057f0a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _audio: {fileID: 3960414412912086401, guid: d7654d72b3448c34993df7403b6a667f, type: 3}
 --- !u!114 &8265132299765681975
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7072,6 +7151,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _attackRadius: {fileID: 8067724929930601820}
   _selectable: {fileID: 2376877483059230940}
+  _ease: 5
+  _duration: 0.25
 --- !u!1 &8067724929930601820
 GameObject:
   m_ObjectHideFlags: 0

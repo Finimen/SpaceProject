@@ -30,6 +30,7 @@ namespace Assets.Scripts.ResourcesSystem
             _canvas.DefaultOre.text = $"Default: {_resources.DefaultOre}";
             _canvas.RedOre.text = $"Red: {_resources.RedOre}";
             _canvas.GreenOre.text = $"Green: {_resources.GreenOre}";
+            _canvas.GCoins.text = $"GCoins: {World.PlayerGCoins}";
         }
 
         private void UpdateOre(OreType type, int amount)

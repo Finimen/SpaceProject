@@ -42,6 +42,7 @@ GameObject:
   - component: {fileID: 1956866384201432983}
   - component: {fileID: 1956866384201432982}
   - component: {fileID: 1956866384201432980}
+  - component: {fileID: 372552013046625972}
   - component: {fileID: 1956866384201432981}
   m_Layer: 0
   m_Name: BigRocketMLM
@@ -145,7 +146,20 @@ MonoBehaviour:
   - {fileID: 4867566430919535367}
   - {fileID: 4867566430951562363}
   _scatter: 0
-  _delayForNextShoot: 0.5
+  _delayForNextShoot: 0.6
+--- !u!114 &372552013046625972
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1956866384201432984}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e0228931229244042bef70b5ea371459, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _audio: {fileID: 6471761075977018309, guid: b2e3c4ca287184c4d8421f0461f3b183, type: 3}
 --- !u!114 &1956866384201432981
 MonoBehaviour:
   m_ObjectHideFlags: 0

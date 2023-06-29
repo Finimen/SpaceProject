@@ -1,4 +1,5 @@
 using Assets.Scripts.WeaponSystem;
+using System;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
@@ -6,6 +7,8 @@ namespace Assets.Scripts.WeaponInstallationSystem
 {
     public class WeaponInstallationPoint : MonoBehaviour, IPointerClickHandler
     {
+        public event Action OnWeaponEquipped;
+
         [SerializeField] private BaseWeapon _current;
 
         [SerializeField, Space(25)] private WeaponData[] _availableWeapons;
@@ -17,6 +20,7 @@ namespace Assets.Scripts.WeaponInstallationSystem
         private SpriteRenderer _renderer;
 
         private bool _enabled;
+        private bool _active;
 
         public BaseWeapon Current => _current;
         public WeaponData[] AvailableWeapons => _availableWeapons;
@@ -26,6 +30,8 @@ namespace Assets.Scripts.WeaponInstallationSystem
             if(_enabled)
             {
                 _ui.ShowUI(this);
+
+                _active = true;
             }
         }
 
@@ -58,12 +64,16 @@ namespace Assets.Scripts.WeaponInstallationSystem
 
             _current = Instantiate(template, transform.position, transform.rotation, transform);
             _current.Initialize(_ignoreCollidersForWeapons);
+
+            OnWeaponEquipped?.Invoke();
         }
 
         private void Update()
         {
-            if(_enabled && Input.GetMouseButtonDown(0))
+            if(_enabled && Input.GetMouseButtonDown(0) && EventSystem.current.currentSelectedGameObject == null)
             {
+                _active = false;
+
                 _ui.HideUI();
             }
         }

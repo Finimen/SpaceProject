@@ -42,7 +42,9 @@ GameObject:
   - component: {fileID: 6387580342745442964}
   - component: {fileID: 6387580342745442965}
   - component: {fileID: 6387580342745442967}
+  - component: {fileID: 9005024872071942281}
   - component: {fileID: 6387580342745442966}
+  - component: {fileID: 7494534221283205345}
   m_Layer: 0
   m_Name: MachuneGun 1
   m_TagString: Untagged
@@ -131,7 +133,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: beb3b8bce3b92c94c9040095d83fe134, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _ignoreColliders: []
   _bulletTemplate: {fileID: 5485491987804436713, guid: 19b951781fdf9584e9d91f5099049c3e, type: 3}
   _shootParticles: {fileID: 0}
   _spawnPoints:
@@ -139,6 +140,19 @@ MonoBehaviour:
   - {fileID: 4611098477012692764}
   _scatter: 5
   _delayForNextShoot: 0.1
+--- !u!114 &9005024872071942281
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6387580342745442971}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e0228931229244042bef70b5ea371459, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _audio: {fileID: 3438226537835181126, guid: a9f616e55acce2c4f9cf018a985c347c, type: 3}
 --- !u!114 &6387580342745442966
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -155,6 +169,19 @@ MonoBehaviour:
   _radius: 6
   _rotateSpeed: 25
   _currentWeapon: {fileID: 6387580342745442967}
+--- !u!114 &7494534221283205345
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6387580342745442971}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 91301750f02346d419308bbb7368708f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _audio: {fileID: 2474267235491327717, guid: 7d22f2df134062e43a6772c4dde0fa0b, type: 3}
 --- !u!1 &6387580343911011340
 GameObject:
   m_ObjectHideFlags: 0

@@ -152,6 +152,7 @@ GameObject:
   - component: {fileID: 5485491987804436727}
   - component: {fileID: 5485491987804436714}
   - component: {fileID: 5485491987804436713}
+  - component: {fileID: -4975844447332358715}
   - component: {fileID: -5262387180265595643}
   m_Layer: 0
   m_Name: RailGunBullet
@@ -270,6 +271,19 @@ MonoBehaviour:
   _movingVector: {x: -1, y: 0}
   _damage: 7.5
   _lifeTime: 5
+--- !u!114 &-4975844447332358715
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5485491987804436726}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: abb7d2f5768d5fc4dad4054f905319cf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _audio: {fileID: 2479568013030671005, guid: 0c41ba2665357a446a57c65c359f83d3, type: 3}
 --- !u!114 &-5262387180265595643
 MonoBehaviour:
   m_ObjectHideFlags: 0

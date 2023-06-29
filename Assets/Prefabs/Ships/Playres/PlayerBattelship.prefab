@@ -106,10 +106,11 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7572201085118835516}
-  - component: {fileID: 7572201085118835512}
   - component: {fileID: 7572201085118835513}
   - component: {fileID: 7572201085118835514}
   - component: {fileID: 7572201085118835515}
+  - component: {fileID: 7572201085118835512}
+  - component: {fileID: 933599862641641224}
   m_Layer: 0
   m_Name: WeaponInstallationPoint (3)
   m_TagString: Untagged
@@ -134,23 +135,6 @@ Transform:
   m_Father: {fileID: 7572201085860637618}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &7572201085118835512
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7572201085118835517}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c68e77f0555f2c34583ac4a5517ec0c0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _current: {fileID: 0}
-  _availableWeapons:
-  - {fileID: 11400000, guid: 0bdd50502a2acdc4b8651ca6b5f21448, type: 2}
-  - {fileID: 11400000, guid: 3638831378b9141488efe11edaabb877, type: 2}
-  - {fileID: 11400000, guid: f6775a89f918f6542b9db9e740d86737, type: 2}
 --- !u!61 &7572201085118835513
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -243,6 +227,38 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _attackRadius: {fileID: 7572201086449446458}
   _selectable: {fileID: 7572201085052995838}
+  _ease: 5
+  _duration: 0.25
+--- !u!114 &7572201085118835512
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7572201085118835517}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c68e77f0555f2c34583ac4a5517ec0c0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _current: {fileID: 0}
+  _availableWeapons:
+  - {fileID: 11400000, guid: 0bdd50502a2acdc4b8651ca6b5f21448, type: 2}
+  - {fileID: 11400000, guid: 3638831378b9141488efe11edaabb877, type: 2}
+  - {fileID: 11400000, guid: f6775a89f918f6542b9db9e740d86737, type: 2}
+--- !u!114 &933599862641641224
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7572201085118835517}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4ff8faad7768e0a4e845d446f3057f0a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _audio: {fileID: 3960414412912086401, guid: d7654d72b3448c34993df7403b6a667f, type: 3}
 --- !u!1 &7572201085119241840
 GameObject:
   m_ObjectHideFlags: 0
@@ -1032,10 +1048,11 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7572201085450298595}
-  - component: {fileID: 7572201085450298594}
   - component: {fileID: 7572201085450298593}
   - component: {fileID: 7572201085450298592}
   - component: {fileID: 7572201085450298591}
+  - component: {fileID: 7572201085450298594}
+  - component: {fileID: 1825925541983996564}
   m_Layer: 0
   m_Name: WeaponInstallationPoint
   m_TagString: Untagged
@@ -1060,23 +1077,6 @@ Transform:
   m_Father: {fileID: 7572201085860637618}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &7572201085450298594
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7572201085450298596}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c68e77f0555f2c34583ac4a5517ec0c0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _current: {fileID: 0}
-  _availableWeapons:
-  - {fileID: 11400000, guid: 0bdd50502a2acdc4b8651ca6b5f21448, type: 2}
-  - {fileID: 11400000, guid: 3638831378b9141488efe11edaabb877, type: 2}
-  - {fileID: 11400000, guid: f6775a89f918f6542b9db9e740d86737, type: 2}
 --- !u!61 &7572201085450298593
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -1169,6 +1169,38 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _attackRadius: {fileID: 7572201086029753405}
   _selectable: {fileID: 7572201086327890911}
+  _ease: 5
+  _duration: 0.25
+--- !u!114 &7572201085450298594
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7572201085450298596}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c68e77f0555f2c34583ac4a5517ec0c0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _current: {fileID: 0}
+  _availableWeapons:
+  - {fileID: 11400000, guid: 0bdd50502a2acdc4b8651ca6b5f21448, type: 2}
+  - {fileID: 11400000, guid: 3638831378b9141488efe11edaabb877, type: 2}
+  - {fileID: 11400000, guid: f6775a89f918f6542b9db9e740d86737, type: 2}
+--- !u!114 &1825925541983996564
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7572201085450298596}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4ff8faad7768e0a4e845d446f3057f0a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _audio: {fileID: 3960414412912086401, guid: d7654d72b3448c34993df7403b6a667f, type: 3}
 --- !u!1 &7572201085533397362
 GameObject:
   m_ObjectHideFlags: 0
@@ -1502,6 +1534,7 @@ GameObject:
   - component: {fileID: 7572201085843996194}
   - component: {fileID: 7572201085843996199}
   - component: {fileID: 7572201085843996198}
+  - component: {fileID: 4097845562691569901}
   m_Layer: 0
   m_Name: PlayerBattelship
   m_TagString: Untagged
@@ -1778,6 +1811,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _line: {fileID: 8079252448535872471, guid: 29a34fcf2a6a8fd4daa455633166e4df, type: 3}
   _radius: {fileID: 7572201085533397362}
+  _ease: 5
+  _duration: 0.25
 --- !u!114 &7572201085843996193
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1833,6 +1868,20 @@ MonoBehaviour:
   _engine: {fileID: 7572201086228954623}
   _speedMultiplayer: 100
   _minSpeed: 0.1
+--- !u!114 &4097845562691569901
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7572201085843996209}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f3c0b5d1254ee304885fbc4397bd887e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _damageAudio: {fileID: 3404102220227127079, guid: 3f4606e249ab2ac419e7df3b403f40db, type: 3}
+  _pitchRandomness: 0.1
 --- !u!1 &7572201085845664487
 GameObject:
   m_ObjectHideFlags: 0
@@ -1842,10 +1891,11 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7572201085845664486}
-  - component: {fileID: 7572201085845664482}
   - component: {fileID: 7572201085845664483}
   - component: {fileID: 7572201085845664484}
   - component: {fileID: 7572201085845664485}
+  - component: {fileID: 7572201085845664482}
+  - component: {fileID: 454265467034376766}
   m_Layer: 0
   m_Name: WeaponInstallationPoint (2)
   m_TagString: Untagged
@@ -1870,23 +1920,6 @@ Transform:
   m_Father: {fileID: 7572201085860637618}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &7572201085845664482
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7572201085845664487}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c68e77f0555f2c34583ac4a5517ec0c0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _current: {fileID: 0}
-  _availableWeapons:
-  - {fileID: 11400000, guid: 0bdd50502a2acdc4b8651ca6b5f21448, type: 2}
-  - {fileID: 11400000, guid: 3638831378b9141488efe11edaabb877, type: 2}
-  - {fileID: 11400000, guid: f6775a89f918f6542b9db9e740d86737, type: 2}
 --- !u!61 &7572201085845664483
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -1979,6 +2012,38 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _attackRadius: {fileID: 7572201085123098125}
   _selectable: {fileID: 7572201085136571931}
+  _ease: 5
+  _duration: 0.25
+--- !u!114 &7572201085845664482
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7572201085845664487}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c68e77f0555f2c34583ac4a5517ec0c0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _current: {fileID: 0}
+  _availableWeapons:
+  - {fileID: 11400000, guid: 0bdd50502a2acdc4b8651ca6b5f21448, type: 2}
+  - {fileID: 11400000, guid: 3638831378b9141488efe11edaabb877, type: 2}
+  - {fileID: 11400000, guid: f6775a89f918f6542b9db9e740d86737, type: 2}
+--- !u!114 &454265467034376766
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7572201085845664487}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4ff8faad7768e0a4e845d446f3057f0a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _audio: {fileID: 3960414412912086401, guid: d7654d72b3448c34993df7403b6a667f, type: 3}
 --- !u!1 &7572201085860637619
 GameObject:
   m_ObjectHideFlags: 0
@@ -2027,10 +2092,11 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7572201085946954370}
-  - component: {fileID: 7572201085946954622}
   - component: {fileID: 7572201085946954623}
   - component: {fileID: 7572201085946954368}
   - component: {fileID: 7572201085946954369}
+  - component: {fileID: 7572201085946954622}
+  - component: {fileID: 774174351947296485}
   m_Layer: 0
   m_Name: WeaponInstallationPoint (6)
   m_TagString: Untagged
@@ -2055,23 +2121,6 @@ Transform:
   m_Father: {fileID: 7572201085860637618}
   m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &7572201085946954622
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7572201085946954371}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c68e77f0555f2c34583ac4a5517ec0c0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _current: {fileID: 0}
-  _availableWeapons:
-  - {fileID: 11400000, guid: 0bdd50502a2acdc4b8651ca6b5f21448, type: 2}
-  - {fileID: 11400000, guid: 3638831378b9141488efe11edaabb877, type: 2}
-  - {fileID: 11400000, guid: f6775a89f918f6542b9db9e740d86737, type: 2}
 --- !u!61 &7572201085946954623
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -2164,6 +2213,38 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _attackRadius: {fileID: 7572201086198295842}
   _selectable: {fileID: 7572201086155087788}
+  _ease: 5
+  _duration: 0.25
+--- !u!114 &7572201085946954622
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7572201085946954371}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c68e77f0555f2c34583ac4a5517ec0c0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _current: {fileID: 0}
+  _availableWeapons:
+  - {fileID: 11400000, guid: 0bdd50502a2acdc4b8651ca6b5f21448, type: 2}
+  - {fileID: 11400000, guid: 3638831378b9141488efe11edaabb877, type: 2}
+  - {fileID: 11400000, guid: f6775a89f918f6542b9db9e740d86737, type: 2}
+--- !u!114 &774174351947296485
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7572201085946954371}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4ff8faad7768e0a4e845d446f3057f0a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _audio: {fileID: 3960414412912086401, guid: d7654d72b3448c34993df7403b6a667f, type: 3}
 --- !u!1 &7572201085948337575
 GameObject:
   m_ObjectHideFlags: 0
@@ -2464,10 +2545,11 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7572201086148764377}
-  - component: {fileID: 7572201086148764373}
   - component: {fileID: 7572201086148764374}
   - component: {fileID: 7572201086148764375}
   - component: {fileID: 7572201086148764376}
+  - component: {fileID: 7572201086148764373}
+  - component: {fileID: 6410886697451092652}
   m_Layer: 0
   m_Name: WeaponInstallationPoint (1)
   m_TagString: Untagged
@@ -2492,23 +2574,6 @@ Transform:
   m_Father: {fileID: 7572201085860637618}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &7572201086148764373
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7572201086148764378}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c68e77f0555f2c34583ac4a5517ec0c0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _current: {fileID: 0}
-  _availableWeapons:
-  - {fileID: 11400000, guid: 0bdd50502a2acdc4b8651ca6b5f21448, type: 2}
-  - {fileID: 11400000, guid: 3638831378b9141488efe11edaabb877, type: 2}
-  - {fileID: 11400000, guid: f6775a89f918f6542b9db9e740d86737, type: 2}
 --- !u!61 &7572201086148764374
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -2601,6 +2666,38 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _attackRadius: {fileID: 7572201086014600066}
   _selectable: {fileID: 7572201086373172560}
+  _ease: 5
+  _duration: 0.25
+--- !u!114 &7572201086148764373
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7572201086148764378}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c68e77f0555f2c34583ac4a5517ec0c0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _current: {fileID: 0}
+  _availableWeapons:
+  - {fileID: 11400000, guid: 0bdd50502a2acdc4b8651ca6b5f21448, type: 2}
+  - {fileID: 11400000, guid: 3638831378b9141488efe11edaabb877, type: 2}
+  - {fileID: 11400000, guid: f6775a89f918f6542b9db9e740d86737, type: 2}
+--- !u!114 &6410886697451092652
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7572201086148764378}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4ff8faad7768e0a4e845d446f3057f0a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _audio: {fileID: 3960414412912086401, guid: d7654d72b3448c34993df7403b6a667f, type: 3}
 --- !u!1 &7572201086155087788
 GameObject:
   m_ObjectHideFlags: 0
@@ -8004,10 +8101,11 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7572201086654260775}
-  - component: {fileID: 7572201086654260771}
   - component: {fileID: 7572201086654260772}
   - component: {fileID: 7572201086654260773}
   - component: {fileID: 7572201086654260774}
+  - component: {fileID: 7572201086654260771}
+  - component: {fileID: 4906218728473284605}
   m_Layer: 0
   m_Name: WeaponInstallationPoint (5)
   m_TagString: Untagged
@@ -8032,23 +8130,6 @@ Transform:
   m_Father: {fileID: 7572201085860637618}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &7572201086654260771
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7572201086654260776}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c68e77f0555f2c34583ac4a5517ec0c0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _current: {fileID: 0}
-  _availableWeapons:
-  - {fileID: 11400000, guid: 0bdd50502a2acdc4b8651ca6b5f21448, type: 2}
-  - {fileID: 11400000, guid: 3638831378b9141488efe11edaabb877, type: 2}
-  - {fileID: 11400000, guid: f6775a89f918f6542b9db9e740d86737, type: 2}
 --- !u!61 &7572201086654260772
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -8141,6 +8222,38 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _attackRadius: {fileID: 7572201086188542212}
   _selectable: {fileID: 7572201085119241840}
+  _ease: 5
+  _duration: 0.25
+--- !u!114 &7572201086654260771
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7572201086654260776}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c68e77f0555f2c34583ac4a5517ec0c0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _current: {fileID: 0}
+  _availableWeapons:
+  - {fileID: 11400000, guid: 0bdd50502a2acdc4b8651ca6b5f21448, type: 2}
+  - {fileID: 11400000, guid: 3638831378b9141488efe11edaabb877, type: 2}
+  - {fileID: 11400000, guid: f6775a89f918f6542b9db9e740d86737, type: 2}
+--- !u!114 &4906218728473284605
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7572201086654260776}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4ff8faad7768e0a4e845d446f3057f0a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _audio: {fileID: 3960414412912086401, guid: d7654d72b3448c34993df7403b6a667f, type: 3}
 --- !u!1 &7572201086674866126
 GameObject:
   m_ObjectHideFlags: 0
@@ -8247,10 +8360,11 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7572201086821161959}
-  - component: {fileID: 7572201086821161955}
   - component: {fileID: 7572201086821161956}
   - component: {fileID: 7572201086821161957}
   - component: {fileID: 7572201086821161958}
+  - component: {fileID: 7572201086821161955}
+  - component: {fileID: 6771040780189419219}
   m_Layer: 0
   m_Name: WeaponInstallationPoint (7)
   m_TagString: Untagged
@@ -8275,23 +8389,6 @@ Transform:
   m_Father: {fileID: 7572201085860637618}
   m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &7572201086821161955
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7572201086821161960}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c68e77f0555f2c34583ac4a5517ec0c0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _current: {fileID: 0}
-  _availableWeapons:
-  - {fileID: 11400000, guid: 0bdd50502a2acdc4b8651ca6b5f21448, type: 2}
-  - {fileID: 11400000, guid: 3638831378b9141488efe11edaabb877, type: 2}
-  - {fileID: 11400000, guid: f6775a89f918f6542b9db9e740d86737, type: 2}
 --- !u!61 &7572201086821161956
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -8384,6 +8481,38 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _attackRadius: {fileID: 7572201085279333042}
   _selectable: {fileID: 7572201086674866126}
+  _ease: 5
+  _duration: 0.25
+--- !u!114 &7572201086821161955
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7572201086821161960}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c68e77f0555f2c34583ac4a5517ec0c0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _current: {fileID: 0}
+  _availableWeapons:
+  - {fileID: 11400000, guid: 0bdd50502a2acdc4b8651ca6b5f21448, type: 2}
+  - {fileID: 11400000, guid: 3638831378b9141488efe11edaabb877, type: 2}
+  - {fileID: 11400000, guid: f6775a89f918f6542b9db9e740d86737, type: 2}
+--- !u!114 &6771040780189419219
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7572201086821161960}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4ff8faad7768e0a4e845d446f3057f0a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _audio: {fileID: 3960414412912086401, guid: d7654d72b3448c34993df7403b6a667f, type: 3}
 --- !u!1 &7572201087059844254
 GameObject:
   m_ObjectHideFlags: 0
@@ -8393,10 +8522,11 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7572201087059844253}
-  - component: {fileID: 7572201087059844249}
   - component: {fileID: 7572201087059844250}
   - component: {fileID: 7572201087059844251}
   - component: {fileID: 7572201087059844252}
+  - component: {fileID: 7572201087059844249}
+  - component: {fileID: 450148078826675161}
   m_Layer: 0
   m_Name: WeaponInstallationPoint (4)
   m_TagString: Untagged
@@ -8421,23 +8551,6 @@ Transform:
   m_Father: {fileID: 7572201085860637618}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &7572201087059844249
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7572201087059844254}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c68e77f0555f2c34583ac4a5517ec0c0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _current: {fileID: 0}
-  _availableWeapons:
-  - {fileID: 11400000, guid: 0bdd50502a2acdc4b8651ca6b5f21448, type: 2}
-  - {fileID: 11400000, guid: 3638831378b9141488efe11edaabb877, type: 2}
-  - {fileID: 11400000, guid: f6775a89f918f6542b9db9e740d86737, type: 2}
 --- !u!61 &7572201087059844250
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -8530,3 +8643,35 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _attackRadius: {fileID: 7572201085948337575}
   _selectable: {fileID: 7572201085425336806}
+  _ease: 5
+  _duration: 0.25
+--- !u!114 &7572201087059844249
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7572201087059844254}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c68e77f0555f2c34583ac4a5517ec0c0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _current: {fileID: 0}
+  _availableWeapons:
+  - {fileID: 11400000, guid: 0bdd50502a2acdc4b8651ca6b5f21448, type: 2}
+  - {fileID: 11400000, guid: 3638831378b9141488efe11edaabb877, type: 2}
+  - {fileID: 11400000, guid: f6775a89f918f6542b9db9e740d86737, type: 2}
+--- !u!114 &450148078826675161
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7572201087059844254}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4ff8faad7768e0a4e845d446f3057f0a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _audio: {fileID: 3960414412912086401, guid: d7654d72b3448c34993df7403b6a667f, type: 3}

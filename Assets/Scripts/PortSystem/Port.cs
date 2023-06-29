@@ -27,11 +27,6 @@ namespace Assets.Scripts.PortSystem
         {
             if (other.GetComponent<PlayerShipInput>())
             {
-                if(_current != null)
-                {
-                    LeavePort();
-                }
-
                 _current = other.GetComponent<Ship>();
 
                 _current.OnSelectedForUpgrades += ShowUI;

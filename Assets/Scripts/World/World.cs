@@ -1,4 +1,3 @@
-using Assets.Scripts.Damageable;
 using Assets.Scripts.ResourcesSystem;
 using Assets.Scripts.SpaceShip;
 using System.Collections.Generic;
