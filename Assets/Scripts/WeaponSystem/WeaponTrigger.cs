@@ -29,9 +29,10 @@ namespace Assets.Scripts.WeaponSystem
 
         private void Update()
         {
+            FindEnemy();
+
             if (_currentEnemy == null)
             {
-                FindEnemy();
                 return;
             }
             else
@@ -64,14 +65,22 @@ namespace Assets.Scripts.WeaponSystem
 
         private void FindEnemy()
         {
+            DamageableObject nearestEnemy = null;
+
             foreach (var entity in World.Ships)
             {
-                if (entity.DamageDealer.Id != _id && entity != null && Vector2.Distance(entity.transform.position, transform.position) < _radius)
+                if (nearestEnemy == null && entity.DamageDealer.Id != _id || entity.DamageDealer.Id != _id && entity != null && nearestEnemy != null 
+                    && Vector3.Distance(entity.transform.position, transform.position) < Vector3.Distance(nearestEnemy.transform.position, transform.position))
                 {
-                    OnEnemyDetected?.Invoke();
-
-                    _currentEnemy = entity.DamageDealer;
+                    nearestEnemy = entity.DamageDealer;
                 }
+            }
+
+            if (nearestEnemy != null && Vector3.Distance(nearestEnemy.transform.position, transform.position) < _radius && nearestEnemy != _currentEnemy)
+            {
+                _currentEnemy = nearestEnemy;
+
+                OnEnemyDetected?.Invoke();
             }
         }
 

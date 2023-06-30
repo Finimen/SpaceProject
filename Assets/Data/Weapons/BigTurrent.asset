@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: BigTurrent
   m_EditorClassIdentifier: 
   _icon: {fileID: 21300000, guid: 7c625326f291c6444a8c7e7ba1ae19e7, type: 3}
-  _price: 25
+  _price: 125
   _prefab: {fileID: 6211103107040661094, guid: d0d5e34430b0dfa4ca7ab1c2fbb2141c, type: 3}

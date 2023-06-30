@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: MachuneGun 2
   m_EditorClassIdentifier: 
   _icon: {fileID: 21300000, guid: 0aa1b553cd057024495662e8373dbd61, type: 3}
-  _price: 3.5
+  _price: 17.5
   _prefab: {fileID: 175708328348939088, guid: f35bcc3334338e94bb87b5fc3fe69353, type: 3}

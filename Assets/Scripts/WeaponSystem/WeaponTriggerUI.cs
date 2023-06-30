@@ -2,7 +2,6 @@ using Assets.Scripts.WeaponInstallationSystem;
 using DG.Tweening;
 using UnityEngine;
 using UnityEngine.EventSystems;
-using static Codice.Client.Common.Connection.AskCredentialsToUser;
 
 namespace Assets.Scripts.WeaponSystem
 {

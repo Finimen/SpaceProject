@@ -22,6 +22,11 @@ namespace Assets.Scripts.TrainingSystem
             FindObjectOfType<Training>().NextState();
 
             _player.OnOreChanged -= IncreaseCount;
+
+            foreach (var ore in _ores)
+            {
+                ore?.SetActive(false);
+            }
         }
 
         public override void Enable()

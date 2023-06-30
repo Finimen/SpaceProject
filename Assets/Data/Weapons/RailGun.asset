@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: RailGun
   m_EditorClassIdentifier: 
   _icon: {fileID: 21300000, guid: 206a951b3da61fa478c0c4c7693947b1, type: 3}
-  _price: 5
+  _price: 25
   _prefab: {fileID: 5599070975130637250, guid: 88dd68fb17845a24fa5ce3b281f95745, type: 3}

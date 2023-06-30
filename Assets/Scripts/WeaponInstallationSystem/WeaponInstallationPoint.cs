@@ -2,6 +2,7 @@ using Assets.Scripts.WeaponSystem;
 using System;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using static Codice.CM.Common.CmCallContext;
 
 namespace Assets.Scripts.WeaponInstallationSystem
 {
@@ -20,7 +21,6 @@ namespace Assets.Scripts.WeaponInstallationSystem
         private SpriteRenderer _renderer;
 
         private bool _enabled;
-        private bool _active;
 
         public BaseWeapon Current => _current;
         public WeaponData[] AvailableWeapons => _availableWeapons;
@@ -30,8 +30,6 @@ namespace Assets.Scripts.WeaponInstallationSystem
             if(_enabled)
             {
                 _ui.ShowUI(this);
-
-                _active = true;
             }
         }
 
@@ -63,6 +61,7 @@ namespace Assets.Scripts.WeaponInstallationSystem
             }
 
             _current = Instantiate(template, transform.position, transform.rotation, transform);
+            _current.name = _current.name.Replace("(Clone)", "");
             _current.Initialize(_ignoreCollidersForWeapons);
 
             OnWeaponEquipped?.Invoke();
@@ -72,8 +71,6 @@ namespace Assets.Scripts.WeaponInstallationSystem
         {
             if(_enabled && Input.GetMouseButtonDown(0) && EventSystem.current.currentSelectedGameObject == null)
             {
-                _active = false;
-
                 _ui.HideUI();
             }
         }

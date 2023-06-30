@@ -21,7 +21,15 @@ namespace Assets.Scripts.WeaponInstallationSystem
                 var current = weaponPoint.AvailableWeapons[i];
                 var ui = Instantiate(_template, _parent);
                 ui.Render(current);
-                ui.OnClicked += () => weaponPoint.SpawnNewWeapon(current.Prefab);
+
+                ui.OnClicked += () =>
+                {
+                    if(weaponPoint.Current == null || weaponPoint.Current.name != current.Prefab.name)
+                    {
+                        weaponPoint.SpawnNewWeapon(current.Prefab);
+                        World.DecreaseCoins(current.Price);
+                    }
+                };
 
                 _lastUI[i] = ui;
             }
