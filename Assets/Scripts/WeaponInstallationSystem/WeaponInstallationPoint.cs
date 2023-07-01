@@ -2,7 +2,6 @@ using Assets.Scripts.WeaponSystem;
 using System;
 using UnityEngine;
 using UnityEngine.EventSystems;
-using static Codice.CM.Common.CmCallContext;
 
 namespace Assets.Scripts.WeaponInstallationSystem
 {

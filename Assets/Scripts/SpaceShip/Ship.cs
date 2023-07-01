@@ -1,10 +1,8 @@
-using Assets.Scripts.CameraSystem;
 using Assets.Scripts.Players;
 using Assets.Scripts.ResourcesSystem;
 using Assets.Scripts.WeaponInstallationSystem;
 using System;
 using UnityEngine;
-using UnityEngine.EventSystems;
 
 namespace Assets.Scripts.SpaceShip
 {
@@ -14,7 +12,7 @@ namespace Assets.Scripts.SpaceShip
     
     [DisallowMultipleComponent]
     [RequireComponent(typeof(ShipMovement), typeof(ShipDamageDealer))]
-    public class Ship : MonoBehaviour, IInitializable, IPointerEnterHandler, IPointerExitHandler
+    public class Ship : MonoBehaviour, IInitializable
     {
         public enum ShipState
         {
@@ -23,10 +21,7 @@ namespace Assets.Scripts.SpaceShip
             WeaponInstallation
         }
 
-        public event Action OnSelectedForMoving;
-        public event Action OnSelectedForTreading;
-        public event Action OnSelectedForUpgrades;
-        public event Action OnDeselected;
+        public event Action<ShipState> OnStateUpdated;
 
         [SerializeField] private ShipState _state;
 
@@ -40,11 +35,6 @@ namespace Assets.Scripts.SpaceShip
         private PlayerShipInput _playerShipInput;
         private ShipDamageDealer _damageDealer;
 
-        private PlayerCamera _camera;
-
-        private bool _mouseEntered;
-        private bool _isSelected;
-
         public ShipState State => _state;
 
         public ShipDamageDealer DamageDealer => _damageDealer;
@@ -57,8 +47,6 @@ namespace Assets.Scripts.SpaceShip
 
         public void Initialize()
         {
-            _camera = FindObjectOfType<PlayerCamera>();
-
             InitializeRequiredComponents();
 
             InitializeAdditionalComponents();
@@ -66,16 +54,6 @@ namespace Assets.Scripts.SpaceShip
             SetState(_state);
 
             World.Ships.Add(this);
-        }
-
-        void IPointerEnterHandler.OnPointerEnter(PointerEventData eventData)
-        {
-            _mouseEntered = true;
-        }
-
-        void IPointerExitHandler.OnPointerExit(PointerEventData eventData)
-        {
-            _mouseEntered = false;
         }
 
         public void SetState(ShipState state)
@@ -91,14 +69,7 @@ namespace Assets.Scripts.SpaceShip
                     {
                         _collector.enabled = true;
                     }
-
-                    if(_playerShipInput != null)
-                    {
-                        _playerShipInput.enabled = true;
-                    }
-
-                    OnDeselected?.Invoke();
-                    OnSelectedForMoving?.Invoke();
+                    
                     break;
 
                 case ShipState.Trading:
@@ -107,10 +78,6 @@ namespace Assets.Scripts.SpaceShip
                     _collector.DisableCurrent();
                     _collector.enabled = false;
 
-                    _playerShipInput.DisableInput();
-
-                    OnDeselected?.Invoke();
-                    OnSelectedForTreading?.Invoke();
                     break;
                     
                 case ShipState.WeaponInstallation:
@@ -119,14 +86,14 @@ namespace Assets.Scripts.SpaceShip
                     _collector.DisableCurrent();
                     _collector.enabled = false;
 
-                    _playerShipInput.DisableInput();
-
                     foreach (var weaponPoint in _weaponInstallationPoints)
                     {
                         weaponPoint.Enable(true);
                     }
                     break;
             }
+
+            OnStateUpdated?.Invoke(_state);
         }
 
         public void SetEnableForShooting(bool enabled)
@@ -180,47 +147,6 @@ namespace Assets.Scripts.SpaceShip
             foreach (var weaponPoint in _weaponInstallationPoints)
             {
                 weaponPoint.Initialize(_ignoreCollidersForWeapons);
-            }
-        }
-
-        private void Update()
-        {
-            if (Input.GetMouseButtonDown(0) && EventSystem.current.currentSelectedGameObject == null)
-            {
-                _isSelected = _mouseEntered;
-
-                if (_isSelected)
-                {
-                    _playerShipInput?.EnableInput();
-
-                    switch (_state)
-                    {
-                        case ShipState.Trading:
-                            OnSelectedForTreading?.Invoke();
-
-                            _camera.SetDestination(transform.position);
-                            _camera.EnableInput = false;
-                            break;
-                        
-                        case ShipState.Gameplay:
-                            OnSelectedForMoving?.Invoke();
-                            break;
-
-                        case ShipState.WeaponInstallation:
-                            OnSelectedForUpgrades?.Invoke();
-
-                            _camera.SetDestination(transform.position);
-                            _camera.EnableInput = false;
-                            break;
-                    }
-                }
-                else
-                {
-                    _playerShipInput?.DisableInput();
-                    OnDeselected?.Invoke();
-
-                    _camera.EnableInput = true;
-                }
             }
         }
 

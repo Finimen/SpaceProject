@@ -25,12 +25,7 @@ namespace Assets.Scripts.WeaponInstallationSystem
 
                 ship.SetState(Ship.ShipState.WeaponInstallation);
 
-                ship.OnSelectedForUpgrades += () =>
-                {
-                    _installerCanvas.gameObject.SetActive(true);
-                };
-
-                ship.OnDeselected += () => _installerCanvas.gameObject.SetActive(false);
+                ship.OnStateUpdated += (state) => _installerCanvas.gameObject.SetActive(state == Ship.ShipState.WeaponInstallation);
             };
             GetComponent<Port>().OnShipLeave += (ship) =>
             {

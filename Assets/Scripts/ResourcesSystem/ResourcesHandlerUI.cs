@@ -15,8 +15,7 @@ namespace Assets.Scripts.ResourcesSystem
         {
             _canvas = FindObjectOfType<ResourcesCanvas>(true);
 
-            GetComponent<Ship>().OnSelectedForMoving += () => SetActiveUI(true);
-            GetComponent<Ship>().OnDeselected += () => SetActiveUI(false);
+            GetComponent<Ship>().OnStateUpdated += (state) => SetActiveUI(state == Ship.ShipState.Gameplay);
 
             _resources = GetComponent<ResourcesHandler>();
 

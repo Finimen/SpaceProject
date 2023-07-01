@@ -13,8 +13,7 @@ namespace Assets.Scripts.SpaceShip
         {
             _movement = GetComponent<ShipMovement>();
 
-            GetComponent<Ship>().OnSelectedForMoving += () => _pathLine.gameObject.SetActive(true);
-            GetComponent<Ship>().OnDeselected += () => _pathLine.gameObject.SetActive(false);
+            GetComponent<Ship>().OnStateUpdated += (state) => _pathLine.gameObject.SetActive(state == Ship.ShipState.Gameplay);
 
             _pathLine = Instantiate(_pathLine, Vector3.zero, Quaternion.identity);
             _pathLine.gameObject.SetActive(false);

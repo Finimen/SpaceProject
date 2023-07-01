@@ -70,17 +70,15 @@ namespace Assets.Scripts.TreadingSystem
 
                 ship.SetState(Ship.ShipState.Trading);
 
-                ship.OnSelectedForTreading += EnableCanvas;
-                ship.OnDeselected += DisableCanvas;
+                EnableCanvas();
 
                 UpdateUI();
             };
             GetComponent<Port>().OnShipLeave += (ship) =>
             {
-                ship.OnSelectedForTreading -= EnableCanvas;
-                ship.OnDeselected -= DisableCanvas;
-
                 _canvas.gameObject.SetActive(false);
+
+                DisableCanvas();
             };
         }
 

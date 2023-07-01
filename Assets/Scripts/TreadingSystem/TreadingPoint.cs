@@ -64,12 +64,12 @@ namespace Assets.Scripts.TreadingSystem
             {
                 ship.SetState(Ship.ShipState.Trading);
 
+                ship.OnStateUpdated += (state) => _treadingCanvas.gameObject.SetActive(state == Ship.ShipState.Trading);
+                
                 _currentHandler = ship.Handler;
 
                 UpdateUI();
 
-                ship.OnSelectedForTreading += () => _treadingCanvas.gameObject.SetActive(true);
-                ship.OnDeselected += () => _treadingCanvas.gameObject.SetActive(false);
             };
         }
 

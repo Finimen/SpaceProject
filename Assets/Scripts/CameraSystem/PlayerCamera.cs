@@ -1,5 +1,6 @@
 using Assets.Scripts.Players;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 namespace Assets.Scripts.CameraSystem
 {
@@ -37,6 +38,8 @@ namespace Assets.Scripts.CameraSystem
             _player = FindObjectOfType<PlayerShipInput>();
 
             SetDestination(_player.transform.position);
+
+            _scroll = _main.orthographicSize;
         }
 
         public void SetDestination(Vector3 destination)
@@ -98,14 +101,9 @@ namespace Assets.Scripts.CameraSystem
 
                 if (Input.GetMouseButton(0))
                 {
-                    Vector3 delta = Input.mousePosition - _startPosition;
+                    Vector3 delta = _startPosition - Input.mousePosition;
 
-                    _destination += new Vector3(delta.x, 0, delta.y);
-
-                    /*
-                    destination += (new Vector3((transform.up * -delta.y).x, 0, (transform.forward * -delta.y).z) 
-                        + transform.right * -delta.x) * multiplay * Mathf.Clamp(transform.position.y, 0, 95) / 100;
-                    */
+                    _destination += new Vector3(delta.x, delta.y) * _multiplier;
 
                     _startPosition = Input.mousePosition;
                 }
@@ -120,9 +118,11 @@ namespace Assets.Scripts.CameraSystem
 
                 var distanceBetwenTouchesPosition = Vector2.Distance(touchA.position, touchB.position);
                 var distanceBetwenTouchesDirections = Vector2.Distance(touchADircetion, touchBDircetion);
+
+                _scroll -= (distanceBetwenTouchesPosition - distanceBetwenTouchesDirections) * _scrollMultiplier;
+                _scroll = Mathf.Clamp(_scroll, _minScroll, _maxScroll);
             }
         }
-
         private void MoveCamera()
         {
             transform.position = Vector3.Lerp(transform.position, _destination, _lerpTime * Time.deltaTime);

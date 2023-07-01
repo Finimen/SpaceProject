@@ -21,6 +21,7 @@ namespace Assets.Scripts.Debug
             {
                 Vector3 mousePosition = Input.mousePosition;
 
+                return;
                 _worldMouse = Camera.main.ScreenToWorldPoint(mousePosition);
                 _worldMouse.z = 0f;
             }

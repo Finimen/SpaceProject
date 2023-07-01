@@ -29,11 +29,10 @@ namespace Assets.Scripts.PortSystem
             {
                 _current = other.GetComponent<Ship>();
 
-                _current.OnSelectedForUpgrades += ShowUI;
-                _current.OnSelectedForTreading += ShowUI;
-
                 _current.transform.position = _treadingPoint.position;
                 _current.transform.rotation = _treadingPoint.rotation;
+                
+                ShowUI();
                 
                 OnShipEnter?.Invoke(_current);
             }
@@ -49,8 +48,6 @@ namespace Assets.Scripts.PortSystem
         {
             _current.transform.position = _leavingPoint.position;
             _current.transform.rotation = _leavingPoint.rotation;
-
-            _current.OnSelectedForTreading -= ShowUI;
 
             _current.SetState(Ship.ShipState.Gameplay);
 
