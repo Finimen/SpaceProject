@@ -212,8 +212,6 @@ namespace Assets.Scripts.GeneratorSystem
                 return;
             }
 
-            UnityEngine.Debug.Log("TEDFEF");
-
             RemoveUnwantedObjects();
             CreateNewObjects();
         }

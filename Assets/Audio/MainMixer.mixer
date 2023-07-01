@@ -1,19 +1,5 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!244 &-7604181078245230025
-AudioMixerEffectController:
-  m_ObjectHideFlags: 3
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_Name: 
-  m_EffectID: ed5bd857f7a171c4bb52d3530679fb5e
-  m_EffectName: Attenuation
-  m_MixLevel: 40ebbfddf7508f24dbc6cb8fe5739373
-  m_Parameters: []
-  m_SendTarget: {fileID: 0}
-  m_EnableWetMix: 0
-  m_Bypass: 0
 --- !u!243 &-6345217786915895036
 AudioMixerGroupController:
   m_ObjectHideFlags: 0
@@ -23,8 +9,7 @@ AudioMixerGroupController:
   m_Name: Sounds
   m_AudioMixer: {fileID: 24100000}
   m_GroupID: c552e4795939dca469f4e3565863b085
-  m_Children:
-  - {fileID: 5706824567601014280}
+  m_Children: []
   m_Volume: 2c05f270289e5da4c9ef96d9b36ce78f
   m_Pitch: 69fe1806b0f215b45b078c831131e565
   m_Send: 00000000000000000000000000000000
@@ -68,13 +53,16 @@ AudioMixerController:
   m_SuspendThreshold: -80
   m_EnableSuspend: 1
   m_UpdateMode: 0
-  m_ExposedParameters: []
+  m_ExposedParameters:
+  - guid: 9e1cc3289b275354aaa77fa1bb9f95cf
+    name: Music
+  - guid: 2c05f270289e5da4c9ef96d9b36ce78f
+    name: Sounds
   m_AudioMixerGroupViews:
   - guids:
     - 4780cecaec55d584f9d617a37bc645c6
     - c552e4795939dca469f4e3565863b085
     - 7d47da7487235574ca54a8909a75fdcb
-    - 05003f90a7bfcd04ca1ee358449c025b
     name: View
   m_CurrentViewIndex: 0
   m_TargetSnapshot: {fileID: 24500006}
@@ -122,7 +110,8 @@ AudioMixerSnapshotController:
   m_Name: Snapshot
   m_AudioMixer: {fileID: 24100000}
   m_SnapshotID: 4e045dab9ab397b4090287e049204ea1
-  m_FloatValues: {}
+  m_FloatValues:
+    2c05f270289e5da4c9ef96d9b36ce78f: 0
   m_TransitionOverrides: {}
 --- !u!244 &5059075786780365568
 AudioMixerEffectController:
@@ -138,25 +127,6 @@ AudioMixerEffectController:
   m_SendTarget: {fileID: 0}
   m_EnableWetMix: 0
   m_Bypass: 0
---- !u!243 &5706824567601014280
-AudioMixerGroupController:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_Name: Weapons
-  m_AudioMixer: {fileID: 24100000}
-  m_GroupID: 05003f90a7bfcd04ca1ee358449c025b
-  m_Children: []
-  m_Volume: 2266ce7ee07a3c04da4f8e74b0580323
-  m_Pitch: f15cdec4f80dd6a42b74a9a6331c072c
-  m_Send: 00000000000000000000000000000000
-  m_Effects:
-  - {fileID: -7604181078245230025}
-  m_UserColorIndex: 0
-  m_Mute: 0
-  m_Solo: 0
-  m_BypassEffects: 0
 --- !u!244 &5824334755953361133
 AudioMixerEffectController:
   m_ObjectHideFlags: 3

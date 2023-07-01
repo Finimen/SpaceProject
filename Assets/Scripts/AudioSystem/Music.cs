@@ -2,6 +2,7 @@ using UnityEngine;
 
 namespace Assets.Scripts.AudioSystem
 {
+    [RequireComponent(typeof(AudioSource))]
     public class Music : MonoBehaviour
     {
         [SerializeField] private AudioClip[] _clips;

@@ -37,6 +37,7 @@ namespace Assets.Scripts.TrainingSystem
         [SerializeField] private GameObject _weaponInstallationInfo;
         [SerializeField] private GameObject _radarAndEnemyInfo;
         [SerializeField] private GameObject _radarCanvas;
+        [SerializeField] private GameObject _mainCanvas;
 
         public void SetState(TrainingState state)
         {
@@ -105,6 +106,7 @@ namespace Assets.Scripts.TrainingSystem
                     _radarAndEnemyInfo.SetActive(false);
                     gameObject.SetActive(false);
                     _radarCanvas.SetActive(true);
+                    _mainCanvas.SetActive(true);
 
                     FindObjectOfType<WorldGenerator>().StartGenerating();
                     break;
