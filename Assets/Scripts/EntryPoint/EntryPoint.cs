@@ -8,6 +8,7 @@ using UnityEngine;
 using Assets.Scripts.AI;
 using Assets.Scripts.PoolSystem;
 using Assets.Scripts.Players;
+using Assets.Scripts.UI;
 
 namespace Assets.Scripts
 {
@@ -65,6 +66,8 @@ namespace Assets.Scripts
             {
                 handler.Initialize();
             }
+
+            FindObjectOfType<GameplayCanvases>().Initialize();
         }
     }
 }

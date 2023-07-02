@@ -3,20 +3,25 @@ using UnityEngine;
 
 namespace Assets.Scripts.UI
 {
-    public class GameplayCanvases : MonoBehaviour
+    public class GameplayCanvases : MonoBehaviour, IInitializable
     {
         [SerializeField] private Ship _player;
 
         [SerializeField] private GameObject[] _gameplayUI;
 
-        private void OnEnable()
+        public void SetActive(bool active)
+        {
+            foreach (var ui in _gameplayUI)
+            {
+                ui.SetActive(active);
+            }
+        }
+
+        public void Initialize() 
         {
             _player.OnStateUpdated += (state) =>
             {
-                foreach(var ui in _gameplayUI)
-                {
-                    ui.SetActive(state == Ship.ShipState.Gameplay);
-                }
+                SetActive(state == Ship.ShipState.Gameplay);
             };
         }
     }

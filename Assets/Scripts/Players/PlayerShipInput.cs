@@ -13,7 +13,7 @@ namespace Assets.Scripts.Players
 
         public void Initialize()
         {
-            _joystick = FindObjectOfType<Joystick>();
+            _joystick = FindObjectOfType<Joystick>(true);
 
             _ship = GetComponent<Ship>();
 

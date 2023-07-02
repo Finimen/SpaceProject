@@ -1,5 +1,6 @@
 using Assets.Scripts.GeneratorSystem;
 using Assets.Scripts.TreadingSystem;
+using Assets.Scripts.UI;
 using UnityEngine;
 
 namespace Assets.Scripts.TrainingSystem
@@ -39,6 +40,8 @@ namespace Assets.Scripts.TrainingSystem
         [SerializeField] private GameObject _radarCanvas;
         [SerializeField] private GameObject _mainCanvas;
 
+        private GameplayCanvases _canvases;
+
         public void SetState(TrainingState state)
         {
             _currentState = state;
@@ -58,7 +61,8 @@ namespace Assets.Scripts.TrainingSystem
             switch (_currentState)
             {
                 case TrainingState.Start:
-                    _startInfo.SetActive(true); 
+                    _startInfo.SetActive(true);
+                    _canvases.SetActive(false);
                     break;
 
                 case TrainingState.MovingInfo:
@@ -69,37 +73,45 @@ namespace Assets.Scripts.TrainingSystem
                 case TrainingState.MovingStarted:
                     _movingInfo.SetActive(false);
                     _moving.Enable();
+                    _canvases.SetActive(true);
                     break;
 
                 case TrainingState.ResourcesInfo:
                     _resourcesInfo.SetActive(true);
+                    _canvases.SetActive(false);
                     break;
 
                 case TrainingState.ResourcesStarted:
                     _resourcesInfo.SetActive(false);
                     _resourcesCollecting.Enable();
+                    _canvases.SetActive(true);
                     break;
 
                 case TrainingState.TreadingIndo:
                     _treadingInfo.SetActive(true);
+                    _canvases.SetActive(false);
                     break;
 
                 case TrainingState.TreadingStarted:
                     _treadingInfo.SetActive(false);
                     _training.Enable();
+                    _canvases.SetActive(true);
                     break;
 
                 case TrainingState.WeaponInstallationInfo:
                     _weaponInstallationInfo.SetActive(true);
+                    _canvases.SetActive(false);
                     break;
 
                 case TrainingState.WeaponInstallationStarted:
                     _weaponInstallationInfo.SetActive(false);
                     _weaponInstallation.Enable();
+                    _canvases.SetActive(true);
                     break;
 
                 case TrainingState.RadarAndEnemyInfo:
                     _radarAndEnemyInfo.SetActive(true);
+                    _canvases.SetActive(false);
                     break;
 
                 case TrainingState.TrainingCompleted:
@@ -108,6 +120,8 @@ namespace Assets.Scripts.TrainingSystem
                     _radarCanvas.SetActive(true);
                     _mainCanvas.SetActive(true);
 
+                    _canvases.SetActive(true);
+
                     FindObjectOfType<WorldGenerator>().StartGenerating();
                     break;
             }
@@ -115,7 +129,12 @@ namespace Assets.Scripts.TrainingSystem
 
         private void OnEnable()
         {
+            _canvases = FindObjectOfType<GameplayCanvases>(true);
+            _canvases.enabled = true;
+
             UpdateStateLogic();
+            _canvases.SetActive(false);
+
         }
     }
 }
