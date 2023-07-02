@@ -408,10 +408,10 @@ GameObject:
   - component: {fileID: 6832521543072057116}
   - component: {fileID: 6832521543072057105}
   - component: {fileID: 6832521543072057104}
-  - component: {fileID: 6832521543072057119}
   - component: {fileID: 6832521543072057111}
   - component: {fileID: 6832521543072057108}
   - component: {fileID: 6832521543072057109}
+  - component: {fileID: 3454045906407181678}
   m_Layer: 0
   m_Name: BotBattelshipGold
   m_TagString: Untagged
@@ -622,25 +622,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _text: {fileID: 6832521542854215929}
---- !u!114 &6832521543072057119
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6832521543072057113}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2bb93263977b9054ea01a8bd7769b169, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _target: {x: 0, y: 0, z: 0}
-  _maxSpeed: 4
-  _acceleration: 0.1
-  _rotationSpeed: 10
-  _minAngleToMove: 15
-  _stoppingDistance: 1
-  _offset: -90
 --- !u!114 &6832521543072057111
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -697,6 +678,25 @@ MonoBehaviour:
     MinCount: 3
     MaxCount: 5
   _randomizePosition: 1
+--- !u!114 &3454045906407181678
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6832521543072057113}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5bac400deaa91d04d94902bd27a8eeb0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _target: {x: 0, y: 0, z: 0}
+  _maxSpeed: 5
+  _acceleration: 0.15
+  _rotationSpeed: 15
+  _minAngleToMove: 15
+  _stoppingDistance: 1
+  _offset: -90
 --- !u!1 &6832521543251923106
 GameObject:
   m_ObjectHideFlags: 0

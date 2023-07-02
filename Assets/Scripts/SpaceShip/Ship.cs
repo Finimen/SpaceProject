@@ -11,7 +11,7 @@ namespace Assets.Scripts.SpaceShip
     /// </summary>
     
     [DisallowMultipleComponent]
-    [RequireComponent(typeof(ShipMovement), typeof(ShipDamageDealer))]
+    [RequireComponent(typeof(ShipDamageDealer))]
     public class Ship : MonoBehaviour, IInitializable
     {
         public enum ShipState

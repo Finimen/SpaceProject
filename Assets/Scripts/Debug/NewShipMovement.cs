@@ -33,7 +33,7 @@ namespace Assets.Scripts.Debug
 
             if (_rigidbody.velocity.sqrMagnitude < _maxSpeed)
             {
-                _rigidbody.AddForce(transform.up * _inputDirection.y * _acceleration * Time.fixedDeltaTime);
+                _rigidbody.AddForce(transform.up * _inputDirection.y * _acceleration * Time.fixedDeltaTime * (_inputDirection.y > 0? 1: .2f));
             }
 
             _rotation -= _inputDirection.x;

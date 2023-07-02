@@ -1388,8 +1388,6 @@ GameObject:
   - component: {fileID: 6044290446893988514}
   - component: {fileID: 6044290446893988515}
   - component: {fileID: 8129968148132509602}
-  - component: {fileID: 6044290446893988501}
-  - component: {fileID: 6044290446893988508}
   - component: {fileID: 6044290446893988505}
   - component: {fileID: 6044290446893988504}
   - component: {fileID: 6044290446893988509}
@@ -1397,6 +1395,7 @@ GameObject:
   - component: {fileID: 6044290446893988507}
   - component: {fileID: 6044290446893988506}
   - component: {fileID: -5926138549982982851}
+  - component: {fileID: 6838815796794067867}
   m_Layer: 0
   m_Name: PlayerBarge
   m_TagString: Untagged
@@ -1488,12 +1487,12 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 1
+  m_Mass: 2
   m_LinearDrag: 0
   m_AngularDrag: 0.05
   m_GravityScale: 1
   m_Material: {fileID: 0}
-  m_Interpolate: 0
+  m_Interpolate: 1
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
@@ -1616,38 +1615,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _delay: 1.25
   _healthPerFrame: 150
---- !u!114 &6044290446893988501
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6044290446893988493}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2bb93263977b9054ea01a8bd7769b169, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _target: {x: 0, y: 0, z: 0}
-  _maxSpeed: 3.5
-  _acceleration: 0.1
-  _rotationSpeed: 5
-  _minAngleToMove: 7.5
-  _stoppingDistance: 1
-  _offset: -90
---- !u!114 &6044290446893988508
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6044290446893988493}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: da86a9bc2a9ae5442a09e7e297b2bd87, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _pathLine: {fileID: 8079252448535872471, guid: af6ceaa5e0238c247ab8d86483950aeb, type: 3}
 --- !u!114 &6044290446893988505
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1747,6 +1714,21 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _damageAudio: {fileID: 3404102220227127079, guid: 3f4606e249ab2ac419e7df3b403f40db, type: 3}
   _pitchRandomness: 0.1
+--- !u!114 &6838815796794067867
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6044290446893988493}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b6102466f563e7c459a13f0f20ccfd74, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _maxSpeed: 5
+  _rotationTime: 1.75
+  _acceleration: 50
 --- !u!1 &6044290446911862927
 GameObject:
   m_ObjectHideFlags: 0

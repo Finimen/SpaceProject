@@ -17,8 +17,6 @@ namespace Assets.Scripts.WeaponSystem
         
         private DamageableObject _currentEnemy;
 
-        private float _minAngleToMove = 7.5f;
-        
         private float _offset = -90;
         
         private float _angelBetweenDirection;
@@ -45,7 +43,7 @@ namespace Assets.Scripts.WeaponSystem
             _angelBetweenDirection = Vector2.Angle(direction, transform.right) - Mathf.Abs(_offset);
 
             if (Vector2.Distance(transform.position, _currentEnemy.transform.position) < _radius
-                && _currentWeapon.CanShoot && Mathf.Abs(_angelBetweenDirection) < _minAngleToMove)
+                && _currentWeapon.CanShoot && Mathf.Abs(_angelBetweenDirection) < .5f)
             {
                 _currentWeapon.Shoot();
             }

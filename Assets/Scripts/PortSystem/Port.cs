@@ -31,7 +31,10 @@ namespace Assets.Scripts.PortSystem
 
                 _current.transform.position = _treadingPoint.position;
                 _current.transform.rotation = _treadingPoint.rotation;
-                
+
+                _current.GetComponent<Rigidbody2D>().velocity = Vector2.zero;
+                _current.GetComponent<PlayerMovement>().UpdateRotation();
+
                 ShowUI();
                 
                 OnShipEnter?.Invoke(_current);
@@ -50,6 +53,8 @@ namespace Assets.Scripts.PortSystem
             _current.transform.rotation = _leavingPoint.rotation;
 
             _current.SetState(Ship.ShipState.Gameplay);
+
+            _current.GetComponent<PlayerMovement>().UpdateRotation();
 
             OnShipLeave?.Invoke(_current);
 

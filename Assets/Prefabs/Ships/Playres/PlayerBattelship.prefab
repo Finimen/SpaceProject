@@ -1526,8 +1526,6 @@ GameObject:
   - component: {fileID: 7572201085843996190}
   - component: {fileID: 7572201085843996191}
   - component: {fileID: 5464034791326390665}
-  - component: {fileID: 7572201085843996201}
-  - component: {fileID: 7572201085843996192}
   - component: {fileID: 7572201085843996197}
   - component: {fileID: 7572201085843996196}
   - component: {fileID: 7572201085843996193}
@@ -1535,6 +1533,7 @@ GameObject:
   - component: {fileID: 7572201085843996199}
   - component: {fileID: 7572201085843996198}
   - component: {fileID: 4097845562691569901}
+  - component: {fileID: 1768749874204297594}
   m_Layer: 0
   m_Name: PlayerBattelship
   m_TagString: Untagged
@@ -1626,12 +1625,12 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 1
+  m_Mass: 2
   m_LinearDrag: 0
   m_AngularDrag: 0.05
   m_GravityScale: 1
   m_Material: {fileID: 0}
-  m_Interpolate: 0
+  m_Interpolate: 1
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
@@ -1751,38 +1750,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _delay: 1
   _healthPerFrame: 225
---- !u!114 &7572201085843996201
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7572201085843996209}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2bb93263977b9054ea01a8bd7769b169, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _target: {x: 0, y: 0, z: 0}
-  _maxSpeed: 5
-  _acceleration: 0.1
-  _rotationSpeed: 7.5
-  _minAngleToMove: 15
-  _stoppingDistance: 1
-  _offset: -90
---- !u!114 &7572201085843996192
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7572201085843996209}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: da86a9bc2a9ae5442a09e7e297b2bd87, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _pathLine: {fileID: 8079252448535872471, guid: af6ceaa5e0238c247ab8d86483950aeb, type: 3}
 --- !u!114 &7572201085843996197
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1882,6 +1849,21 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _damageAudio: {fileID: 3404102220227127079, guid: 3f4606e249ab2ac419e7df3b403f40db, type: 3}
   _pitchRandomness: 0.1
+--- !u!114 &1768749874204297594
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7572201085843996209}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b6102466f563e7c459a13f0f20ccfd74, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _maxSpeed: 5
+  _rotationTime: 1.75
+  _acceleration: 50
 --- !u!1 &7572201085845664487
 GameObject:
   m_ObjectHideFlags: 0

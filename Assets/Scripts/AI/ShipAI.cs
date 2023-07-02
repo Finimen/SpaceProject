@@ -24,6 +24,7 @@ namespace Assets.Scripts.AI
         private Ship _ship;
         private ShipDamageDealer _damageable;
         private Transform _transform;
+        private BotMovement _movement;
 
         public void Initialize()
         {
@@ -33,7 +34,9 @@ namespace Assets.Scripts.AI
 
             _target = transform.position;
 
-            foreach(var weapon in GetComponentsInChildren<WeaponRandomizer>())
+            _movement = (BotMovement)_ship.Movement;
+
+            foreach (var weapon in GetComponentsInChildren<WeaponRandomizer>())
             {
                 weapon.Initialize(_ship.IgnoreCollidersForWeapons);
             }
@@ -61,7 +64,7 @@ namespace Assets.Scripts.AI
             {
                 _target = transform.up * Random.Range(-50, 51) + _transform.right * Random.Range(-5, 6);
 
-                _ship.Movement.SetTargetPoint(_target);
+                _movement.SetTargetPoint(_target);
             }
         }
 
@@ -73,7 +76,7 @@ namespace Assets.Scripts.AI
                 {
                     _target = entity.transform.position;
 
-                    _ship.Movement.SetTargetPoint(_target);
+                    _movement.SetTargetPoint(_target);
                 }
             }
         }

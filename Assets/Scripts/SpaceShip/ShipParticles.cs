@@ -2,7 +2,6 @@ using UnityEngine;
 
 namespace Assets.Scripts.SpaceShip
 {
-    [RequireComponent(typeof(ShipMovement))]
     public class ShipParticles : MonoBehaviour
     {
         [SerializeField] private ParticleSystem _engine;

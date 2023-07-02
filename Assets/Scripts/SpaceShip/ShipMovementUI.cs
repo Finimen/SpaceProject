@@ -7,11 +7,11 @@ namespace Assets.Scripts.SpaceShip
     {
         [SerializeField] private LineRenderer _pathLine;
 
-        private ShipMovement _movement;
+        private BotMovement _movement;
 
         private void OnEnable()
         {
-            _movement = GetComponent<ShipMovement>();
+            _movement = GetComponent<BotMovement>();
 
             GetComponent<Ship>().OnStateUpdated += (state) => _pathLine.gameObject.SetActive(state == Ship.ShipState.Gameplay);
 
